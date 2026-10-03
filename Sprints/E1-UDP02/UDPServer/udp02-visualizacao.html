@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>E1-UDP02 - Ordenação e Retenção UDP</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #08151d;
+            color: #e5edf2;
+        }
+
+        .container {
+            width: 94%;
+            max-width: 1400px;
+            margin: 30px auto;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #82a3b5;
+            margin-bottom: 25px;
+        }
+
+        .panel {
+            background: #0d1e27;
+            border: 1px solid #29424f;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* BOTÕES */
+
+        .controls {
+            padding: 20px;
+            border-bottom: 1px solid #29424f;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: #122934;
+            color: #dce7ed;
+            border: 1px solid #35515e;
+            padding: 11px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            border-color: #4ecdc4;
+        }
+
+        button.main {
+            color: #ffb347;
+            border-color: #ff9f43;
+        }
+
+        button.reset {
+            margin-left: auto;
+            color: #8eb5c9;
+        }
+
+        /* ESTADO */
+
+        .state-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-bottom: 1px solid #29424f;
+        }
+
+        .state {
+            padding: 20px;
+            border-right: 1px solid #29424f;
+        }
+
+        .state:last-child {
+            border-right: none;
+        }
+
+        .label {
+            color: #7195a8;
+            font-size: 13px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .value {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .cyan {
+            color: #4ecdc4;
+        }
+
+        .orange {
+            color: #ff9f43;
+        }
+
+        .yellow {
+            color: #ffd166;
+        }
+
+        /* CONTEÚDO */
+
+        .content {
+            display: grid;
+            grid-template-columns: 1.4fr 0.6fr;
+            min-height: 450px;
+        }
+
+        .history {
+            padding: 20px;
+            border-right: 1px solid #29424f;
+        }
+
+        .structures {
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 15px;
+            color: #9db9c7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* HISTÓRICO */
+
+        #history {
+            max-height: 390px;
+            overflow-y: auto;
+        }
+
+        .event {
+            background: #091820;
+            margin-bottom: 10px;
+            padding: 13px;
+            border-radius: 6px;
+            border-left: 4px solid #41606f;
+        }
+
+        .event.delivered {
+            border-left-color: #48c78e;
+        }
+
+        .event.waiting {
+            border-left-color: #ff9f43;
+        }
+
+        .event.cascade {
+            border-left-color: #ffd166;
+        }
+
+        .event.duplicate {
+            border-left-color: #ef6262;
+        }
+
+        .event-title {
+            font-weight: bold;
+        }
+
+        .event-info {
+            color: #89a8b7;
+            margin-top: 6px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        /* ESTRUTURAS */
+
+        .structure {
+            margin-bottom: 30px;
+        }
+
+        .message {
+            background: #091820;
+            border: 1px solid #263f4c;
+            padding: 10px;
+            margin-bottom: 7px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .message-number {
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .temporary .message-number {
+            color: #ff9f43;
+        }
+
+        .empty {
+            color: #637f8d;
+            font-style: italic;
+        }
+
+        /* CASCATA */
+
+        .cascade-box {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255, 209, 102, 0.08);
+            border: 1px solid #ffd166;
+            border-radius: 7px;
+            color: #ffd166;
+            font-weight: bold;
+        }
+
+        .footer {
+            padding: 15px 20px;
+            border-top: 1px solid #29424f;
+            color: #668796;
+            font-size: 13px;
+        }
+
+        @media (max-width: 900px) {
+
+            .state-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .history {
+                border-right: none;
+                border-bottom: 1px solid #29424f;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Ordenação e Retenção de Mensagens UDP</h1>
+
+    <div class="subtitle">
+        E1-UDP02 · Retenção de mensagens fora de ordem e entrega em cascata
+    </div>
+
+
+    <div class="panel">
+
+        <!-- BOTÕES -->
+
+        <div class="controls">
+
+            <div class="buttons">
+
+                <button
+                    class="main"
+                    onclick="receberMensagem(1, 'ola')">
+                    1,ola
+                </button>
+
+                <button
+                    onclick="receberMensagem(3, 'mundo')">
+                    3,mundo
+                </button>
+
+                <button
+                    onclick="receberMensagem(4, 'tudo bem')">
+                    4,tudo bem
+                </button>
+
+                <button
+                    onclick="receberMensagem(2, 'cruel')">
+                    2,cruel
+                </button>
+
+                <button
+                    onclick="receberMensagem(3, 'mundo')">
+                    3,mundo (duplicado)
+                </button>
+
+                <button
+                    class="reset"
+                    onclick="resetServidor()">
+                    Reset server
+                </button>
+
+            </div>
+
+            <div style="margin-top:15px;color:#7898a8;">
+                Sequência recomendada:
+                <strong style="color:#dbe7ec;">
+                    1 → 3 → 4 → 2 → 3
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- ESTADO DO SERVIDOR -->
+
+        <div class="state-grid">
+
+            <div class="state">
+
+                <div class="label">
+                    Server state
+                </div>
+
+                <div
+                    class="value cyan"
+                    id="serverState">
+                    L = 0
+                </div>
+
+            </div>
+
+
+            <div class="state">
+
+                <div class="label">
+                    Last reply
+                </div>
+
+                <div
+                    class="value orange"
+                    id="lastReply">
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="state">
+
+                <div class="label">
+                    Datagrams received
+                </div>
+
+                <div
+                    class="value"
+                    id="datagrams">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="state">
+
+                <div class="label">
+                    Waiting for
+                </div>
+
+                <div
+                    class="value yellow"
+                    id="waitingFor">
+                    1
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ÁREA PRINCIPAL -->
+
+        <div class="content">
+
+            <!-- HISTÓRICO -->
+
+            <div class="history">
+
+                <h2>
+                    Histórico de processamento
+                </h2>
+
+                <div
+                    id="cascadeBox"
+                    class="cascade-box">
+                </div>
+
+                <div id="history">
+
+                    <div class="event">
+
+                        <div class="event-title">
+                            Servidor iniciado
+                        </div>
+
+                        <div class="event-info">
+                            L = 0<br>
+                            O servidor está à espera da mensagem 1.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ESTRUTURAS -->
+
+            <div class="structures">
+
+                <div class="structure">
+
+                    <h2>
+                        Lista de receção
+                    </h2>
+
+                    <div id="receivedList">
+
+                        <div class="empty">
+                            Nenhuma mensagem entregue.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="structure temporary">
+
+                    <h2>
+                        Estrutura temporária
+                    </h2>
+
+                    <div id="temporaryList">
+
+                        <div class="empty">
+                            Vazia.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer">
+
+            Simulação visual do algoritmo E1-UDP02.
+            A lista de receção contém mensagens já entregues;
+            a estrutura temporária contém mensagens recebidas
+            fora de ordem.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /*
+     * L representa o número da última mensagem
+     * entregue corretamente e por ordem.
+     */
+
+    let L = 0;
+
+
+    /*
+     * Lista de mensagens efetivamente entregues
+     * à aplicação.
+     */
+
+    const listaRececao = [];
+
+
+    /*
+     * Estrutura temporária.
+     *
+     * chave = número da mensagem
+     * valor = mensagem completa
+     */
+
+    const estruturaTemporaria = new Map();
+
+
+    /*
+     * Número de datagramas recebidos.
+     */
+
+    let totalDatagramas = 0;
+
+
+
+    /*
+     * Processa uma mensagem recebida.
+     */
+
+    function receberMensagem(N, texto) {
+
+        totalDatagramas++;
+
+
+        const mensagem = N + "," + texto;
+
+
+        /*
+         * Guarda o valor de L antes do processamento.
+         */
+
+        const LAnterior = L;
+
+
+        /*
+         * Guarda as mensagens entregues
+         * durante este passo.
+         */
+
+        const entreguesNestePasso = [];
+
+
+        /*
+         * CASO 1
+         *
+         * A mensagem é exatamente a próxima esperada.
+         */
+
+        if (N === L + 1) {
+
+            listaRececao.push({
+                numero: N,
+                texto: texto
+            });
+
+
+            entreguesNestePasso.push(mensagem);
+
+
+            L = N;
+
+
+            /*
+             * ENTREGA EM CASCATA
+             *
+             * Enquanto existir a próxima mensagem
+             * na estrutura temporária, ela pode
+             * ser imediatamente entregue.
+             */
+
+            while (estruturaTemporaria.has(L + 1)) {
+
+                const proximoNumero = L + 1;
+
+
+                const proximaMensagem =
+                    estruturaTemporaria.get(proximoNumero);
+
+
+                /*
+                 * Remove da estrutura temporária.
+                 */
+
+                estruturaTemporaria.delete(proximoNumero);
+
+
+                /*
+                 * Adiciona à lista de receção.
+                 */
+
+                listaRececao.push(
+                    proximaMensagem
+                );
+
+
+                entreguesNestePasso.push(
+                    proximaMensagem.numero +
+                    "," +
+                    proximaMensagem.texto
+                );
+
+
+                /*
+                 * Atualiza L.
+                 */
+
+                L = proximoNumero;
+
+            }
+
+        }
+
+        /*
+         * CASO 2
+         *
+         * Mensagem fora de ordem.
+         *
+         * Segundo o algoritmo pedido no exercício,
+         * qualquer mensagem que não seja L + 1
+         * fica na estrutura temporária.
+         */
+
+        else {
+
+            estruturaTemporaria.set(
+                N,
+                {
+                    numero: N,
+                    texto: texto
+                }
+            );
+
+        }
+
+
+
+        /*
+         * RESPOSTA DO SERVIDOR
+         */
+
+        let resposta;
+
+
+        if (L > LAnterior) {
+
+            resposta = mensagem;
+
+        }
+
+        else {
+
+            resposta =
+                "waitingfor," + (L + 1);
+
+        }
+
+
+
+        /*
+         * Atualizar interface.
+         */
+
+        atualizarEstado(resposta);
+
+
+        /*
+         * Adicionar evento ao histórico.
+         */
+
+        adicionarHistorico(
+            N,
+            mensagem,
+            resposta,
+            LAnterior,
+            entreguesNestePasso
+        );
+
+    }
+
+
+
+    /*
+     * Atualiza os indicadores visuais.
+     */
+
+    function atualizarEstado(resposta) {
+
+        document.getElementById(
+            "serverState"
+        ).textContent = "L = " + L;
+
+
+        document.getElementById(
+            "lastReply"
+        ).textContent = resposta;
+
+
+        document.getElementById(
+            "datagrams"
+        ).textContent = totalDatagramas;
+
+
+        document.getElementById(
+            "waitingFor"
+        ).textContent = L + 1;
+
+
+        atualizarListaRececao();
+
+        atualizarEstruturaTemporaria();
+
+    }
+
+
+
+    /*
+     * Mostra a lista de mensagens entregues.
+     */
+
+    function atualizarListaRececao() {
+
+        const container =
+            document.getElementById(
+                "receivedList"
+            );
+
+
+        container.innerHTML = "";
+
+
+        if (listaRececao.length === 0) {
+
+            container.innerHTML =
+                '<div class="empty">' +
+                'Nenhuma mensagem entregue.' +
+                '</div>';
+
+            return;
+
+        }
+
+
+        listaRececao.forEach(function(msg) {
+
+            const div =
+                document.createElement("div");
+
+
+            div.className = "message";
+
+
+            div.innerHTML =
+                '<span class="message-number">' +
+                msg.numero +
+                '</span>' +
+
+                '<span>' +
+                msg.texto +
+                '</span>';
+
+
+            container.appendChild(div);
+
+        });
+
+    }
+
+
+
+    /*
+     * Mostra a estrutura temporária.
+     */
+
+    function atualizarEstruturaTemporaria() {
+
+        const container =
+            document.getElementById(
+                "temporaryList"
+            );
+
+
+        container.innerHTML = "";
+
+
+        if (estruturaTemporaria.size === 0) {
+
+            container.innerHTML =
+                '<div class="empty">' +
+                'Vazia.' +
+                '</div>';
+
+            return;
+
+        }
+
+
+        /*
+         * Ordenar apenas para facilitar
+         * a visualização.
+         */
+
+        const mensagens =
+            Array.from(
+                estruturaTemporaria.entries()
+            )
+            .sort(
+                (a, b) => a[0] - b[0]
+            );
+
+
+        mensagens.forEach(
+            function([numero, msg]) {
+
+                const div =
+                    document.createElement("div");
+
+
+                div.className = "message";
+
+
+                div.innerHTML =
+                    '<span class="message-number">' +
+                    numero +
+                    '</span>' +
+
+                    '<span>' +
+                    msg.texto +
+                    '</span>';
+
+
+                container.appendChild(div);
+
+            }
+        );
+
+    }
+
+
+
+    /*
+     * Adiciona uma entrada ao histórico.
+     */
+
+    function adicionarHistorico(
+        N,
+        mensagem,
+        resposta,
+        LAnterior,
+        entregues
+    ) {
+
+        const history =
+            document.getElementById(
+                "history"
+            );
+
+
+        const event =
+            document.createElement("div");
+
+
+        let classe = "waiting";
+
+        let explicacao = "";
+
+
+        /*
+         * Entrega em cascata.
+         */
+
+        if (entregues.length > 1) {
+
+            classe = "cascade";
+
+
+            explicacao =
+                "Entrega em cascata: " +
+                entregues.join(" → ");
+
+
+            mostrarCascata(entregues);
+
+        }
+
+        /*
+         * Entrega normal.
+         */
+
+        else if (entregues.length === 1) {
+
+            classe = "delivered";
+
+
+            explicacao =
+                "Mensagem entregue imediatamente.";
+
+        }
+
+        /*
+         * Mensagem que já tinha sido entregue.
+         *
+         * Isto evidencia uma limitação do algoritmo
+         * base pedido no exercício.
+         */
+
+        else if (N <= LAnterior) {
+
+            classe = "duplicate";
+
+
+            explicacao =
+                "Número menor ou igual a L. " +
+                "O algoritmo base não trata explicitamente " +
+                "este duplicado e coloca-o na estrutura temporária.";
+
+        }
+
+        /*
+         * Mensagem recebida adiantada.
+         */
+
+        else {
+
+            classe = "waiting";
+
+
+            explicacao =
+                "Mensagem recebida fora de ordem. " +
+                "Foi guardada temporariamente.";
+
+        }
+
+
+        event.className =
+            "event " + classe;
+
+
+        event.innerHTML =
+
+            '<div class="event-title">' +
+
+            'Recebido: ' +
+            mensagem +
+
+            '</div>' +
+
+            '<div class="event-info">' +
+
+            'Resposta: ' +
+            resposta +
+
+            '<br>' +
+
+            'L após processamento: ' +
+            L +
+
+            '<br>' +
+
+            explicacao +
+
+            '</div>';
+
+
+        /*
+         * Evento mais recente fica em cima.
+         */
+
+        history.prepend(event);
+
+    }
+
+
+
+    /*
+     * Destaca visualmente uma entrega em cascata.
+     */
+
+    function mostrarCascata(mensagens) {
+
+        const box =
+            document.getElementById(
+                "cascadeBox"
+            );
+
+
+        box.style.display = "block";
+
+
+        box.textContent =
+            "Entrega em cascata: " +
+            mensagens.join("  →  ");
+
+    }
+
+
+
+    /*
+     * Reinicia completamente a simulação.
+     */
+
+    function resetServidor() {
+
+        L = 0;
+
+        totalDatagramas = 0;
+
+
+        listaRececao.length = 0;
+
+        estruturaTemporaria.clear();
+
+
+        document.getElementById(
+            "serverState"
+        ).textContent = "L = 0";
+
+
+        document.getElementById(
+            "lastReply"
+        ).textContent = "—";
+
+
+        document.getElementById(
+            "datagrams"
+        ).textContent = "0";
+
+
+        document.getElementById(
+            "waitingFor"
+        ).textContent = "1";
+
+
+        document.getElementById(
+            "cascadeBox"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "history"
+        ).innerHTML =
+
+            '<div class="event">' +
+
+            '<div class="event-title">' +
+            'Servidor reiniciado' +
+            '</div>' +
+
+            '<div class="event-info">' +
+            'L = 0<br>' +
+            'O servidor está à espera da mensagem 1.' +
+            '</div>' +
+
+            '</div>';
+
+
+        atualizarListaRececao();
+
+        atualizarEstruturaTemporaria();
+
+    }
+
+</script>
+
+</body>
+</html>
