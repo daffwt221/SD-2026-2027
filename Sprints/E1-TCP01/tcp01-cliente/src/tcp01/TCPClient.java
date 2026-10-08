@@ -5,15 +5,16 @@ import java.net.*;
 
 public class TCPClient {
     public static void main(String args[]) {
+        Socket socket = null;
         try {
             int serverPort = 7896;
-            Socket socket = new Socket("localhost", serverPort);
+            socket = new Socket("localhost", serverPort);
             DataInputStream in = new DataInputStream(socket.getInputStream());
-            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            out.writeUTF("Hello from the client");
+            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            out.writeObject(new Person("Emilio", 2000));
+            out.flush(); // send the message
             String data = in.readUTF();
             System.out.println("Received: "+data);
-            socket.close();
         }
         catch (UnknownHostException e) {
             System.out.println("Sock:"+e.getMessage());
@@ -23,6 +24,15 @@ public class TCPClient {
         }
         catch (IOException e) {
             System.out.println("IO:"+e.getMessage());
+        }
+        finally {
+            if (socket != null)
+                try {
+                    socket.close();
+                }
+                catch (IOException e){
+                    System.out.println("close:"+e.getMessage());
+                }
         }
     }
 }
