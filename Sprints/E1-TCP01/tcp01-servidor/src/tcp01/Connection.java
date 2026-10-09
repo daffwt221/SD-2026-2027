@@ -1,5 +1,6 @@
 package tcp01;
 
+
 import java.io.*;
 import java.net.*;
 
@@ -24,8 +25,8 @@ public class Connection extends Thread {
     public void run(){
         try {	
             Person Person = (Person) in.readObject();	 // an echo server
-            System.out.println("Received: "+Person.getName());
-            out.writeUTF(Person.getName());		// send it back to the client
+            System.out.println("Received: "+Person.getLocality()+" Postal Code: "+Person.getPostalCode());
+            out.writeUTF("Server response: " + Person.getLocality() + " " + Person.getPostalCode());		// send it back to the client
         }
         catch(EOFException e) {
             System.out.println("EOF:"+e.getMessage());

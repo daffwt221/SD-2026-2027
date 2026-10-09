@@ -3,6 +3,7 @@ package tcp01;
 import java.io.*;
 import java.net.*;
 
+
 public class TCPClient {
     public static void main(String args[]) {
         Socket socket = null;
@@ -11,8 +12,8 @@ public class TCPClient {
             socket = new Socket("localhost", serverPort);
             DataInputStream in = new DataInputStream(socket.getInputStream());
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-            out.writeObject(new Person("Emilio", 2000));
-            out.flush(); // send the message
+            out.writeObject(new Person("Emilio", new Place("Lisboa", "1000-001"), 1990));
+            out.flush(); // send bytes pending in the stream
             String data = in.readUTF();
             System.out.println("Received: "+data);
         }
