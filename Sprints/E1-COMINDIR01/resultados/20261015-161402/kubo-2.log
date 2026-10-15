@@ -1,0 +1,13 @@
+Initializing daemon...
+Kubo version: 0.43.1-acc53c093
+Repo version: 18
+System version: amd64/windows
+Golang version: go1.26.5
+PeerID: 12D3KooWA6gCrujDfvgWbk8uhN1gyfztEFynD8hDPR1niQAKK5Hg
+Swarm listening on 127.0.0.1:14502 (TCP)
+Run 'ipfs id' to inspect announced and discovered multiaddrs of this node.
+RPC API server listening on /ip4/127.0.0.1/tcp/15502
+WebUI: http://127.0.0.1:15502/webui
+Gateway server listening on /ip4/127.0.0.1/tcp/18502
+Routing V1 API exposed at http://127.0.0.1:18502/routing/v1
+Daemon is ready

@@ -1,0 +1,177 @@
+COMINDIR01 — REGISTO TÉCNICO E RESULTADOS
+
+Relatório gerado a partir de testes executados por assistência automatizada.
+Não substitui a explicação oral do estudante nem demonstra testes entre cidades.
+Origem dos dados: resultados\20261015-161402\resultados.json
+Versão: ipfs version 0.43.1
+java version "25.0.2" 2026-01-20 LTS
+Java(TM) SE Runtime Environment (build 25.0.2+10-LTS-69)
+Java HotSpot(TM) 64-Bit Server VM (build 25.0.2+10-LTS-69, mixed mode, sharing)
+Todos os processos correram nesta máquina Windows; APIs e swarm em loopback.
+Grupo multicast dos testes: 239.255.71.99:16799
+O código Java foi compilado com --release 11. Não usa bibliotecas externas.
+
+PONTOS 1–13 — IMPLEMENTAÇÃO E VERIFICAÇÃO
+
+SensorRecord define o formato seq;sensor;temperatura;instante; RecordFile faz append UTF-8.
+O líder recupera lastSeq, atribui números crescentes, guarda localmente e depois propaga.
+MulticastLeader envia um datagrama por registo, com TTL 1, sem lista de réplicas.
+PubSubLeader conserva a mesma CLI, ficheiro, numeração e comando rajada; muda o transporte.
+A API HTTP do Kubo recebe POST multipart; tópicos e dados recebidos usam multibase base64url.
+ReplicaState é comum aos dois transportes: só escreve last+1; ignora duplicados; retém os demais.
+O TreeMap contém os registos fora de ordem. Só após append bem-sucedido se atualiza last.
+Mensagens inválidas são rejeitadas; falhas reais de disco não são confundidas com erro de formato.
+Rajada n gera n registos SIM, com temperaturas em [15,30), sem pausas entre os envios.
+O modo manual é só para injetar datagramas/mensagens de teste e não escreve lider.txt.
+
+OPERAÇÕES BLOQUEANTES
+Scanner.hasNextLine: espera por uma linha ou fim da entrada.
+RecordFile.lastSeq/append: I/O de disco; synchronized pode também esperar pelo monitor do objeto.
+MulticastSocket.receive: espera por datagrama ou timeout de 1 s para apresentar medições.
+MulticastSocket.send: chamada de I/O local; sucesso não é confirmação das réplicas.
+HttpClient.send: espera pela resposta HTTP local do daemon.
+IpfsPubSub.subscribe: leitura do stream HTTP bloqueia entre mensagens; não é uma lista finita.
+
+VERIFICAÇÕES AUTOMÁTICAS
+- Kubo CLI sub/pub: PASS
+- multicast ordering/duplicates/invalid: PASS
+- multicast interruption 5 + offline 3 + online 2: PASS
+- pubsub ordering/duplicates/invalid: PASS
+- pubsub interruption 5 + offline 3 + online 2: PASS
+- Três rajadas de 1000, em cada um de três cenários, com três réplicas.
+- Contadores escritos confrontados com o conteúdo dos ficheiros.
+- Ficheiros das réplicas verificados como prefixos sem saltos do ficheiro do líder.
+- Nós ligados: swarm connect executado e pubsub peers confirmou o interesse no tópico.
+- ipfs.ps1: Init, Start nos dois nós, Connect e Status verificados separadamente.
+
+PONTO 14 — FALHAS OBSERVADAS
+
+Líder envia três registos antes de arrancar a réplica | multicast | lado: replica
+  Observação real: No exception; file empty, seq 4 and 5 retained, missing seq 1.
+  Evidência: resultados\20261015-161402\multicast-arranque-tardio
+Líder envia três registos antes de arrancar a réplica | pubsub | lado: replica
+  Observação real: No exception; file empty, seq 4 and 5 retained, missing seq 1.
+  Evidência: resultados\20261015-161402\pubsub-arranque-tardio
+Réplica com grupo multicast diferente | multicast | lado: replica
+  Observação real: No exception; no records received; files diverge.
+  Evidência: resultados\20261015-161402\multicast-grupo-errado
+Buffer de receção reduzido a 10 bytes | multicast | lado: replica
+  Observação real: Datagram truncated; IllegalArgumentException handled as REJEITADO, replica stays alive; files diverge.
+  Evidência: resultados\20261015-161402\multicast-buffer10
+Parar réplica a meio de rajada 1000 e reiniciar | multicast | lado: replica
+  Observação real: No exception; saved 373 / 1000 before stop; seq 1001 retained after restart.
+  Evidência: resultados\20261015-161402\multicast-paragem-na-rajada
+Réplica subscreve rep01-temp | pubsub | lado: replica
+  Observação real: No exception; no records received; files diverge.
+  Evidência: resultados\20261015-161402\pubsub-topico-errado
+PubSub desativado no nó da réplica | pubsub | lado: replica
+  Observação real: Medição: rajadas de 1000 registos, a partir de seq 1 / Réplica 1 a subscrever rep01-temperaturas no porto 15503 / ERRO: IOException: sub falhou (500): {"Message":"experimental pubsub feature not enabled, run daemon with --enable-pubsub-experiment to use","Code":0,"Type":"error"} | Leader file has seq 1; replica file empty: files diverge.
+  Evidência: resultados\20261015-161402\pubsub-desativado
+Dois nós sem ligação, sem bootstrap e sem mDNS | pubsub | lado: replica
+  Observação real: No exception; bootstrap empty, mDNS false, swarm peers empty; files diverge.
+  Evidência: resultados\20261015-161402\pubsub-nos-desligados
+Daemon do líder parado | pubsub | lado: leader
+  Observação real: Líder pronto. Formato: <sensor> <temperatura> | rajada <n> | sair / > IO: ConnectException: null
+  Evidência: resultados\20261015-161402\pubsub-daemon-parado
+
+Os testes usam um grupo equivalente isolado (239.255.71.99), e o grupo errado 239.255.71.100,
+em vez de alterar os endereços das sessões normais do estudante. Os valores por omissão
+da aplicação continuam a ser 230.0.0.1:6789.
+O buffer pequeno pode truncar sem erro do socket: a interpretação é que rejeita o conteúdo.
+Nenhuma observação de perdas permite, sozinha, localizar a perda na rede, emissor ou recetor.
+
+PONTO 15 — CONSTRUÇÕES E GARANTIAS
+
+MulticastSocket/joinGroup — MulticastReplica.main: adesão ao grupo e receção um-para-muitos;
+  não garante entrega, ordem, ausência de duplicados nem recuperação.
+TTL 1 — MulticastLeader.main: limita o alcance de encaminhamento; não confirma entrega.
+Append antes de propagar — ambos os líderes: o registo propagado já existe no líder;
+  pode haver um registo local que nunca chegou a ser enviado.
+Seq — ReplicaState.accept: deteta duplicados e lacunas; só permite append em sequência;
+  não recupera perdas nem autentica o emissor.
+toLine/fromLine — SensorRecord: formato textual comum a ficheiro e rede;
+  não prova integridade/autoria e a validação fornecida não verifica o formato do timestamp.
+Tópico — PubSubLeader/PubSubReplica.TOPIC: seleciona o interesse dos subscritores;
+  não é histórico, autorização ou confirmação.
+Daemon/API HTTP — IpfsPubSub: fornece publicação/subscrição no nó; requer processo local
+  disponível e ligações entre nós; HTTP 200 não confirma escrita no ficheiro remoto.
+Multibase — IpfsPubSub: codificação exigida pela RPC para tópico e data;
+  não é cifragem nem autenticação. A CLI Kubo faz a codificação automaticamente.
+
+PONTO 16 — MÉDIAS DAS TRÊS RAJADAS DE 1000
+
+Cenário | intervalo envio ms | duração total ms | débito reg/s | latência réplica mais lenta ms
+multicast | 1099.67 | 1134.99 | 891.05 | 1180.67
+  Réplica 1: médias não recebidos=0.00; duplicados=0.00; retidos=0.00.
+  Réplica 2: médias não recebidos=0.00; duplicados=0.00; retidos=0.00.
+  Réplica 3: médias não recebidos=0.00; duplicados=0.00; retidos=0.00.
+pubsub-um-no | 5780.00 | 5804.68 | 172.56 | 5783.67
+  Réplica 1: médias não recebidos=0.00; duplicados=0.00; retidos=0.00.
+  Réplica 2: médias não recebidos=0.00; duplicados=0.00; retidos=0.00.
+  Réplica 3: médias não recebidos=0.00; duplicados=0.00; retidos=0.00.
+pubsub-dois-nos | 4607.00 | 4630.75 | 215.98 | 4615.00
+  Réplica 1: médias não recebidos=0.00; duplicados=0.00; retidos=0.00.
+  Réplica 2: médias não recebidos=0.00; duplicados=0.00; retidos=0.00.
+  Réplica 3: médias não recebidos=0.00; duplicados=0.00; retidos=0.00.
+
+Componentes além da JVM: multicast=0; PubSub um nó=1 daemon; PubSub dois nós=2 daemons.
+Configuração com ipfs.ps1, sem contar compilação/arranque Java ou instalação: multicast=0;
+  um nó=2 comandos (Init, Start); dois nós=5 (Init e Start por nó, Connect).
+Réplica atrasada: nos três cenários, não obtém o passado e retém o futuro após a primeira lacuna.
+Redes diferentes: multicast depende de suporte/configuração dos routers; IPFS usa ligações
+  normais entre nós, mas exige conectividade real e descoberta/ligação de pares.
+As configurações locais deste ensaio só escutam loopback: não demonstram ligação entre cidades.
+
+MÉTODO E LIMITAÇÕES DAS MEDIÇÕES
+Intervalo de envio: ultimoEnvio - primeiroEnvio; ambos em currentTimeMillis antes de send/publish.
+Duração total: nanoTime, incluindo geração e append local; débito = n / duração total.
+Latência: ultimaRececao - primeiroEnvio; réplicas e líder partilham o relógio desta máquina.
+As marcas de receção medem a entrega à aplicação Java, incluindo eventuais filas de processamento.
+A comparação inclui escrita de disco e mensagens de consola, não mede apenas o transporte.
+Cada rajada arranca um processo líder novo; cold start/primeira ligação HTTP afetam os resultados.
+Os intervalos SIM são configurados pelo tamanho e primeiro seq. Não misturar leituras comuns.
+Resumo após 1 s sem dados é parcial, não um protocolo de fim; mensagens tardias podem alterá-lo.
+Uma rajada totalmente perdida não cria resumo. Não recebidos é inferido de n configurado,
+não distingue perda definitiva de atraso. Não existem ACK, retransmissão ou transferência de estado.
+
+PONTO 17 — COMPARAÇÃO E LIMITES
+
+Desempenho: menor latência média observada em multicast; maior débito em multicast.
+  Multicast faz uma chamada UDP. PubSub acrescenta pedidos HTTP, processamento do daemon
+  e, com dois nós, gossip/encaminhamento e entrega num segundo stream HTTP.
+  Isto é uma explicação plausível do custo, não uma decomposição medida de cada etapa.
+Escalabilidade: de 3 para 300 réplicas, o líder multicast continua a enviar um datagrama
+  por registo. A rede replica nos ramos necessários; tráfego de entrega cresce com os destinos.
+  Em PubSub cada nó mantém uma malha limitada de vizinhos e encaminha por gossip;
+  mais nós implicam mais ligações e tráfego agregado, não 300 envios diretos do líder.
+  A distribuição real de carga depende da topologia. Este ensaio não mediu 300 réplicas.
+Fiabilidade: seq deteta lacunas e impede escrita fora de ordem; não demonstra a causa de uma
+  perda. Uma execução sem perdas não torna fiável nenhum dos transportes.
+Recuperação: com uma lacuna permanente, o ficheiro fica parado e os pendentes crescem.
+  Ao reiniciar a réplica, perde-se a memória dos pendentes. Seria necessário obter o histórico
+  em falta ou um estado atualizado; ambos ficam fora do âmbito desta ficha.
+Dependências e alcance: num edifício com multicast permitido, evita-se o daemon e a configuração
+  de pares. Para várias cidades, PubSub oferece propagação sobre ligações IP normais;
+  continua a depender de nós alcançáveis, configuração e disponibilidade.
+  As medidas locais apoiam apenas a comparação de custo nesta máquina, não a latência WAN.
+Ponto único de falha: sem líder não há novas escritas; as réplicas continuam à escuta.
+  Nenhum dos transportes elege outro líder. Dois escritores poderiam reutilizar seq e gerar
+  históricos incompatíveis. Coordenação de escritores/eleição está fora do âmbito.
+Segurança: o formato e seq não autenticam o emissor. Um registo forjado bem formado pode
+  ocupar um seq ou fazer crescer os pendentes. O from do IPFS identifica o nó publicador,
+  mas só ajuda se for comparado com uma identidade de líder confiável. Essa verificação
+  teria de acontecer na receção, antes de ReplicaState.accept/append. Não está implementada.
+  O extrator atual usa apenas data; não deve ser apresentado como autenticação.
+
+CRITÉRIOS DE ACEITAÇÃO — MAPA PARA REVISÃO
+CA1: líderes, SensorRecord, RecordFile; ordem local/envio, reinício, pontos bloqueantes.
+CA2: MulticastLeader/Replica; cenários multicast e falhas de grupo/buffer/interrupção.
+CA3: IpfsPubSub e PubSubLeader/Replica; CLI, cenários de um/dois nós e peers confirmados.
+CA4: diretórios de falhas com logs e ficheiros; distinguir rejeição, exceção e divergência silenciosa.
+CA5: médias acima e limites explícitos; apresentar as decisões por palavras próprias.
+O resultado técnico não substitui a demonstração e compreensão exigidas pela avaliação oral.
+
+REFERÊNCIAS
+https://github.com/cunhaestgv/SD-2026-2027/issues/14
+https://docs.ipfs.tech/reference/kubo/rpc/
+https://github.com/ipfs/kubo/releases/tag/v0.43.1

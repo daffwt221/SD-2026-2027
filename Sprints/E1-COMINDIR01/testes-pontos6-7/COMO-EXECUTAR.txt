@@ -1,0 +1,80 @@
+PONTOS 6 E 7 — MULTICAST
+
+Compilar dentro de cada projeto:
+  javac -d out src/rep01/*.java
+
+Abrir três terminais na pasta rep01-replica, um comando por terminal:
+  java -cp out rep01.MulticastReplica 1
+  java -cp out rep01.MulticastReplica 2
+  java -cp out rep01.MulticastReplica 3
+
+Na pasta rep01-lider:
+  java -cp out rep01.MulticastLeader
+
+Escolher 1 (Automático) e escrever:
+  rajada 1000
+
+Esperar pelos resumos das três réplicas antes de repetir.
+Executar três vezes. O líder mantém a sequência entre comandos e reinícios.
+As rajadas não incluem pausas entre os envios. Os resumos aparecem após
+um segundo sem datagramas; essa pausa é de observação, não de envio.
+
+CONFIGURAÇÃO DAS MEDIÇÕES
+
+Argumentos da réplica:
+  MulticastReplica <id> [tamanhoDaRajada] [primeiroSeqDaMedicao]
+
+Por omissão: tamanho 1000; primeiro seq = último seq no ficheiro + 1.
+As medições agrupam os registos SIM em intervalos consecutivos desse tamanho.
+Para ensaios com leituras anteriores ou réplicas divergentes, indicar o mesmo
+primeiro seq em todas as réplicas: o próximo seq que o líder vai atribuir.
+Exemplo, se o líder já guardou até 15:
+  java -cp out rep01.MulticastReplica 1 1000 16
+
+Para rajada 10, configurar tamanho 10 nas réplicas antes do ensaio.
+Não intercalar leituras normais entre rajadas da mesma sessão de medição,
+pois essas leituras também consomem números de sequência.
+
+recebidos: datagramas SIM válidos, incluindo duplicados.
+unicos: números de sequência distintos recebidos nesse intervalo.
+escritos: registos desse intervalo acrescentados com sucesso ao ficheiro.
+retidos: registos desse intervalo que estão atualmente em memória.
+duplicados: registos já aplicados ou já retidos.
+naoRecebidos: tamanho configurado menos únicos observados; valor parcial.
+
+As marcas de receção são capturadas imediatamente após receive().
+primeiroEnvio e ultimoEnvio são capturados imediatamente antes de send().
+intervaloEnvioMs = ultimoEnvio - primeiroEnvio.
+duracaoMs mede toda a geração/gravação/envio com System.nanoTime().
+debitoRegistosS = número de registos / duração total em segundos.
+latência = ultimaRececao da réplica - primeiroEnvio do líder.
+
+Uma rajada completamente perdida não produz observações na réplica.
+Os resumos não confirmam entrega, não recuperam perdas e não alteram a
+regra de escrita em sequência. Mensagens tardias podem atualizar um resumo.
+
+MODO MANUAL — APENAS TESTE
+
+Escolher 2 no líder. Formato:
+  <seq> <sensor> <temperatura>
+
+Com ficheiro novo na réplica, enviar:
+  2 S01 21
+  3 S01 22
+  1 S01 20
+
+O manual envia datagramas de teste, sem alterar lider.txt. Usar o modo
+automático para os ensaios que comparam o ficheiro do líder às réplicas.
+Não misturar o teste manual com uma sessão de medição de rajadas.
+
+RESULTADOS GUARDADOS
+
+resultados.txt: três execuções de rajada 1000 e verificações do ponto 6.
+lider.log e replica-1.log a replica-3.log: mensagens das execuções medidas.
+lider.txt e replica-1.txt a replica-3.txt: ficheiros produzidos nessas execuções.
+replica-6.log: testes adicionais de ordenação, duplicados, mensagens inválidas
+e interrupção/reinício. O identificador 6 apenas isola esse teste.
+
+Os testes foram executados em pastas temporárias e num grupo/porto próprios,
+usando cópias do código com apenas esses dois valores alterados. Os ficheiros
+das sessões anteriores do estudante foram preservados.

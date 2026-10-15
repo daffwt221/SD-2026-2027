@@ -1,0 +1,2 @@
+Líder pronto. Formato: <sensor> <temperatura> | rajada <n> | sair
+> IO: ConnectException: null

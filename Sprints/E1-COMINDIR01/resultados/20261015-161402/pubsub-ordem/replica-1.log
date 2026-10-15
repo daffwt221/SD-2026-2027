@@ -1,0 +1,12 @@
+Medição: rajadas de 1000 registos, a partir de seq 1
+Réplica 1 a subscrever rep01-temperaturas no porto 15501
+Subscrição ativa: rep01-temperaturas
+REJEITADO: aquecimento
+EM ESPERA: 2 (falta o registo 1)
+DUPLICADO: 2
+EM ESPERA: 3 (falta o registo 1)
+Aplicado: 1;S01;20.0;2026-10-15T12:00:00
+Aplicado: 2;S01;20.0;2026-10-15T12:00:00
+Aplicado: 3;S01;20.0;2026-10-15T12:00:00
+DUPLICADO: 1
+REJEITADO: ola

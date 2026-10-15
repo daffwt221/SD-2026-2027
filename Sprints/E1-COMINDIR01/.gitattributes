@@ -1,0 +1,2 @@
+# Logs preservam a saída original, incluindo espaços dos prompts.
+*.log -whitespace

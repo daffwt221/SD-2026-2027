@@ -1,0 +1,793 @@
+{
+  "java": "java version \"25.0.2\" 2026-01-20 LTS\nJava(TM) SE Runtime Environment (build 25.0.2+10-LTS-69)\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.2+10-LTS-69, mixed mode, sharing)\n",
+  "kubo": "ipfs version 0.43.1",
+  "multicast_group": "239.255.71.99",
+  "multicast_port": 16799,
+  "measurements": [
+    {
+      "scenario": "multicast",
+      "run": 1,
+      "replica": 1,
+      "leader": {
+        "seq": "1..1000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077274126",
+        "ultimoEnvio": "1792077275114",
+        "intervaloEnvioMs": "988",
+        "duracaoMs": "1016.688",
+        "debitoRegistosS": "983.586"
+      },
+      "replica_metrics": {
+        "seq": "1..1000",
+        "primeiraRececao": "1792077274128",
+        "ultimaRececao": "1792077275114",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 988
+    },
+    {
+      "scenario": "multicast",
+      "run": 1,
+      "replica": 2,
+      "leader": {
+        "seq": "1..1000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077274126",
+        "ultimoEnvio": "1792077275114",
+        "intervaloEnvioMs": "988",
+        "duracaoMs": "1016.688",
+        "debitoRegistosS": "983.586"
+      },
+      "replica_metrics": {
+        "seq": "1..1000",
+        "primeiraRececao": "1792077274128",
+        "ultimaRececao": "1792077275114",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 988
+    },
+    {
+      "scenario": "multicast",
+      "run": 1,
+      "replica": 3,
+      "leader": {
+        "seq": "1..1000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077274126",
+        "ultimoEnvio": "1792077275114",
+        "intervaloEnvioMs": "988",
+        "duracaoMs": "1016.688",
+        "debitoRegistosS": "983.586"
+      },
+      "replica_metrics": {
+        "seq": "1..1000",
+        "primeiraRececao": "1792077274128",
+        "ultimaRececao": "1792077275114",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 988
+    },
+    {
+      "scenario": "multicast",
+      "run": 2,
+      "replica": 1,
+      "leader": {
+        "seq": "1001..2000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077276386",
+        "ultimoEnvio": "1792077277439",
+        "intervaloEnvioMs": "1053",
+        "duracaoMs": "1082.742",
+        "debitoRegistosS": "923.581"
+      },
+      "replica_metrics": {
+        "seq": "1001..2000",
+        "primeiraRececao": "1792077276387",
+        "ultimaRececao": "1792077277439",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 1053
+    },
+    {
+      "scenario": "multicast",
+      "run": 2,
+      "replica": 2,
+      "leader": {
+        "seq": "1001..2000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077276386",
+        "ultimoEnvio": "1792077277439",
+        "intervaloEnvioMs": "1053",
+        "duracaoMs": "1082.742",
+        "debitoRegistosS": "923.581"
+      },
+      "replica_metrics": {
+        "seq": "1001..2000",
+        "primeiraRececao": "1792077276387",
+        "ultimaRececao": "1792077277439",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 1053
+    },
+    {
+      "scenario": "multicast",
+      "run": 2,
+      "replica": 3,
+      "leader": {
+        "seq": "1001..2000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077276386",
+        "ultimoEnvio": "1792077277439",
+        "intervaloEnvioMs": "1053",
+        "duracaoMs": "1082.742",
+        "debitoRegistosS": "923.581"
+      },
+      "replica_metrics": {
+        "seq": "1001..2000",
+        "primeiraRececao": "1792077276388",
+        "ultimaRececao": "1792077277439",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 1053
+    },
+    {
+      "scenario": "multicast",
+      "run": 3,
+      "replica": 1,
+      "leader": {
+        "seq": "2001..3000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077278746",
+        "ultimoEnvio": "1792077280004",
+        "intervaloEnvioMs": "1258",
+        "duracaoMs": "1305.535",
+        "debitoRegistosS": "765.970"
+      },
+      "replica_metrics": {
+        "seq": "2001..3000",
+        "primeiraRececao": "1792077278748",
+        "ultimaRececao": "1792077280247",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 1501
+    },
+    {
+      "scenario": "multicast",
+      "run": 3,
+      "replica": 2,
+      "leader": {
+        "seq": "2001..3000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077278746",
+        "ultimoEnvio": "1792077280004",
+        "intervaloEnvioMs": "1258",
+        "duracaoMs": "1305.535",
+        "debitoRegistosS": "765.970"
+      },
+      "replica_metrics": {
+        "seq": "2001..3000",
+        "primeiraRececao": "1792077278748",
+        "ultimaRececao": "1792077280238",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 1492
+    },
+    {
+      "scenario": "multicast",
+      "run": 3,
+      "replica": 3,
+      "leader": {
+        "seq": "2001..3000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077278746",
+        "ultimoEnvio": "1792077280004",
+        "intervaloEnvioMs": "1258",
+        "duracaoMs": "1305.535",
+        "debitoRegistosS": "765.970"
+      },
+      "replica_metrics": {
+        "seq": "2001..3000",
+        "primeiraRececao": "1792077278748",
+        "ultimaRececao": "1792077280238",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 1492
+    },
+    {
+      "scenario": "pubsub-um-no",
+      "run": 1,
+      "replica": 1,
+      "leader": {
+        "seq": "1..1000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077283833",
+        "ultimoEnvio": "1792077289301",
+        "intervaloEnvioMs": "5468",
+        "duracaoMs": "5494.076",
+        "debitoRegistosS": "182.014"
+      },
+      "replica_metrics": {
+        "seq": "1..1000",
+        "primeiraRececao": "1792077283891",
+        "ultimaRececao": "1792077289304",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 5471
+    },
+    {
+      "scenario": "pubsub-um-no",
+      "run": 1,
+      "replica": 2,
+      "leader": {
+        "seq": "1..1000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077283833",
+        "ultimoEnvio": "1792077289301",
+        "intervaloEnvioMs": "5468",
+        "duracaoMs": "5494.076",
+        "debitoRegistosS": "182.014"
+      },
+      "replica_metrics": {
+        "seq": "1..1000",
+        "primeiraRececao": "1792077283891",
+        "ultimaRececao": "1792077289304",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 5471
+    },
+    {
+      "scenario": "pubsub-um-no",
+      "run": 1,
+      "replica": 3,
+      "leader": {
+        "seq": "1..1000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077283833",
+        "ultimoEnvio": "1792077289301",
+        "intervaloEnvioMs": "5468",
+        "duracaoMs": "5494.076",
+        "debitoRegistosS": "182.014"
+      },
+      "replica_metrics": {
+        "seq": "1..1000",
+        "primeiraRececao": "1792077283892",
+        "ultimaRececao": "1792077289304",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 5471
+    },
+    {
+      "scenario": "pubsub-um-no",
+      "run": 2,
+      "replica": 1,
+      "leader": {
+        "seq": "1001..2000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077291399",
+        "ultimoEnvio": "1792077297441",
+        "intervaloEnvioMs": "6042",
+        "duracaoMs": "6061.693",
+        "debitoRegistosS": "164.970"
+      },
+      "replica_metrics": {
+        "seq": "1001..2000",
+        "primeiraRececao": "1792077291451",
+        "ultimaRececao": "1792077297444",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 6045
+    },
+    {
+      "scenario": "pubsub-um-no",
+      "run": 2,
+      "replica": 2,
+      "leader": {
+        "seq": "1001..2000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077291399",
+        "ultimoEnvio": "1792077297441",
+        "intervaloEnvioMs": "6042",
+        "duracaoMs": "6061.693",
+        "debitoRegistosS": "164.970"
+      },
+      "replica_metrics": {
+        "seq": "1001..2000",
+        "primeiraRececao": "1792077291452",
+        "ultimaRececao": "1792077297444",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 6045
+    },
+    {
+      "scenario": "pubsub-um-no",
+      "run": 2,
+      "replica": 3,
+      "leader": {
+        "seq": "1001..2000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077291399",
+        "ultimoEnvio": "1792077297441",
+        "intervaloEnvioMs": "6042",
+        "duracaoMs": "6061.693",
+        "debitoRegistosS": "164.970"
+      },
+      "replica_metrics": {
+        "seq": "1001..2000",
+        "primeiraRececao": "1792077291451",
+        "ultimaRececao": "1792077297444",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 6045
+    },
+    {
+      "scenario": "pubsub-um-no",
+      "run": 3,
+      "replica": 1,
+      "leader": {
+        "seq": "2001..3000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077299867",
+        "ultimoEnvio": "1792077305697",
+        "intervaloEnvioMs": "5830",
+        "duracaoMs": "5858.259",
+        "debitoRegistosS": "170.699"
+      },
+      "replica_metrics": {
+        "seq": "2001..3000",
+        "primeiraRececao": "1792077299935",
+        "ultimaRececao": "1792077305702",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 5835
+    },
+    {
+      "scenario": "pubsub-um-no",
+      "run": 3,
+      "replica": 2,
+      "leader": {
+        "seq": "2001..3000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077299867",
+        "ultimoEnvio": "1792077305697",
+        "intervaloEnvioMs": "5830",
+        "duracaoMs": "5858.259",
+        "debitoRegistosS": "170.699"
+      },
+      "replica_metrics": {
+        "seq": "2001..3000",
+        "primeiraRececao": "1792077299935",
+        "ultimaRececao": "1792077305702",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 5835
+    },
+    {
+      "scenario": "pubsub-um-no",
+      "run": 3,
+      "replica": 3,
+      "leader": {
+        "seq": "2001..3000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077299867",
+        "ultimoEnvio": "1792077305697",
+        "intervaloEnvioMs": "5830",
+        "duracaoMs": "5858.259",
+        "debitoRegistosS": "170.699"
+      },
+      "replica_metrics": {
+        "seq": "2001..3000",
+        "primeiraRececao": "1792077299935",
+        "ultimaRececao": "1792077305702",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 5835
+    },
+    {
+      "scenario": "pubsub-dois-nos",
+      "run": 1,
+      "replica": 1,
+      "leader": {
+        "seq": "1..1000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077312327",
+        "ultimoEnvio": "1792077316959",
+        "intervaloEnvioMs": "4632",
+        "duracaoMs": "4653.203",
+        "debitoRegistosS": "214.906"
+      },
+      "replica_metrics": {
+        "seq": "1..1000",
+        "primeiraRececao": "1792077312381",
+        "ultimaRececao": "1792077316963",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 4636
+    },
+    {
+      "scenario": "pubsub-dois-nos",
+      "run": 1,
+      "replica": 2,
+      "leader": {
+        "seq": "1..1000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077312327",
+        "ultimoEnvio": "1792077316959",
+        "intervaloEnvioMs": "4632",
+        "duracaoMs": "4653.203",
+        "debitoRegistosS": "214.906"
+      },
+      "replica_metrics": {
+        "seq": "1..1000",
+        "primeiraRececao": "1792077312384",
+        "ultimaRececao": "1792077316966",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 4639
+    },
+    {
+      "scenario": "pubsub-dois-nos",
+      "run": 1,
+      "replica": 3,
+      "leader": {
+        "seq": "1..1000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077312327",
+        "ultimoEnvio": "1792077316959",
+        "intervaloEnvioMs": "4632",
+        "duracaoMs": "4653.203",
+        "debitoRegistosS": "214.906"
+      },
+      "replica_metrics": {
+        "seq": "1..1000",
+        "primeiraRececao": "1792077312384",
+        "ultimaRececao": "1792077316966",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 4639
+    },
+    {
+      "scenario": "pubsub-dois-nos",
+      "run": 2,
+      "replica": 1,
+      "leader": {
+        "seq": "1001..2000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077319374",
+        "ultimoEnvio": "1792077323898",
+        "intervaloEnvioMs": "4524",
+        "duracaoMs": "4549.639",
+        "debitoRegistosS": "219.798"
+      },
+      "replica_metrics": {
+        "seq": "1001..2000",
+        "primeiraRececao": "1792077319428",
+        "ultimaRececao": "1792077323902",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 4528
+    },
+    {
+      "scenario": "pubsub-dois-nos",
+      "run": 2,
+      "replica": 2,
+      "leader": {
+        "seq": "1001..2000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077319374",
+        "ultimoEnvio": "1792077323898",
+        "intervaloEnvioMs": "4524",
+        "duracaoMs": "4549.639",
+        "debitoRegistosS": "219.798"
+      },
+      "replica_metrics": {
+        "seq": "1001..2000",
+        "primeiraRececao": "1792077319430",
+        "ultimaRececao": "1792077323905",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 4531
+    },
+    {
+      "scenario": "pubsub-dois-nos",
+      "run": 2,
+      "replica": 3,
+      "leader": {
+        "seq": "1001..2000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077319374",
+        "ultimoEnvio": "1792077323898",
+        "intervaloEnvioMs": "4524",
+        "duracaoMs": "4549.639",
+        "debitoRegistosS": "219.798"
+      },
+      "replica_metrics": {
+        "seq": "1001..2000",
+        "primeiraRececao": "1792077319431",
+        "ultimaRececao": "1792077323905",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 4531
+    },
+    {
+      "scenario": "pubsub-dois-nos",
+      "run": 3,
+      "replica": 1,
+      "leader": {
+        "seq": "2001..3000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077326285",
+        "ultimoEnvio": "1792077330950",
+        "intervaloEnvioMs": "4665",
+        "duracaoMs": "4689.411",
+        "debitoRegistosS": "213.246"
+      },
+      "replica_metrics": {
+        "seq": "2001..3000",
+        "primeiraRececao": "1792077326348",
+        "ultimaRececao": "1792077330955",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 4670
+    },
+    {
+      "scenario": "pubsub-dois-nos",
+      "run": 3,
+      "replica": 2,
+      "leader": {
+        "seq": "2001..3000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077326285",
+        "ultimoEnvio": "1792077330950",
+        "intervaloEnvioMs": "4665",
+        "duracaoMs": "4689.411",
+        "debitoRegistosS": "213.246"
+      },
+      "replica_metrics": {
+        "seq": "2001..3000",
+        "primeiraRececao": "1792077326349",
+        "ultimaRececao": "1792077330960",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 4675
+    },
+    {
+      "scenario": "pubsub-dois-nos",
+      "run": 3,
+      "replica": 3,
+      "leader": {
+        "seq": "2001..3000",
+        "enviados": "1000",
+        "primeiroEnvio": "1792077326285",
+        "ultimoEnvio": "1792077330950",
+        "intervaloEnvioMs": "4665",
+        "duracaoMs": "4689.411",
+        "debitoRegistosS": "213.246"
+      },
+      "replica_metrics": {
+        "seq": "2001..3000",
+        "primeiraRececao": "1792077326349",
+        "ultimaRececao": "1792077330960",
+        "recebidos": "1000",
+        "unicos": "1000",
+        "escritos": "1000",
+        "retidos": "0",
+        "duplicados": "0",
+        "naoRecebidos": "0"
+      },
+      "latency_ms": 4675
+    }
+  ],
+  "faults": [
+    {
+      "name": "leader starts before replicas",
+      "mechanism": "multicast",
+      "scenario": "multicast-arranque-tardio",
+      "side": "replica",
+      "observation": "No exception; file empty, seq 4 and 5 retained, missing seq 1."
+    },
+    {
+      "name": "leader starts before replicas",
+      "mechanism": "pubsub",
+      "scenario": "pubsub-arranque-tardio",
+      "side": "replica",
+      "observation": "No exception; file empty, seq 4 and 5 retained, missing seq 1."
+    },
+    {
+      "name": "wrong multicast group",
+      "mechanism": "multicast",
+      "scenario": "multicast-grupo-errado",
+      "side": "replica",
+      "observation": "No exception; no records received; files diverge."
+    },
+    {
+      "name": "receive buffer 10 bytes",
+      "mechanism": "multicast",
+      "scenario": "multicast-buffer10",
+      "side": "replica",
+      "observation": "Datagram truncated; IllegalArgumentException handled as REJEITADO, replica stays alive; files diverge."
+    },
+    {
+      "name": "stop replica during burst",
+      "mechanism": "multicast",
+      "scenario": "multicast-paragem-na-rajada",
+      "side": "replica",
+      "observation": "No exception; saved 373 / 1000 before stop; seq 1001 retained after restart."
+    },
+    {
+      "name": "wrong topic",
+      "mechanism": "pubsub",
+      "scenario": "pubsub-topico-errado",
+      "side": "replica",
+      "observation": "No exception; no records received; files diverge."
+    },
+    {
+      "name": "Pubsub.Enabled false",
+      "mechanism": "pubsub",
+      "scenario": "pubsub-desativado",
+      "side": "replica",
+      "observation": "Medição: rajadas de 1000 registos, a partir de seq 1\nRéplica 1 a subscrever rep01-temperaturas no porto 15503\nERRO: IOException: sub falhou (500): {\"Message\":\"experimental pubsub feature not enabled, run daemon with --enable-pubsub-experiment to use\",\"Code\":0,\"Type\":\"error\"} | Leader file has seq 1; replica file empty: files diverge."
+    },
+    {
+      "name": "two nodes disconnected",
+      "mechanism": "pubsub",
+      "scenario": "pubsub-nos-desligados",
+      "side": "replica",
+      "observation": "No exception; bootstrap empty, mDNS false, swarm peers empty; files diverge."
+    },
+    {
+      "name": "leader daemon stopped",
+      "mechanism": "pubsub",
+      "scenario": "pubsub-daemon-parado",
+      "side": "leader",
+      "observation": "Líder pronto. Formato: <sensor> <temperatura> | rajada <n> | sair\n> IO: ConnectException: null"
+    }
+  ],
+  "checks": [
+    "Kubo CLI sub/pub: PASS",
+    "multicast ordering/duplicates/invalid: PASS",
+    "multicast interruption 5 + offline 3 + online 2: PASS",
+    "pubsub ordering/duplicates/invalid: PASS",
+    "pubsub interruption 5 + offline 3 + online 2: PASS"
+  ],
+  "swarm_connect": {
+    "Strings": [
+      "connect 12D3KooWA6gCrujDfvgWbk8uhN1gyfztEFynD8hDPR1niQAKK5Hg success"
+    ]
+  },
+  "pubsub_peers": {
+    "Strings": [
+      "12D3KooWA6gCrujDfvgWbk8uhN1gyfztEFynD8hDPR1niQAKK5Hg"
+    ]
+  },
+  "status": "PASS"
+}
