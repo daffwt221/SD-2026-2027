@@ -1,0 +1,146 @@
+COMINDIR01 — EXECUÇÃO NO VS CODE / POWERSHELL
+
+Requisitos: JDK 11 ou superior. PubSub requer também Kubo.
+Java: só biblioteca-padrão. Sem Maven, Gradle ou bibliotecas externas.
+Python 3 é usado apenas pelo teste de integração opcional.
+
+1. COMPILAR
+
+Dentro de rep01-lider e depois de rep01-replica:
+  javac --release 11 -encoding UTF-8 -d out src/rep01/*.java
+
+Os comandos seguintes são executados na pasta do respetivo projeto,
+nunca em src/rep01. Cada processo precisa do seu próprio terminal.
+
+2. MULTICAST
+
+Primeiro, três terminais em rep01-replica:
+  java -cp out rep01.MulticastReplica 1
+  java -cp out rep01.MulticastReplica 2
+  java -cp out rep01.MulticastReplica 3
+
+Depois, em rep01-lider:
+  java -cp out rep01.MulticastLeader
+
+Menu 1: Automático. Introduzir leituras como S01 21.5, ou rajada 1000.
+Menu 2: Manual. Introduzir <seq> <sensor> <temperatura>, por exemplo 2 S01 21.
+O manual é um emissor de teste: não altera lider.txt. Permite testar ordem
+e duplicados sem depender de registos já existentes no ficheiro do líder.
+O argumento opcional automatico salta o menu.
+O argumento temporário teste-ordem envia 2,3,1, com ficheiro do líder novo.
+sair termina o líder; Ctrl+C termina uma réplica.
+
+3. KUBO — CONFIGURAR OS DOIS NÓS
+
+Foi descarregado Kubo 0.43.1, com checksum SHA512 verificado, para:
+  $env:LOCALAPPDATA\CodexTools\kubo\kubo\ipfs.exe
+
+O executável não é incluído no Git. Também pode ser usado outro Kubo
+instalado: passar -IpfsExe ao script ipfs.ps1.
+Fonte: https://github.com/ipfs/kubo/releases/tag/v0.43.1
+
+Na pasta E1-COMINDIR01:
+  .\ipfs.ps1 -Action Init -Node 1
+  .\ipfs.ps1 -Action Init -Node 2
+
+Os repositórios ficam em LOCALAPPDATA/SD-COMINDIR01/node1 e node2,
+fora do Git e sem modificar o repositório IPFS predefinido do utilizador.
+Init é idempotente: não reconfigura um nó já existente.
+
+Em dois terminais separados, na mesma pasta:
+  .\ipfs.ps1 -Action Start -Node 1
+  .\ipfs.ps1 -Action Start -Node 2
+
+API: 5001 / 5002. Swarm: 4001 / 4002. Gateway: 8080 / 8081.
+Os nós deste script são locais, com bootstrap e mDNS desativados, para
+isolar o ensaio. Não descobrem pares na Internet automaticamente.
+Não expor a API RPC à Internet.
+
+Num terceiro terminal:
+  .\ipfs.ps1 -Action Connect -Node 1
+
+Com subscritores ativos, confirmar a ligação e o interesse no tópico:
+  .\ipfs.ps1 -Action Status -Node 1
+
+Teste CLI, em dois terminais com o ambiente do nó 1:
+  $env:IPFS_PATH = Join-Path $env:LOCALAPPDATA 'SD-COMINDIR01/node1'
+  $ipfsExe = Join-Path $env:LOCALAPPDATA 'CodexTools/kubo/kubo/ipfs.exe'
+
+No primeiro:
+  & $ipfsExe pubsub sub rep01-temperaturas
+No segundo:
+  'teste' | & $ipfsExe pubsub pub rep01-temperaturas
+
+4. PUBSUB — UM NÓ
+
+Em rep01-replica, três terminais:
+  java -cp out rep01.PubSubReplica 1 5001
+  java -cp out rep01.PubSubReplica 2 5001
+  java -cp out rep01.PubSubReplica 3 5001
+
+Em rep01-lider:
+  java -cp out rep01.PubSubLeader
+
+Os comandos e menus são os mesmos do líder multicast.
+O líder usa http://127.0.0.1:5001/api/v0 por omissão.
+Com endereço e modo explícitos:
+  java -cp out rep01.PubSubLeader http://127.0.0.1:5001/api/v0 automatico
+
+5. PUBSUB — DOIS NÓS
+
+Parar as réplicas anteriores. Para um novo ensaio, usar diretórios novos
+para os ficheiros, ou arquivar os ficheiros existentes antes de recomeçar.
+Não apagar resultados que se pretendam conservar.
+
+Réplica 1 no nó 1; réplicas 2 e 3 no nó 2:
+  java -cp out rep01.PubSubReplica 1 5001
+  java -cp out rep01.PubSubReplica 2 5002
+  java -cp out rep01.PubSubReplica 3 5002
+
+Confirmar Connect e Status no script; esperar pelo outro nó em pubsub peers
+antes de enviar a primeira leitura. O líder mantém a API 5001.
+Um só nó não demonstra gossip entre máquinas; dois nós distintos já
+exercitam a propagação entre nós, mesmo quando correm na mesma máquina.
+
+6. RAJADAS E FICHEIROS
+
+Nas réplicas, os argumentos opcionais de medição são:
+  MulticastReplica <id> [tamanho=1000] [primeiroSeq=lastSeq+1]
+  PubSubReplica <id> [porto=5001] [tamanho=1000] [primeiroSeq=lastSeq+1]
+
+O tamanho deve coincidir com n em rajada n. O primeiro seq deve ser o mesmo
+em todas as réplicas para os resumos serem comparáveis. Se o líder está
+em 15, usar primeiroSeq 16. Não intercalar leituras comuns entre rajadas.
+Esperar pelo resumo antes da rajada seguinte. São necessárias três execuções.
+Os limites das rajadas são configurados localmente: o protocolo continua
+a conter apenas seq;sensor;temperatura;instante, sem ACKs ou mensagens de controlo.
+O resumo após inatividade é parcial. Não recebidos não prova perda definitiva.
+Uma rajada inteiramente perdida não gera resumo na réplica.
+
+Na pasta E1-COMINDIR01, comparar:
+  fc.exe /b rep01-lider\lider.txt rep01-replica\replica-1.txt
+  fc.exe /b rep01-lider\lider.txt rep01-replica\replica-2.txt
+  fc.exe /b rep01-lider\lider.txt rep01-replica\replica-3.txt
+
+Usar ficheiros novos entre cenários comparativos. O programa continua a
+numeração após reinício, mas não corrige lacunas previamente guardadas
+pela versão inicial da réplica, nem recupera registos perdidos.
+
+7. REPETIR TODOS OS TESTES AUTOMATIZADOS
+
+Na raiz do repositório:
+  $ipfsExe = Join-Path $env:LOCALAPPDATA 'CodexTools/kubo/kubo/ipfs.exe'
+  python Sprints/E1-COMINDIR01/testes/verificar.py --ipfs $ipfsExe
+
+Usa Java/Kubo reais, APIs 15501..15503, swarm 14501..14503, grupo multicast
+239.255.71.99:16799 e repositórios temporários. Não usa os ficheiros das
+sessões normais nem os nós criados pelo script ipfs.ps1.
+O teste fecha todos os processos que criou. Logs, dados e medidas ficam
+em resultados/<data-hora>/. Não executar dois testes completos em simultâneo.
+
+Resultados anteriores dos pontos 6 e 7 permanecem em testes-pontos6-7/.
+O relatório final identifica a execução completa usada na comparação.
+
+REFERÊNCIAS
+Ficha: https://github.com/cunhaestgv/SD-2026-2027/issues/14
+RPC Kubo: https://docs.ipfs.tech/reference/kubo/rpc/

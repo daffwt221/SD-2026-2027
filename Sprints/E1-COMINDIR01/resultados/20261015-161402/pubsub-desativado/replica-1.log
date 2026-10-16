@@ -1,0 +1,3 @@
+Medição: rajadas de 1000 registos, a partir de seq 1
+Réplica 1 a subscrever rep01-temperaturas no porto 15503
+ERRO: IOException: sub falhou (500): {"Message":"experimental pubsub feature not enabled, run daemon with --enable-pubsub-experiment to use","Code":0,"Type":"error"}

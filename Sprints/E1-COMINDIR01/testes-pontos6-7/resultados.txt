@@ -1,0 +1,18 @@
+Medicoes locais: multicast, tres replicas, mesma maquina.
+Teste isolado: grupo 239.255.71.98, porto 16798; copias do codigo com apenas grupo/porto alterados.
+Resumos apos 1 segundo sem datagramas; naoRecebidos e uma observacao parcial.
+
+execucao replica envio_ms duracao_ms debito_registos_s latencia_ms recebidos escritos retidos duplicados nao_recebidos
+1 1 392 414.415 2413.038 583 1000 1000 0 0 0
+1 2 392 414.415 2413.038 583 1000 1000 0 0 0
+1 3 392 414.415 2413.038 578 1000 1000 0 0 0
+2 1 386 407.847 2451.903 966 1000 1000 0 0 0
+2 2 386 407.847 2451.903 903 1000 1000 0 0 0
+2 3 386 407.847 2451.903 505 1000 1000 0 0 0
+3 1 407 438.569 2280.146 1112 1000 1000 0 0 0
+3 2 407 438.569 2280.146 1108 1000 1000 0 0 0
+3 3 407 438.569 2280.146 1109 1000 1000 0 0 0
+
+Ponto 6: PASSOU - ordenacao, duplicados aplicados/pendentes, mensagens invalidas, interrupcao e reinicio.
+Ponto 7: PASSOU - tres rajadas de 1000; seq 1..3000; sensor SIM; temperaturas 15..30; contadores conferidos com os ficheiros.
+Dados completos nos logs e ficheiros deste diretorio.

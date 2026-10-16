@@ -1,0 +1,5 @@
+Líder pronto. Formato: <sensor> <temperatura> | rajada <n> | sair
+> RAJADA seq=1..1000 enviados=1000 primeiroEnvio=1792077354154 ultimoEnvio=1792077354644 intervaloEnvioMs=490 duracaoMs=517.903 debitoRegistosS=1930.863
+> Líder pronto. Formato: <sensor> <temperatura> | rajada <n> | sair
+> Registado e enviado: 1001;S01;20.0;2026-10-15T16:15:54
+> 

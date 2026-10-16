@@ -1,0 +1,6 @@
+# Executaveis e estado local; resultados dos testes ficam em resultados/.
+**/out/
+**/bin/
+**/__pycache__/
+rep01-lider/lider.txt
+rep01-replica/replica-*.txt
