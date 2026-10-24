@@ -1,15 +1,7 @@
 package rep02;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.net.URI;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 /** Um líder atribui sequências, persiste e serve a recuperação da sua partição. */
 public final class PartitionLeader {
@@ -76,65 +68,18 @@ public final class PartitionLeader {
 
     private void run() throws IOException {
         // Reserva o porto antes de iniciar a entrada; um conflito não deixa uma thread órfã.
-        try (ServerSocket server = new ServerSocket(port)) {
-            System.out.println("Líder p" + partition + ": recuperação TCP no porto " + port
-                    + ", endereço anunciado " + host + ", último=" + last);
-            Thread input = new Thread(this::subscribe, "entrada-p" + partition);
-            input.setDaemon(true);
+        try (RecoveryServer recovery = new RecoveryServer(partition, port, host, file, () -> last)) {
+            PartitionInput input = new PartitionInput(partition, partitioner, pubsub, this::acceptReading);
+            Thread inputThread = new Thread(input, "entrada-p" + partition);
+            inputThread.setDaemon(true);
             Runtime.getRuntime().addShutdownHook(new Thread(this::printMetrics, "metricas-p" + partition));
-            input.start();
+            inputThread.start();
 
-            while (true) {
-                // accept bloqueia; só a thread principal atende as recuperações, uma de cada vez.
-                try (Socket socket = server.accept()) {
-                    handleRecovery(socket);
-                } catch (IOException | IllegalArgumentException e) {
-                    System.out.println("Recuperação interrompida: " + e.getClass().getSimpleName()
-                            + ": " + e.getMessage());
-                }
-            }
+            recovery.run(); // Chamada direta: a recuperação continua na thread principal.
         }
     }
 
-    private void subscribe() {
-        try {
-            // A subscrição bloqueia entre mensagens; a publicação também espera pela API HTTP.
-            pubsub.subscribe(Wire.topicIn(partition), this::acceptMessage);
-            System.out.println("Subscrição terminada: " + Wire.topicIn(partition));
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            System.out.println("Subscrição interrompida: " + Wire.topicIn(partition));
-        } catch (IOException | RuntimeException e) {
-            System.out.println("Subscrição falhou: " + e.getClass().getSimpleName() + ": " + e.getMessage());
-        }
-    }
-
-    void acceptMessage(String message) {
-        String sensor;
-        double temperature;
-        try {
-            String[] fields = message.split(";", -1);
-            if (fields.length != 3 || !fields[0].equals("IN") || fields[1].isBlank()
-                    || fields[1].codePoints().anyMatch(c -> Character.isWhitespace(c) || Character.isSpaceChar(c))
-                    || !fields[2].equals(fields[2].trim())) {
-                throw new IllegalArgumentException("IN mal formado");
-            }
-            sensor = fields[1];
-            temperature = Double.parseDouble(fields[2]);
-            if (!Double.isFinite(temperature)) {
-                throw new IllegalArgumentException("Temperatura não finita");
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println("REJEITADO: " + message);
-            return;
-        }
-
-        int expectedPartition = partitioner.of(sensor);
-        if (expectedPartition != partition) {
-            System.out.println("PARTIÇÃO ERRADA: " + sensor + " pertence a p" + expectedPartition);
-            return;
-        }
-
+    void acceptReading(String sensor, double temperature) {
         SensorRecord record;
         try {
             // seq + append são uma só operação; o servidor TCP usa exatamente o mesmo monitor.
@@ -163,51 +108,6 @@ public final class PartitionLeader {
         } catch (IOException | IllegalArgumentException e) {
             System.out.println("PUBLICAÇÃO FALHOU: " + record.getSeq() + " " + e.getMessage());
         }
-    }
-
-    void handleRecovery(Socket socket) throws IOException {
-        socket.setSoTimeout(Wire.T_TCP_MS);
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
-        BufferedWriter out = new BufferedWriter(
-                new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
-
-        String request = in.readLine(); // Espera pelo pedido, no máximo T_TCP_MS.
-        long from;
-        long to;
-        try {
-            if (request == null) throw new IllegalArgumentException("pedido ausente");
-            String[] fields = request.trim().split("\\s+");
-            if (fields.length != 3 || !fields[0].equals("PEDIDO")) {
-                throw new IllegalArgumentException("formato esperado: PEDIDO <de> <até>");
-            }
-            from = Long.parseLong(fields[1]);
-            to = Long.parseLong(fields[2]);
-            if (from < 1 || to < 1 || from > to) {
-                throw new IllegalArgumentException("intervalo inválido");
-            }
-        } catch (IllegalArgumentException e) {
-            out.write("ERRO " + e.getMessage());
-            out.newLine();
-            out.flush();
-            return;
-        }
-
-        List<SensorRecord> records;
-        synchronized (file) {
-            to = Math.min(to, last);
-            records = file.range(from, to);
-        }
-        // O snapshot já está em memória: uma réplica lenta não prende o monitor do ficheiro.
-        for (SensorRecord record : records) {
-            out.write(record.toLine());
-            out.newLine();
-        }
-        out.write("FIM");
-        out.newLine();
-        out.flush();
-        System.out.println("RECUPERAÇÃO: " + from + ".." + to + " para "
-                + socket.getRemoteSocketAddress() + " (" + records.size() + " registos)");
     }
 
     private void printMetrics() {
