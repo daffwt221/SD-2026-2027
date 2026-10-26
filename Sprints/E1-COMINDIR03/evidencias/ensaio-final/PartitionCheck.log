@@ -1,0 +1,24 @@
+PARTIÇÃO p0
+  líder: registos=14, sensores distintos=2
+  réplicas=2 (esperado R=2)
+  replica-1-p0.txt: registos=14, sensores distintos=2
+  IGUAL: replica-1-p0.txt, em falta=0
+  replica-3-p0.txt: registos=14, sensores distintos=2
+  IGUAL: replica-3-p0.txt, em falta=0
+PARTIÇÃO p1
+  líder: registos=1, sensores distintos=1
+  réplicas=2 (esperado R=2)
+  replica-1-p1.txt: registos=1, sensores distintos=1
+  IGUAL: replica-1-p1.txt, em falta=0
+  replica-2-p1.txt: registos=1, sensores distintos=1
+  IGUAL: replica-2-p1.txt, em falta=0
+PARTIÇÃO p2
+  líder: registos=2, sensores distintos=2
+  réplicas=2 (esperado R=2)
+  replica-2-p2.txt: registos=2, sensores distintos=2
+  IGUAL: replica-2-p2.txt, em falta=0
+  replica-3-p2.txt: registos=2, sensores distintos=2
+  IGUAL: replica-3-p2.txt, em falta=0
+TOTAL DO SISTEMA (só líderes, sem contar cópias): 17
+SOMA DAS PARTIÇÕES: 17 (igual ao total)
+RESULTADO: VÁLIDO E CONVERGENTE.
