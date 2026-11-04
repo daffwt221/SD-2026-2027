@@ -1,0 +1,350 @@
+{
+  "data": "2026-10-24T21:19:57.947100+01:00",
+  "ambiente": "Windows; JDK 25.0.2 com --release 11; API Kubo simulada localmente; CLIs e TCP reais.",
+  "Kubo_real": "API 127.0.0.1:5001 indisponível e ipfs ausente do PATH.",
+  "integrado": {
+    "origem": {
+      "seq": 1,
+      "sensor": "S02",
+      "T": 29.3,
+      "timestamp": "2026-10-24T21:09:02",
+      "L": 1,
+      "V": [
+        0,
+        1,
+        0
+      ]
+    },
+    "alarme_IN": "IN;ALARM-S02;29.3;1;0,1,0",
+    "destino": {
+      "seq": 1,
+      "sensor": "ALARM-S02",
+      "T": 29.3,
+      "timestamp": "2026-10-24T21:09:02",
+      "L": 2,
+      "V": [
+        0,
+        1,
+        1
+      ]
+    },
+    "figura": {
+      "exit": 0,
+      "metricas": {
+        "eventos": 4,
+        "aAntesB": 1,
+        "bAntesA": 0,
+        "paresCausais": 1,
+        "paresConcorrentes": 4,
+        "paresVetoresIguais": 0,
+        "errosLamport": 0,
+        "paresConcorrentesLamportDistinto": 2,
+        "proporcao": 0.5
+      }
+    },
+    "produtor_IN": 16,
+    "alarmes": 1,
+    "TCP": {
+      "pedido": "PEDIDO 3 3",
+      "registo": "3;S01;21.0;2026-10-24T21:09:03;3;3,0,0",
+      "registos": 1,
+      "tentativas": 1,
+      "retidos_antes": 10
+    },
+    "reinicio": {
+      "antes": {
+        "seq": 1,
+        "sensor": "ALARM-S02",
+        "T": 29.3,
+        "timestamp": "2026-10-24T21:09:02",
+        "L": 2,
+        "V": [
+          0,
+          1,
+          1
+        ]
+      },
+      "depois": {
+        "seq": 2,
+        "sensor": "S03",
+        "T": 20.0,
+        "timestamp": "2026-10-24T21:09:12",
+        "L": 3,
+        "V": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "PartitionCheck": {
+      "exit": 0,
+      "metricas": {}
+    },
+    "CausalCheck": {
+      "exit": 0,
+      "metricas": {
+        "eventos": 17,
+        "aAntesB": 2,
+        "bAntesA": 0,
+        "paresCausais": 2,
+        "paresConcorrentes": 42,
+        "paresVetoresIguais": 0,
+        "errosLamport": 0,
+        "paresConcorrentesLamportDistinto": 39,
+        "proporcao": 0.928571
+      }
+    },
+    "registos_por_particao": [
+      14,
+      1,
+      2
+    ]
+  },
+  "rajadas": [
+    {
+      "ensaio": "rajada-sem-processador",
+      "publicadas_produtor": 300,
+      "alarmes": 0,
+      "registos_por_particao": [
+        135,
+        69,
+        96
+      ],
+      "PartitionCheck": {
+        "exit": 0,
+        "metricas": {}
+      },
+      "CausalCheck": {
+        "exit": 0,
+        "metricas": {
+          "eventos": 300,
+          "aAntesB": 0,
+          "bAntesA": 0,
+          "paresCausais": 0,
+          "paresConcorrentes": 28899,
+          "paresVetoresIguais": 0,
+          "errosLamport": 0,
+          "paresConcorrentesLamportDistinto": 28665,
+          "proporcao": 0.991903
+        }
+      },
+      "REG_sem_carimbos_bytes_media": 63.656666666666666,
+      "REG_com_carimbos_bytes_media": 73.71666666666667
+    },
+    {
+      "ensaio": "rajada-com-processador-1",
+      "publicadas_produtor": 300,
+      "alarmes": 30,
+      "registos_por_particao": [
+        130,
+        105,
+        95
+      ],
+      "PartitionCheck": {
+        "exit": 0,
+        "metricas": {}
+      },
+      "CausalCheck": {
+        "exit": 0,
+        "metricas": {
+          "eventos": 330,
+          "aAntesB": 15177,
+          "bAntesA": 15549,
+          "paresCausais": 30726,
+          "paresConcorrentes": 5249,
+          "paresVetoresIguais": 0,
+          "errosLamport": 0,
+          "paresConcorrentesLamportDistinto": 4998,
+          "proporcao": 0.952181
+        }
+      },
+      "REG_sem_carimbos_bytes_media": 64.2030303030303,
+      "REG_com_carimbos_bytes_media": 76.10303030303031
+    },
+    {
+      "ensaio": "rajada-com-processador-2",
+      "publicadas_produtor": 300,
+      "alarmes": 35,
+      "registos_por_particao": [
+        128,
+        114,
+        93
+      ],
+      "PartitionCheck": {
+        "exit": 0,
+        "metricas": {}
+      },
+      "CausalCheck": {
+        "exit": 0,
+        "metricas": {
+          "eventos": 335,
+          "aAntesB": 16083,
+          "bAntesA": 15396,
+          "paresCausais": 31479,
+          "paresConcorrentes": 5619,
+          "paresVetoresIguais": 0,
+          "errosLamport": 0,
+          "paresConcorrentesLamportDistinto": 5363,
+          "proporcao": 0.95444
+        }
+      },
+      "REG_sem_carimbos_bytes_media": 64.32835820895522,
+      "REG_com_carimbos_bytes_media": 76.38507462686567
+    },
+    {
+      "ensaio": "rajada-com-processador-3",
+      "publicadas_produtor": 300,
+      "alarmes": 39,
+      "registos_por_particao": [
+        145,
+        97,
+        97
+      ],
+      "PartitionCheck": {
+        "exit": 0,
+        "metricas": {}
+      },
+      "CausalCheck": {
+        "exit": 0,
+        "metricas": {
+          "eventos": 339,
+          "aAntesB": 14875,
+          "bAntesA": 17558,
+          "paresCausais": 32433,
+          "paresConcorrentes": 5106,
+          "paresVetoresIguais": 0,
+          "errosLamport": 0,
+          "paresConcorrentesLamportDistinto": 4854,
+          "proporcao": 0.950646
+        }
+      },
+      "REG_sem_carimbos_bytes_media": 64.31563421828909,
+      "REG_com_carimbos_bytes_media": 76.23893805309734
+    }
+  ],
+  "entrega_na_replica": {
+    "ordem_escrita_R1": [
+      {
+        "p": 1,
+        "seq": 1,
+        "instanteMs": 1792872893099
+      },
+      {
+        "p": 0,
+        "seq": 1,
+        "instanteMs": 1792872893123
+      }
+    ],
+    "alarme_antes_da_origem": true,
+    "PartitionCheck": {
+      "exit": 0,
+      "metricas": {}
+    },
+    "CausalCheck": {
+      "exit": 0,
+      "metricas": {
+        "eventos": 2,
+        "aAntesB": 1,
+        "bAntesA": 0,
+        "paresCausais": 1,
+        "paresConcorrentes": 0,
+        "paresVetoresIguais": 0,
+        "errosLamport": 0,
+        "paresConcorrentesLamportDistinto": 0,
+        "proporcao": 0.0
+      }
+    }
+  },
+  "falhas": [
+    {
+      "falha": "lider-sem-merge",
+      "CausalCheck": {
+        "exit": 0,
+        "metricas": {
+          "eventos": 2,
+          "aAntesB": 0,
+          "bAntesA": 0,
+          "paresCausais": 0,
+          "paresConcorrentes": 1,
+          "paresVetoresIguais": 0,
+          "errosLamport": 0,
+          "paresConcorrentesLamportDistinto": 1,
+          "proporcao": 1.0
+        }
+      }
+    },
+    {
+      "falha": "lider-L-sem-recebido",
+      "CausalCheck": {
+        "exit": 1,
+        "metricas": {
+          "eventos": 2,
+          "aAntesB": 1,
+          "bAntesA": 0,
+          "paresCausais": 1,
+          "paresConcorrentes": 0,
+          "paresVetoresIguais": 0,
+          "errosLamport": 1,
+          "paresConcorrentesLamportDistinto": 0,
+          "proporcao": 0.0
+        }
+      }
+    },
+    {
+      "falha": "reinicio-a-zero",
+      "arranque_recusado_pela_invariante": true,
+      "CausalCheck": {
+        "exit": 0,
+        "metricas": {
+          "eventos": 2,
+          "aAntesB": 0,
+          "bAntesA": 0,
+          "paresCausais": 0,
+          "paresConcorrentes": 0,
+          "paresVetoresIguais": 0,
+          "errosLamport": 0,
+          "paresConcorrentesLamportDistinto": 0,
+          "proporcao": 0.0
+        }
+      }
+    },
+    {
+      "falha": "processador-sem-copy",
+      "IN_misturado": "IN;ALARM-S02;29.3;1;20,1,0",
+      "CausalCheck": {
+        "exit": 1,
+        "metricas": {
+          "eventos": 22,
+          "aAntesB": 21,
+          "bAntesA": 0,
+          "paresCausais": 21,
+          "paresConcorrentes": 20,
+          "paresVetoresIguais": 0,
+          "errosLamport": 19,
+          "paresConcorrentesLamportDistinto": 19,
+          "proporcao": 0.95
+        }
+      },
+      "agendamento": "Latch apenas na cópia de teste força merge entre snapshot e serialização."
+    },
+    {
+      "falha": "produtor-N4",
+      "IN_rejeitado": "IN;S01;21.0;0;0,0,0,0",
+      "CausalCheck": {
+        "exit": 0,
+        "metricas": {
+          "eventos": 1,
+          "aAntesB": 0,
+          "bAntesA": 0,
+          "paresCausais": 0,
+          "paresConcorrentes": 0,
+          "paresVetoresIguais": 0,
+          "errosLamport": 0,
+          "paresConcorrentesLamportDistinto": 0,
+          "proporcao": 0.0
+        }
+      }
+    }
+  ]
+}

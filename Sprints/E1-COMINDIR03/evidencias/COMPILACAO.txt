@@ -1,0 +1,10 @@
+Compilação final da E1-COMINDIR03
+Java: Oracle JDK 25.0.2 (build 25.0.2+10-LTS-69)
+Comando em cada projeto: javac --release 11 -encoding UTF-8 -d out src/rep03/*.java
+
+rep03-produtor: exit=0
+rep03-lider: exit=0
+rep03-replica: exit=0
+rep03-processador: exit=0
+
+Os diretórios out foram removidos depois da validação e não integram o commit.
