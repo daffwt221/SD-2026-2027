@@ -1,0 +1,35 @@
+HEARTBEATCHECK;N=1;fuso=Europe/Lisbon
+Classificação observacional: FALHA_REAL significa ausência de retoma válida da mesma incarnação no registo.
+Latência: primeira receção por participante/partição/seq; recuperações TCP não são receções de lote.
+LOTES;p=0;inc=1000;lotes=4;vazios=2;proporcaoVazios=0.500;registosMedia=0.500;registosMax=1;intervaloMediaMs=8966.667;intervaloMaxMs=16900
+LOTES;p=0;inc=2000;lotes=1;vazios=1;proporcaoVazios=1.000;registosMedia=0.000;registosMax=0;intervaloMediaMs=NA;intervaloMaxMs=NA
+SUSPEITA;participante=arranque;p=0;instante=1793966401000;inc=NA;classe=INDETERMINADA;silencioPublicadoMs=NA;silencioObservadoMs=1000
+MONITOR;participante=arranque;p=0;reais=0;falsas=0;indeterminadas=1;hbPerdidos=0;recuperacoes=0
+MONITOR;participante=produtor;p=0;reais=0;falsas=0;indeterminadas=0;hbPerdidos=0;recuperacoes=0
+SUSPEITA;participante=replica1;p=0;instante=1793966426000;inc=1000;classe=FALSA_SUSPEITA;silencioPublicadoMs=16000;silencioObservadoMs=15900
+SUSPEITA;participante=replica1;p=0;instante=1793966443000;inc=1000;classe=FALHA_REAL;silencioPublicadoMs=16100;silencioObservadoMs=16000
+SUSPEITA;participante=replica1;p=0;instante=1793966462000;inc=2000;classe=FALHA_REAL;silencioPublicadoMs=17000;silencioObservadoMs=16900
+MONITOR;participante=replica1;p=0;reais=2;falsas=1;indeterminadas=0;hbPerdidos=1;recuperacoes=1
+EVENTOS;hbPerdidos=1;recuperacoes=1
+DETECAO;participante=arranque;p=0;falha=1793966435000;tempoMs=NA;motivo=sem_suspeita_real_comparavel
+DETECAO;participante=produtor;p=0;falha=1793966435000;tempoMs=NA;motivo=sem_suspeita_real_comparavel
+DETECAO;participante=replica1;p=0;falha=1793966435000;suspeita=1793966443000;tempoMs=8000;tempoS=8.000
+DETECAO;participante=arranque;p=0;falha=1793966460000;tempoMs=NA;motivo=sem_suspeita_real_comparavel
+DETECAO;participante=produtor;p=0;falha=1793966460000;tempoMs=NA;motivo=sem_suspeita_real_comparavel
+DETECAO;participante=replica1;p=0;falha=1793966460000;suspeita=1793966462000;tempoMs=2000;tempoS=2.000
+DETECAO_RESUMO;amostras=2;minMs=2000;mediaMs=5000.000;maxMs=8000
+LATENCIA;participante=arranque;p=0;amostras=0;mediaMs=NA;maxMs=NA
+LATENCIA_REGISTO;participante=produtor;p=0;seq=1;inc=1000;hb=2;recebido=1793966405200;instante=1793966401000;latenciaMs=4200
+LATENCIA_REGISTO;participante=produtor;p=0;seq=2;inc=1000;hb=3;recebido=1793966410200;instante=1793966406000;latenciaMs=4200
+LATENCIA;participante=produtor;p=0;amostras=2;mediaMs=4200.000;maxMs=4200
+LATENCIA_REGISTO;participante=replica1;p=0;seq=1;inc=1000;hb=2;recebido=1793966405100;instante=1793966401000;latenciaMs=4100
+LATENCIA_REGISTO;participante=replica1;p=0;seq=2;inc=1000;hb=3;recebido=1793966410100;instante=1793966406000;latenciaMs=4100
+LATENCIA;participante=replica1;p=0;amostras=2;mediaMs=4100.000;maxMs=4100
+LATENCIA_PARTICAO;p=0;amostras=4;registosDistintos=2;mediaMs=4150.000;maxMs=4200;registosSemLote=1
+LATENCIA_REGISTO;participante=NA;p=0;seq=3;latenciaMs=NA;motivo=sem_rececao_de_lote
+LATENCIA_NOTA: resolução limitada pela precisão do instante guardado no registo; fuso=Europe/Lisbon
+BYTES;p=0;registos=2;amostrasREG=2;lotePorRegisto=70.500;regEquivalentePorRegisto=58.500;loteComVaziosPorRegisto=123.000;lotesSemComparacao=0
+BYTES;p=TODAS;registos=2;amostrasREG=2;lotePorRegisto=70.500;regEquivalentePorRegisto=58.500;loteComVaziosPorRegisto=123.000;lotesSemComparacao=0
+BYTES_NOTA: payload UTF-8; exclui tópicos/HTTP/TCP. LOTE inclui o cabeçalho do seu lote;
+loteComVaziosPorRegisto inclui também os heartbeats vazios. REG equivalente calculado para amostras com registos disponíveis.
+FIM;avisos=0

@@ -1,0 +1,36 @@
+ficheirosLider=3 N=3
+PARES ENTRE PARTIÇÕES DIFERENTES:
+p0#1 || p1#1
+p0#1 || p1#2
+p0#1 -> p2#1
+p0#2 || p1#1
+p0#2 || p1#2
+p0#2 -> p2#1
+p0#3 || p1#1
+p0#3 || p1#2
+p0#3 || p2#1
+p0#4 || p1#1
+p0#4 || p1#2
+p0#4 || p2#1
+p1#1 -> p2#1
+p1#2 || p2#1
+eventos=7
+aAntesB=3
+bAntesA=0
+paresCausais=3
+paresConcorrentes=11
+paresVetoresIguais=0
+errosLamport=0
+paresConcorrentesLamportDistinto=8
+proporcaoConcorrentesLamportDistinto=0.727273
+EXEMPLO: p0#1 || p1#2; L=1 e 2; V=1,0,0 e 0,2,0
+ORDEM TOTAL (L,k), SEM INFERIR CAUSALIDADE:
+(1,0) p0;1;S01;21.0;2026-11-06T03:53:47;1;1,0,0
+(1,1) p1;1;S02;29.3;2026-11-06T03:53:54;1;0,1,0
+(2,0) p0;2;S04;22.5;2026-11-06T03:53:47;2;2,0,0
+(2,1) p1;2;S02;30.0;2026-11-06T03:53:58;2;0,2,0
+(3,0) p0;3;S01;21.4;2026-11-06T03:53:48;3;3,0,0
+(3,2) p2;1;ALARM-S02;29.3;2026-11-06T03:53:55;3;2,1,1
+(4,0) p0;4;S01;23.0;2026-11-06T03:53:51;4;4,0,0
+vistaLamport=C:\Users\EMILIO FERNANDO\Desktop\SD-2026-2027\Sprints\E1-COMINDIR04\testes\out\execucao-20261106-035344-326\reunidos\vista-lamport.txt
+RESULTADO: VÁLIDO.
