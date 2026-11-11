@@ -1,0 +1,10 @@
+1794422706256;TERMO;p1;arranque=true;termo=0;papel=SEGUIDOR;ultimoSeq=0;ultimoTermo=0
+1794422712627;TERMO;p1;0->1
+1794422712645;VOTO;p1;termo=1;candidato=n2;concedido
+1794422712799;TERMO;p1;arranque=true;termo=0;papel=SEGUIDOR;ultimoSeq=0;ultimoTermo=0
+1794422719312;TERMO;p1;0->1
+1794422719322;VOTO;p1;termo=1;candidato=n3;concedido
+1794422719405;NOVO_LIDER;p1;termo=1;lider=n3
+1794422719419;RECEBIDO;p1;termo=1;lider=n3;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=1
+1794422719426;IGNORADO;p1;origem=IN;sensor=S05;motivo=nao_lider
+1794422721398;RECEBIDO;p1;termo=1;lider=n3;hb=2;ultimoSeq=1;ultimoTermo=1;n=1;seq=1..1;origem=LOTE;atual=1

@@ -1,0 +1,18 @@
+1794422017744;TERMO;p1;arranque=true;termo=0;papel=SEGUIDOR;ultimoSeq=0;ultimoTermo=0
+1794422024060;CANDIDATO;p1;termo=1
+1794422024249;VOTO;p1;termo=1;candidato=n1;recusado
+1794422024307;VOTO;p1;termo=1;candidato=n3;recusado
+1794422030190;CANDIDATO;p1;termo=2
+1794422030195;VOTO;p1;termo=2;candidato=n1;recusado
+1794422030217;VOTO;p1;termo=2;candidato=n3;recusado
+1794422036390;CANDIDATO;p1;termo=3
+1794422036393;VOTO;p1;termo=3;candidato=n3;recusado
+1794422036409;VOTO;p1;termo=3;candidato=n1;recusado
+1794422042605;CANDIDATO;p1;termo=4
+1794422042615;VOTO;p1;termo=4;candidato=n3;recusado
+1794422042627;VOTO;p1;termo=4;candidato=n1;recusado
+1794422048779;CANDIDATO;p1;termo=5
+1794422048790;VOTO;p1;termo=5;candidato=n1;recusado
+1794422048799;VOTO;p1;termo=5;candidato=n3;recusado
+1794422054789;CANDIDATO;p1;termo=6
+1794422054841;LIDER;p1;termo=6;votos=[2, 3]

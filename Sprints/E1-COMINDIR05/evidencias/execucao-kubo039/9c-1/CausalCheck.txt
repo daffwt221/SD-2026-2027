@@ -1,0 +1,8 @@
+ficheirosNos=9 N=3
+eventosLogicos=221
+errosLocais=0
+paresCausais=1808
+paresConcorrentes=9646
+paresVetoresIguais=0
+errosLamport=0
+RESULTADO: VALIDO.

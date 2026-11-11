@@ -1,0 +1,31 @@
+ELEICOES:
+p0 termo=1 candidatos=[1] votos={1=[1, 2, 3]} lideres=[1] duracaoMs=99
+p0 primeiroLiderMs=6872 termosAtePrimeiro=1 termosSemLider=0 votosDivididosEfetivos=0
+p1 termo=1 candidatos=[2, 3] votos={2=[1, 2], 3=[1, 3]} lideres=[2, 3] duracaoMs=143
+p1 primeiroLiderMs=7287 termosAtePrimeiro=1 termosSemLider=0 votosDivididosEfetivos=0
+p2 termo=1 candidatos=[3] votos={3=[1, 2, 3]} lideres=[3] duracaoMs=68
+p2 primeiroLiderMs=7072 termosAtePrimeiro=1 termosSemLider=0 votosDivididosEfetivos=0
+TERMO_DIMINUIU: eventos-p1-n1.txt:4 -> 0
+ESTADO_PERSISTENTE_AUSENTE_ATRASADO: 0-1
+ESTADO_PERSISTENTE_AUSENTE_ATRASADO: 1-1
+ESTADO_PERSISTENTE_AUSENTE_ATRASADO: 0-2
+ESTADO_PERSISTENTE_AUSENTE_ATRASADO: 2-1
+ESTADO_PERSISTENTE_AUSENTE_ATRASADO: 1-2
+ESTADO_PERSISTENTE_AUSENTE_ATRASADO: 0-3
+ESTADO_PERSISTENTE_AUSENTE_ATRASADO: 2-2
+ESTADO_PERSISTENTE_AUSENTE_ATRASADO: 1-3
+ESTADO_PERSISTENTE_AUSENTE_ATRASADO: 2-3
+VOTO_DUPLO: p;termo;eleitor=1;1;1 candidatos=[2, 3]
+SEGURANCA: termosComMaisDeUmLider=1 termosDiminuiram=1 votosDuplos=1 lideresSemMaioriaAuditada=0 estadosAusentesAtrasados=9 lotesObsoletosAplicados=0
+COINCIDENCIA FINAL:
+p0 ficheiros=3/3 ultimos=n1:0,n2:0,n3:0 comparadosAte=0 seqDivergentes=[]
+p1 ficheiros=3/3 ultimos=n1:1,n2:2,n3:1 comparadosAte=1 seqDivergentes=[1]
+p2 ficheiros=3/3 ultimos=n1:0,n2:0,n3:0 comparadosAte=0 seqDivergentes=[]
+LEITURAS PERDIDAS (presenca no registo final de qualquer no):
+leiturasPerdidasConfirmadas=0 leiturasAmbiguas=0
+TRUNCAGENS:
+FALHAS E INDISPONIBILIDADE:
+falha=p1;n1;1794422712674 eraLider=false termoAnterior=-1 primeiroLoteSuperior=1794422712737 indisponibilidadeMs=0
+MONITORES: {AVISO=1, ERRO=4, NOVO_LIDER=6, OBSERVADO=1, RECEBIDO=24, RETOMA=5, SUSPEITA=7}
+ERROS DOS NOS: 0
+RESULTADO: FALHOU (13 violacoes).

@@ -1,0 +1,16 @@
+Comandos: <sensor> <temperatura>, rajada <n> <s>, rajada-quente <n> <s>.
+1794421925275;SUSPEITA;p0;termo=-1;lider=n0;semHeartbeatMs=6009
+1794421925289;SUSPEITA;p1;termo=-1;lider=n0;semHeartbeatMs=6035
+1794421925290;SUSPEITA;p2;termo=-1;lider=n0;semHeartbeatMs=6037
+1794421925679;NOVO_LIDER;p1;termo=1;lider=n2
+1794421925681;RETOMA;p1;termo=1;lider=n2
+1794421925693;RECEBIDO;p1;termo=1;lider=n2;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421926238;NOVO_LIDER;p0;termo=1;lider=n3
+1794421926241;RETOMA;p0;termo=1;lider=n3
+1794421926244;RECEBIDO;p0;termo=1;lider=n3;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421927469;NOVO_LIDER;p2;termo=1;lider=n1
+1794421927472;RETOMA;p2;termo=1;lider=n1
+1794421927473;RECEBIDO;p2;termo=1;lider=n1;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+SUBSCRIÇÃO FALHOU: produtor p0 java.io.IOException: closed
+SUBSCRIÇÃO FALHOU: produtor p1 java.io.IOException: closed
+SUBSCRIÇÃO FALHOU: produtor p2 java.io.IOException: closed

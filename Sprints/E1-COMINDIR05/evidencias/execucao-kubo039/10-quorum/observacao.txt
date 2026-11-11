@@ -1,0 +1,1 @@
+O limiar errado existe, mas não se manifestou neste G=3: onVote só é chamado para um voto remoto; nesse momento já há o voto próprio e o remoto (2). Um nó sozinho não chama onVote. Não se alterou um segundo ponto para forçar a falha.

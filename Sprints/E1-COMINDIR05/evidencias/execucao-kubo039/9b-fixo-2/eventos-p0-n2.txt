@@ -1,0 +1,8 @@
+1794421998800;TERMO;p0;arranque=true;termo=0;papel=SEGUIDOR;ultimoSeq=0;ultimoTermo=0
+1794422005056;CANDIDATO;p0;termo=1
+1794422005254;VOTO;p0;termo=1;candidato=n3;recusado
+1794422005321;VOTO;p0;termo=1;candidato=n1;recusado
+1794422011213;TERMO;p0;1->2
+1794422011258;VOTO;p0;termo=2;candidato=n3;concedido
+1794422011390;NOVO_LIDER;p0;termo=2;lider=n3
+1794422011422;RECEBIDO;p0;termo=2;lider=n3;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=2

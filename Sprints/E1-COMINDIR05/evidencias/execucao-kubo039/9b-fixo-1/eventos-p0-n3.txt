@@ -1,0 +1,17 @@
+1794421961570;TERMO;p0;arranque=true;termo=0;papel=SEGUIDOR;ultimoSeq=0;ultimoTermo=0
+1794421967804;CANDIDATO;p0;termo=1
+1794421967854;VOTO;p0;termo=1;candidato=n2;recusado
+1794421968027;VOTO;p0;termo=1;candidato=n1;recusado
+1794421973974;CANDIDATO;p0;termo=2
+1794421973980;VOTO;p0;termo=2;candidato=n1;recusado
+1794421973999;VOTO;p0;termo=2;candidato=n2;recusado
+1794421980171;TERMO;p0;2->3
+1794421980204;VOTO;p0;termo=3;candidato=n2;concedido
+1794421980279;NOVO_LIDER;p0;termo=3;lider=n2
+1794421980288;RECEBIDO;p0;termo=3;lider=n2;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=3
+1794421982274;RECEBIDO;p0;termo=3;lider=n2;hb=2;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=3
+1794421984261;RECEBIDO;p0;termo=3;lider=n2;hb=3;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=3
+1794421986266;RECEBIDO;p0;termo=3;lider=n2;hb=4;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=3
+1794421988274;RECEBIDO;p0;termo=3;lider=n2;hb=5;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=3
+1794421990261;RECEBIDO;p0;termo=3;lider=n2;hb=6;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=3
+1794421992266;RECEBIDO;p0;termo=3;lider=n2;hb=7;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=3

@@ -1,0 +1,9 @@
+﻿java.exe : Exception in thread "main" java.lang.AssertionError: maioria incorreta para grupo de cinco
+At line:2 char:541
++ ... 10-quorum'; & java '-Dfile.encoding=UTF-8' '-Dstdout.encoding=UTF-8'  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Exception in th... grupo de cinco:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+	at raft04.RaftStateTest.require(RaftStateTest.java:11)
+	at raft04.RaftStateTest.main(RaftStateTest.java:40)

@@ -1,0 +1,1 @@
+O novo líder tinha seq=2, mas V[p1] foi reiniciado a 0. A próxima leitura tentaria seq=3 e V[p1]=1; a guarda já existente recusou-a antes da gravação. CausalCheck pode passar porque o registo inválido não chegou ao disco. A leitura extra perde-se e ERRO explica a causa.

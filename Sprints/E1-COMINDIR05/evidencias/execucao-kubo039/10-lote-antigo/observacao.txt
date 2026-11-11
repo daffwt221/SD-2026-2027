@@ -1,0 +1,1 @@
+Repetiu-se 9(d), incluindo os 60 s de isolamento do seguidor. Depois, publicou-se uma cópia real do LOTE guardado antes do corte, para representar uma mensagem atrasada. Os seguidores aplicaram o termo antigo; o próximo heartbeat atual pode reparar o estado, mas não apaga a violação registada.

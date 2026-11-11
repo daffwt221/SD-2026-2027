@@ -1,0 +1,1141 @@
+{
+  "execucoes": [
+    {
+      "ensaio": "10-desatualizado",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 5,
+      "leiturasPerdidas": 2,
+      "registosTruncados": 2,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        9500,
+        9143,
+        7084
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [
+        {
+          "no": "n2",
+          "eraLider": true,
+          "ms": 9084,
+          "leiturasDurante": 1
+        }
+      ],
+      "perdidasPorTruncagem": 1,
+      "perdidasDuranteEleicao": 1,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "10-lote-antigo",
+      "raft": 2,
+      "causal": 0,
+      "leiturasEnviadas": 301,
+      "leiturasPerdidas": 93,
+      "registosTruncados": 110,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 2,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 2,
+      "arranqueMs": [
+        9008,
+        10123,
+        8443
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 93,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0,
+      "isolamento": {
+        "antigo": 1,
+        "novo": 2,
+        "aceitesAntigo": 107,
+        "estadoSeguidor": "7;1",
+        "termoSaudavelAntes": 2,
+        "lideresP1": [
+          {
+            "no": 1,
+            "termo": 1,
+            "instante": 1794422966558
+          },
+          {
+            "no": 1,
+            "termo": 8,
+            "instante": 1794423063301
+          },
+          {
+            "no": 2,
+            "termo": 2,
+            "instante": 1794422976095
+          }
+        ]
+      }
+    },
+    {
+      "ensaio": "10-memoria",
+      "raft": 2,
+      "causal": 2,
+      "leiturasEnviadas": 2,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 1,
+      "termosDiminuiram": 1,
+      "votosDuplos": 1,
+      "seqDivergentes": 1,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 9,
+      "errosDosNos": 0,
+      "violacoes": 13,
+      "arranqueMs": [
+        6872,
+        7287,
+        7072
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 1,
+      "falhas": [
+        {
+          "no": "n1",
+          "eraLider": false,
+          "ms": 0,
+          "leiturasDurante": 0
+        }
+      ],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "10-quorum",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 1,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        6775,
+        8585,
+        8441
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [
+        {
+          "no": "n2",
+          "eraLider": true,
+          "ms": -1,
+          "leiturasDurante": 0
+        },
+        {
+          "no": "n1",
+          "eraLider": false,
+          "ms": 0,
+          "leiturasDurante": 0
+        }
+      ],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "10-relogios-zero",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 5,
+      "leiturasPerdidas": 3,
+      "registosTruncados": 1,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 1,
+      "violacoes": 0,
+      "arranqueMs": [
+        7473,
+        6987,
+        7349
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [
+        {
+          "no": "n2",
+          "eraLider": true,
+          "ms": 7782,
+          "leiturasDurante": 1
+        }
+      ],
+      "perdidasPorTruncagem": 1,
+      "perdidasDuranteEleicao": 1,
+      "perdidasForaDestasCausas": 1
+    },
+    {
+      "ensaio": "9a",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 5,
+      "leiturasPerdidas": 2,
+      "registosTruncados": 1,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        7269,
+        7986,
+        8475
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [
+        {
+          "no": "n1",
+          "eraLider": true,
+          "ms": 6134,
+          "leiturasDurante": 1
+        }
+      ],
+      "perdidasPorTruncagem": 1,
+      "perdidasDuranteEleicao": 1,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-aleatorio-1",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        7725,
+        10081,
+        9151
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-aleatorio-10",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        8269,
+        8864,
+        7359
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-aleatorio-2",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        7211,
+        9012,
+        8050
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-aleatorio-3",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        7453,
+        7276,
+        9591
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-aleatorio-4",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        9317,
+        10568,
+        7394
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-aleatorio-5",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        9733,
+        8537,
+        8193
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-aleatorio-6",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        7923,
+        7211,
+        7547
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-aleatorio-7",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        8594,
+        8018,
+        9822
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-aleatorio-8",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        8832,
+        8898,
+        7507
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-aleatorio-9",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        8627,
+        8569,
+        8241
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-fixo-1",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        18671,
+        30879,
+        12489
+      ],
+      "termosPrimeiroLider": [
+        3,
+        5,
+        2
+      ],
+      "votosDivididos": [
+        2,
+        4,
+        1
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-fixo-2",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        12480,
+        12480,
+        12488
+      ],
+      "termosPrimeiroLider": [
+        2,
+        2,
+        2
+      ],
+      "votosDivididos": [
+        1,
+        1,
+        1
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-fixo-3",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        18637,
+        37098,
+        12485
+      ],
+      "termosPrimeiroLider": [
+        3,
+        6,
+        2
+      ],
+      "votosDivididos": [
+        2,
+        5,
+        1
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-fixo-4",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        12431,
+        18624,
+        6597
+      ],
+      "termosPrimeiroLider": [
+        2,
+        3,
+        1
+      ],
+      "votosDivididos": [
+        1,
+        2,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9b-fixo-5",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 0,
+      "leiturasPerdidas": 0,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        30861,
+        18650,
+        43436
+      ],
+      "termosPrimeiroLider": [
+        5,
+        3,
+        7
+      ],
+      "votosDivididos": [
+        4,
+        2,
+        6
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9c-1",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 300,
+      "leiturasPerdidas": 86,
+      "registosTruncados": 6,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        7628,
+        7952,
+        6742
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [
+        {
+          "no": "n1",
+          "eraLider": true,
+          "ms": 5947,
+          "leiturasDurante": 80
+        }
+      ],
+      "perdidasPorTruncagem": 6,
+      "perdidasDuranteEleicao": 80,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9c-2",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 300,
+      "leiturasPerdidas": 81,
+      "registosTruncados": 12,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        7979,
+        9031,
+        9138
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [
+        {
+          "no": "n2",
+          "eraLider": true,
+          "ms": 6153,
+          "leiturasDurante": 69
+        }
+      ],
+      "perdidasPorTruncagem": 12,
+      "perdidasDuranteEleicao": 69,
+      "perdidasForaDestasCausas": 0
+    },
+    {
+      "ensaio": "9c-3",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 300,
+      "leiturasPerdidas": 98,
+      "registosTruncados": 3,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        7732,
+        7415,
+        7905
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [
+        {
+          "no": "n2",
+          "eraLider": true,
+          "ms": 6809,
+          "leiturasDurante": 88
+        }
+      ],
+      "perdidasPorTruncagem": 3,
+      "perdidasDuranteEleicao": 88,
+      "perdidasForaDestasCausas": 7
+    },
+    {
+      "ensaio": "9d",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 300,
+      "leiturasPerdidas": 72,
+      "registosTruncados": 93,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        8816,
+        7328,
+        8909
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        0,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [],
+      "perdidasPorTruncagem": 72,
+      "perdidasDuranteEleicao": 0,
+      "perdidasForaDestasCausas": 0,
+      "isolamento": {
+        "antigo": 2,
+        "novo": 1,
+        "aceitesAntigo": 81,
+        "estadoSeguidor": "7;2",
+        "termoSaudavelAntes": 2,
+        "lideresP1": [
+          {
+            "no": 1,
+            "termo": 2,
+            "instante": 1794422280371
+          },
+          {
+            "no": 2,
+            "termo": 1,
+            "instante": 1794422267129
+          },
+          {
+            "no": 2,
+            "termo": 8,
+            "instante": 1794422363052
+          }
+        ]
+      }
+    },
+    {
+      "ensaio": "9e",
+      "raft": 0,
+      "causal": 0,
+      "leiturasEnviadas": 32,
+      "leiturasPerdidas": 30,
+      "registosTruncados": 0,
+      "truncadosComOutraSeq": 0,
+      "termosComMultiplosLideres": 0,
+      "termosDiminuiram": 0,
+      "votosDuplos": 0,
+      "seqDivergentes": 0,
+      "lotesObsoletosAplicados": 0,
+      "estadosAusentesAtrasados": 0,
+      "errosDosNos": 0,
+      "violacoes": 0,
+      "arranqueMs": [
+        7522,
+        9323,
+        7571
+      ],
+      "termosPrimeiroLider": [
+        1,
+        1,
+        1
+      ],
+      "votosDivididos": [
+        0,
+        1,
+        0
+      ],
+      "errosCausais": 0,
+      "falhas": [
+        {
+          "no": "n2",
+          "eraLider": true,
+          "ms": 39065,
+          "leiturasDurante": 30
+        },
+        {
+          "no": "n1",
+          "eraLider": false,
+          "ms": 0,
+          "leiturasDurante": 0
+        }
+      ],
+      "perdidasPorTruncagem": 0,
+      "perdidasDuranteEleicao": 30,
+      "perdidasForaDestasCausas": 0,
+      "rearranqueAteLiderMs": 9044,
+      "sobrevivente": 3,
+      "termosSobrevivente": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "arranqueAleatorioMs": {
+    "min": 7211,
+    "media": 8452.433333333332,
+    "max": 10568,
+    "n": 30
+  },
+  "arranqueFixoMs": {
+    "min": 6597,
+    "media": 19887.066666666666,
+    "max": 43436,
+    "n": 15
+  },
+  "arranque9a9cMs": {
+    "min": 6742,
+    "media": 8305.357142857143,
+    "max": 10568,
+    "n": 42
+  },
+  "termosAleatorios": {
+    "min": 1,
+    "media": 1,
+    "max": 1,
+    "n": 30
+  },
+  "termosFixos": {
+    "min": 1,
+    "media": 3.2,
+    "max": 7,
+    "n": 15
+  },
+  "votosDivididosAleatorios": 0,
+  "votosDivididosFixos": 33,
+  "indisponibilidade9a9cMs": {
+    "min": 5947,
+    "media": 6260.75,
+    "max": 6809,
+    "n": 4
+  },
+  "mediaPerdidasDuranteEleicao": 59.5,
+  "mediaPerdidasPorTruncagem": 5.5,
+  "mediaRegistosTruncados": 5.5,
+  "ensaiosNormais": 21,
+  "ensaiosFalhas": 5
+}

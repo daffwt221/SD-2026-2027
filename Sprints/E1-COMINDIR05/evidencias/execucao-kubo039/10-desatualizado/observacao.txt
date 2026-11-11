@@ -1,0 +1,1 @@
+Repetiu-se a figura e guardaram-se os dois históricos. Depois, as duas réplicas atualizadas foram paradas; o antigo líder avançou o termo sozinho e uma réplica voltou. Sem upToDate, o candidato com último registo de termo antigo obteve o voto e impôs esse histórico, apagando a leitura 20.6 já replicada.

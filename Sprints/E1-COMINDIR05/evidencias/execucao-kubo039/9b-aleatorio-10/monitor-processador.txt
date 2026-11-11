@@ -1,0 +1,10 @@
+1794421953748;NOVO_LIDER;p2;termo=1;lider=n2
+1794421953758;RECEBIDO;p2;termo=1;lider=n2;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio
+1794421953764;SUSPEITA;p0;termo=-1;lider=n0;semHeartbeatMs=6005
+1794421953764;SUSPEITA;p1;termo=-1;lider=n0;semHeartbeatMs=6010
+1794421954636;NOVO_LIDER;p0;termo=1;lider=n1
+1794421954639;RETOMA;p0;termo=1;lider=n1
+1794421954641;RECEBIDO;p0;termo=1;lider=n1;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio
+1794421955239;NOVO_LIDER;p1;termo=1;lider=n3
+1794421955243;RETOMA;p1;termo=1;lider=n3
+1794421955246;RECEBIDO;p1;termo=1;lider=n3;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio

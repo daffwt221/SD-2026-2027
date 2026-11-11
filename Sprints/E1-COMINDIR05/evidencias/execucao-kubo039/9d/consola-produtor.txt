@@ -1,0 +1,448 @@
+Comandos: <sensor> <temperatura>, rajada <n> <s>, rajada-quente <n> <s>.
+1794422270638;NOVO_LIDER;p0;termo=1;lider=n2
+1794422270644;RECEBIDO;p0;termo=1;lider=n2;hb=2;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422270727;NOVO_LIDER;p2;termo=1;lider=n3
+1794422270734;RECEBIDO;p2;termo=1;lider=n3;hb=2;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422271157;NOVO_LIDER;p1;termo=1;lider=n2
+1794422271162;RECEBIDO;p1;termo=1;lider=n2;hb=3;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+PUBLICADO: S04 25.548772107286695 → p0
+PUBLICADO: S08 22.669045670223895 → p1
+PUBLICADO: S05 25.383508610700776 → p1
+PUBLICADO: S08 19.8976667624594 → p1
+PUBLICADO: S06 18.884123675692518 → p2
+PUBLICADO: S04 23.470973590482625 → p0
+PUBLICADO: S04 18.635959061373512 → p0
+PUBLICADO: S07 28.569150175503058 → p0
+PUBLICADO: S08 26.554207276868972 → p1
+PUBLICADO: S03 24.126595487762028 → p2
+PUBLICADO: S05 17.38206042639409 → p1
+PUBLICADO: S06 24.282823971764135 → p2
+PUBLICADO: S01 22.367189261281865 → p0
+PUBLICADO: S04 29.936487240797856 → p0
+PUBLICADO: S07 27.026965129428863 → p0
+PUBLICADO: S07 23.290544560872476 → p0
+PUBLICADO: S01 19.021838561829732 → p0
+PUBLICADO: S04 27.553394112665117 → p0
+PUBLICADO: S08 21.544101703958262 → p1
+PUBLICADO: S03 28.29558077136096 → p2
+PUBLICADO: S01 27.5461204602987 → p0
+PUBLICADO: S01 26.149408164295906 → p0
+PUBLICADO: S07 28.480696458672757 → p0
+PUBLICADO: S08 29.442967064197582 → p1
+PUBLICADO: S07 23.107706504833054 → p0
+PUBLICADO: S02 22.941422160280066 → p1
+PUBLICADO: S05 28.687721856132576 → p1
+PUBLICADO: S05 22.36157268847269 → p1
+PUBLICADO: S09 29.6460474185797 → p2
+PUBLICADO: S04 17.374445289016915 → p0
+PUBLICADO: S09 15.738589618308165 → p2
+PUBLICADO: S09 17.89956300893253 → p2
+PUBLICADO: S07 18.793052748512352 → p0
+PUBLICADO: S02 23.299657063597536 → p1
+PUBLICADO: S02 25.246255271923673 → p1
+PUBLICADO: S10 15.3948468330365 → p0
+PUBLICADO: S03 27.261721652370912 → p2
+PUBLICADO: S01 15.85808870262708 → p0
+PUBLICADO: S09 25.294534201957912 → p2
+PUBLICADO: S05 15.289903430855606 → p1
+PUBLICADO: S09 15.89373173991454 → p2
+PUBLICADO: S03 22.904663127130796 → p2
+PUBLICADO: S03 18.734945481265758 → p2
+PUBLICADO: S10 18.744465274962074 → p0
+PUBLICADO: S10 28.48816098523298 → p0
+PUBLICADO: S05 21.922188682546405 → p1
+PUBLICADO: S04 16.82443271932581 → p0
+PUBLICADO: S09 20.93142244270932 → p2
+PUBLICADO: S09 29.769917273651508 → p2
+PUBLICADO: S07 22.300123186880242 → p0
+PUBLICADO: S02 28.89169628035031 → p1
+PUBLICADO: S04 22.185644990921176 → p0
+PUBLICADO: S10 28.29945336015295 → p0
+PUBLICADO: S03 25.735992013351854 → p2
+PUBLICADO: S02 22.111029740032112 → p1
+PUBLICADO: S03 24.080006219409654 → p2
+PUBLICADO: S01 17.941947730072062 → p0
+PUBLICADO: S10 20.583788873311804 → p0
+PUBLICADO: S09 20.863527508138556 → p2
+PUBLICADO: S05 27.24855878722392 → p1
+PUBLICADO: S02 27.886942394440986 → p1
+PUBLICADO: S07 29.277288592083266 → p0
+PUBLICADO: S09 26.29803055711732 → p2
+PUBLICADO: S03 18.9876805227357 → p2
+PUBLICADO: S04 23.086706790539722 → p0
+PUBLICADO: S07 24.128736174305054 → p0
+PUBLICADO: S08 29.930463685182637 → p1
+PUBLICADO: S04 17.919130595136018 → p0
+PUBLICADO: S08 24.827176621957868 → p1
+PUBLICADO: S04 19.804838276919497 → p0
+PUBLICADO: S01 22.19326567171266 → p0
+PUBLICADO: S07 17.574675156146693 → p0
+PUBLICADO: S05 27.68873723521364 → p1
+PUBLICADO: S05 19.650450001051524 → p1
+PUBLICADO: S07 28.6599511406096 → p0
+PUBLICADO: S10 22.39361656785609 → p0
+PUBLICADO: S07 23.140450792550325 → p0
+PUBLICADO: S03 25.63203075228394 → p2
+PUBLICADO: S10 17.007643958248998 → p0
+PUBLICADO: S01 28.248736883908762 → p0
+PUBLICADO: S08 24.951345772486356 → p1
+PUBLICADO: S02 18.452171369458824 → p1
+PUBLICADO: S07 27.06752043272205 → p0
+PUBLICADO: S01 27.122475401686515 → p0
+PUBLICADO: S03 29.522439234423878 → p2
+PUBLICADO: S09 27.11574633616952 → p2
+PUBLICADO: S06 20.364898814716557 → p2
+PUBLICADO: S04 29.536390565477177 → p0
+PUBLICADO: S03 24.43525659686643 → p2
+PUBLICADO: S09 22.758078025188546 → p2
+PUBLICADO: S07 24.32327195506045 → p0
+PUBLICADO: S06 20.838996363624933 → p2
+PUBLICADO: S03 16.284346741786123 → p2
+PUBLICADO: S01 20.55466041246821 → p0
+PUBLICADO: S04 17.646595515252983 → p0
+PUBLICADO: S02 28.72894082685184 → p1
+PUBLICADO: S05 19.285928852033578 → p1
+PUBLICADO: S04 24.277278341991448 → p0
+PUBLICADO: S01 16.788886411731664 → p0
+PUBLICADO: S09 26.634357105044764 → p2
+PUBLICADO: S10 17.82119715014967 → p0
+PUBLICADO: S06 20.12776495607022 → p2
+PUBLICADO: S10 23.74763986294731 → p0
+PUBLICADO: S10 28.690336022763013 → p0
+PUBLICADO: S01 24.835458553273128 → p0
+PUBLICADO: S09 19.53123820681497 → p2
+PUBLICADO: S01 16.696223532902625 → p0
+PUBLICADO: S07 19.413249839720322 → p0
+PUBLICADO: S01 15.743290508047188 → p0
+PUBLICADO: S02 18.096641279925983 → p1
+PUBLICADO: S04 24.109495659942006 → p0
+PUBLICADO: S02 15.324609135622774 → p1
+PUBLICADO: S01 20.82103566927105 → p0
+PUBLICADO: S01 26.023166016445153 → p0
+PUBLICADO: S04 28.586193664776587 → p0
+PUBLICADO: S09 19.24292620630913 → p2
+PUBLICADO: S08 23.152555166428847 → p1
+PUBLICADO: S06 21.244055386279438 → p2
+PUBLICADO: S04 22.471575570526593 → p0
+PUBLICADO: S10 23.957441575245014 → p0
+PUBLICADO: S04 26.44923896464454 → p0
+PUBLICADO: S10 28.03002055676933 → p0
+PUBLICADO: S09 16.71545116782379 → p2
+PUBLICADO: S08 18.193464320735067 → p1
+PUBLICADO: S07 25.923441283016977 → p0
+PUBLICADO: S04 16.926708398773957 → p0
+PUBLICADO: S10 28.135760324555697 → p0
+PUBLICADO: S05 20.04948101009446 → p1
+PUBLICADO: S09 19.05399848654062 → p2
+PUBLICADO: S07 15.656218638585642 → p0
+PUBLICADO: S08 16.008576397846404 → p1
+PUBLICADO: S09 19.258282974810893 → p2
+PUBLICADO: S04 28.25718763503624 → p0
+PUBLICADO: S04 25.181509108968925 → p0
+PUBLICADO: S06 24.674733386853283 → p2
+PUBLICADO: S02 28.228384493860844 → p1
+PUBLICADO: S10 28.145865510281887 → p0
+PUBLICADO: S01 25.80274916147357 → p0
+PUBLICADO: S06 16.784782191445835 → p2
+PUBLICADO: S02 15.841381220558574 → p1
+PUBLICADO: S08 26.218715863308354 → p1
+PUBLICADO: S03 19.042497645397564 → p2
+PUBLICADO: S01 16.931826624965673 → p0
+PUBLICADO: S04 23.602143192183476 → p0
+PUBLICADO: S04 22.23128065918404 → p0
+PUBLICADO: S04 23.876319295149383 → p0
+PUBLICADO: S01 24.420795866210543 → p0
+PUBLICADO: S05 19.10149396415544 → p1
+PUBLICADO: S07 21.43709752020635 → p0
+PUBLICADO: S01 18.59958403968089 → p0
+PUBLICADO: S10 18.85829947520514 → p0
+PUBLICADO: S03 25.698073175235198 → p2
+PUBLICADO: S10 20.892842004813144 → p0
+PUBLICADO: S08 15.390288921900995 → p1
+PUBLICADO: S01 29.325435034942068 → p0
+PUBLICADO: S04 18.153319867801 → p0
+PUBLICADO: S04 17.653457095095224 → p0
+PUBLICADO: S05 15.360531001114126 → p1
+PUBLICADO: S06 26.213474397150506 → p2
+PUBLICADO: S04 23.1599586444993 → p0
+PUBLICADO: S01 29.26511762586118 → p0
+PUBLICADO: S06 27.092561111561906 → p2
+PUBLICADO: S02 25.09651234027713 → p1
+PUBLICADO: S02 24.74218050529131 → p1
+PUBLICADO: S06 20.33436235305737 → p2
+PUBLICADO: S01 22.164135799342127 → p0
+PUBLICADO: S04 15.413895291824835 → p0
+PUBLICADO: S03 16.530149927287464 → p2
+PUBLICADO: S08 26.21536740108536 → p1
+PUBLICADO: S05 22.895234663794085 → p1
+PUBLICADO: S01 18.507076576114777 → p0
+PUBLICADO: S07 29.530939065522126 → p0
+PUBLICADO: S04 24.134176306643333 → p0
+PUBLICADO: S05 25.235341512438477 → p1
+PUBLICADO: S06 17.859658568304614 → p2
+PUBLICADO: S05 17.044024819791183 → p1
+PUBLICADO: S09 16.244580407989798 → p2
+PUBLICADO: S08 25.676732343031624 → p1
+PUBLICADO: S01 24.02560367061242 → p0
+PUBLICADO: S05 26.566710984527518 → p1
+PUBLICADO: S05 19.58653289743456 → p1
+PUBLICADO: S04 23.972029001584918 → p0
+PUBLICADO: S09 22.88931840534641 → p2
+PUBLICADO: S03 21.371040604671578 → p2
+PUBLICADO: S03 23.361543909268295 → p2
+PUBLICADO: S06 26.9792595865037 → p2
+PUBLICADO: S03 27.913632683447922 → p2
+PUBLICADO: S09 15.82986565067484 → p2
+PUBLICADO: S08 29.03301858432995 → p1
+PUBLICADO: S05 15.708515423206295 → p1
+PUBLICADO: S08 17.119258293894134 → p1
+PUBLICADO: S08 15.649699238354822 → p1
+PUBLICADO: S09 27.951218534493666 → p2
+PUBLICADO: S02 22.732851348501825 → p1
+PUBLICADO: S03 22.564444108754714 → p2
+PUBLICADO: S06 16.009025641055114 → p2
+PUBLICADO: S02 17.456331846080637 → p1
+PUBLICADO: S02 22.012308414502645 → p1
+PUBLICADO: S03 28.309152845262517 → p2
+PUBLICADO: S07 21.983085821664805 → p0
+PUBLICADO: S06 29.958489835191234 → p2
+PUBLICADO: S07 29.40190968494919 → p0
+PUBLICADO: S04 15.647759159703433 → p0
+PUBLICADO: S03 25.793226974144538 → p2
+PUBLICADO: S07 26.575611873562245 → p0
+PUBLICADO: S06 25.03843751235188 → p2
+PUBLICADO: S07 18.062152424130858 → p0
+PUBLICADO: S04 26.787216958912786 → p0
+PUBLICADO: S07 18.539432434885015 → p0
+PUBLICADO: S07 26.37103755110664 → p0
+PUBLICADO: S04 25.808043685290734 → p0
+PUBLICADO: S10 27.026130050483047 → p0
+PUBLICADO: S01 25.28331646220893 → p0
+PUBLICADO: S10 22.08971125295193 → p0
+PUBLICADO: S04 24.616655665116912 → p0
+PUBLICADO: S10 28.01628114992672 → p0
+PUBLICADO: S04 19.694515255505802 → p0
+PUBLICADO: S07 16.964118541620543 → p0
+PUBLICADO: S08 22.12787676723003 → p1
+PUBLICADO: S03 17.027109302478184 → p2
+PUBLICADO: S08 26.255954906913075 → p1
+PUBLICADO: S01 23.811516562802115 → p0
+PUBLICADO: S06 24.71602153148312 → p2
+PUBLICADO: S01 27.326936430784933 → p0
+PUBLICADO: S01 19.291741492840885 → p0
+PUBLICADO: S01 22.223993368785244 → p0
+PUBLICADO: S06 28.312956102134194 → p2
+PUBLICADO: S04 20.25028189387201 → p0
+PUBLICADO: S04 27.35515617342422 → p0
+PUBLICADO: S09 21.386303254496948 → p2
+PUBLICADO: S04 27.05333137936894 → p0
+PUBLICADO: S02 28.688160469951512 → p1
+PUBLICADO: S05 24.312516691490167 → p1
+PUBLICADO: S09 18.46973079950287 → p2
+PUBLICADO: S10 24.581680331520804 → p0
+PUBLICADO: S03 16.22498207966951 → p2
+PUBLICADO: S10 17.25099857063753 → p0
+PUBLICADO: S03 25.685674424832982 → p2
+PUBLICADO: S08 29.080288186110288 → p1
+PUBLICADO: S01 26.7937446831092 → p0
+PUBLICADO: S03 15.109093444709828 → p2
+PUBLICADO: S01 16.69438757728976 → p0
+PUBLICADO: S09 15.549865610517157 → p2
+PUBLICADO: S03 16.399907514052526 → p2
+PUBLICADO: S09 27.54618221578599 → p2
+PUBLICADO: S06 26.587015436518104 → p2
+PUBLICADO: S10 24.042588554397835 → p0
+PUBLICADO: S09 26.8913520070504 → p2
+PUBLICADO: S10 20.949744987532572 → p0
+PUBLICADO: S05 29.06830994219002 → p1
+PUBLICADO: S04 20.990025716947162 → p0
+PUBLICADO: S07 17.09811642034055 → p0
+PUBLICADO: S07 23.557580741030925 → p0
+PUBLICADO: S06 18.56688062849232 → p2
+PUBLICADO: S09 15.95859895184218 → p2
+PUBLICADO: S01 17.305146380747228 → p0
+PUBLICADO: S04 25.146379638727794 → p0
+PUBLICADO: S09 15.171410060099204 → p2
+PUBLICADO: S05 23.214750214556474 → p1
+PUBLICADO: S03 19.281277887852827 → p2
+PUBLICADO: S01 22.8208689403794 → p0
+PUBLICADO: S09 24.24487033430968 → p2
+PUBLICADO: S01 21.893898147461872 → p0
+PUBLICADO: S05 26.998338873754374 → p1
+PUBLICADO: S07 19.60910445600772 → p0
+PUBLICADO: S06 28.092516345134797 → p2
+PUBLICADO: S01 19.985100089098285 → p0
+PUBLICADO: S09 28.219024249882125 → p2
+PUBLICADO: S08 24.32436506671927 → p1
+PUBLICADO: S06 25.76951075577587 → p2
+PUBLICADO: S06 28.301256995622374 → p2
+PUBLICADO: S08 27.99757876674729 → p1
+PUBLICADO: S09 16.753308656660895 → p2
+PUBLICADO: S02 28.204788742751084 → p1
+PUBLICADO: S09 15.277536254012977 → p2
+PUBLICADO: S06 22.462974816328607 → p2
+1794422272673;RECEBIDO;p0;termo=1;lider=n2;hb=3;ultimoSeq=128;ultimoTermo=1;n=128;seq=1..128;cabecalho=true
+PUBLICADO: S09 17.449898404012036 → p2
+PUBLICADO: S09 19.81166981206417 → p2
+PUBLICADO: S06 16.393850221013103 → p2
+PUBLICADO: S02 16.38295733751141 → p1
+PUBLICADO: S09 19.297138947447166 → p2
+PUBLICADO: S09 20.253331336061308 → p2
+PUBLICADO: S02 21.956785404382742 → p1
+PUBLICADO: S10 26.73495931514507 → p0
+PUBLICADO: S01 27.601446522310717 → p0
+PUBLICADO: S05 25.461313321127978 → p1
+1794422272746;RECEBIDO;p2;termo=1;lider=n3;hb=3;ultimoSeq=88;ultimoTermo=1;n=88;seq=1..88;cabecalho=true
+PUBLICADO: S07 15.499005765551654 → p0
+PUBLICADO: S03 25.83547467406611 → p2
+PUBLICADO: S05 20.630793090646307 → p1
+PUBLICADO: S04 22.374546600971314 → p0
+PUBLICADO: S04 20.397146511730227 → p0
+PUBLICADO: S04 22.45517841448346 → p0
+PUBLICADO: S02 15.536467297608302 → p1
+PUBLICADO: S05 25.50993559350084 → p1
+PUBLICADO: S07 28.100520244279558 → p0
+PUBLICADO: S05 29.428158935874293 → p1
+PUBLICADO: S04 15.11386212540617 → p0
+PUBLICADO: S10 18.806413340245562 → p0
+PUBLICADO: S10 20.371118194388472 → p0
+PUBLICADO: S06 27.65850078155062 → p2
+RAJADA: tipo=uniforme pedidas=300 publicadas=300 primeiraPublicacaoMs=1794422271206 ultimaPublicacaoMs=1794422272903 envioMs=1697 porParticao=[138, 72, 90] completa=true
+1794422274638;RECEBIDO;p0;termo=1;lider=n2;hb=4;ultimoSeq=148;ultimoTermo=1;n=20;seq=129..148;cabecalho=true
+1794422274727;RECEBIDO;p2;termo=1;lider=n3;hb=4;ultimoSeq=90;ultimoTermo=1;n=2;seq=89..90;cabecalho=true
+1794422276636;RECEBIDO;p0;termo=1;lider=n2;hb=5;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422276727;RECEBIDO;p2;termo=1;lider=n3;hb=5;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422277334;SUSPEITA;p1;termo=1;lider=n2;semHeartbeatMs=6166
+1794422278644;RECEBIDO;p0;termo=1;lider=n2;hb=6;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422278736;RECEBIDO;p2;termo=1;lider=n3;hb=6;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422280380;NOVO_LIDER;p1;termo=2;lider=n1
+1794422280381;RETOMA;p1;termo=2;lider=n1
+1794422280387;RECEBIDO;p1;termo=2;lider=n1;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422280634;RECEBIDO;p0;termo=1;lider=n2;hb=7;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422280733;RECEBIDO;p2;termo=1;lider=n3;hb=7;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422282397;RECEBIDO;p1;termo=2;lider=n1;hb=2;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422282632;RECEBIDO;p0;termo=1;lider=n2;hb=8;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422282725;RECEBIDO;p2;termo=1;lider=n3;hb=8;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422284395;RECEBIDO;p1;termo=2;lider=n1;hb=3;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422284646;RECEBIDO;p0;termo=1;lider=n2;hb=9;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422284721;RECEBIDO;p2;termo=1;lider=n3;hb=9;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422286381;RECEBIDO;p1;termo=2;lider=n1;hb=4;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422286632;RECEBIDO;p0;termo=1;lider=n2;hb=10;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422286724;RECEBIDO;p2;termo=1;lider=n3;hb=10;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422288392;RECEBIDO;p1;termo=2;lider=n1;hb=5;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422288637;RECEBIDO;p0;termo=1;lider=n2;hb=11;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422288727;RECEBIDO;p2;termo=1;lider=n3;hb=11;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422290394;RECEBIDO;p1;termo=2;lider=n1;hb=6;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422290640;RECEBIDO;p0;termo=1;lider=n2;hb=12;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422290735;RECEBIDO;p2;termo=1;lider=n3;hb=12;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422292391;RECEBIDO;p1;termo=2;lider=n1;hb=7;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422292638;RECEBIDO;p0;termo=1;lider=n2;hb=13;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422292729;RECEBIDO;p2;termo=1;lider=n3;hb=13;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422294403;RECEBIDO;p1;termo=2;lider=n1;hb=8;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422294646;RECEBIDO;p0;termo=1;lider=n2;hb=14;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422294725;RECEBIDO;p2;termo=1;lider=n3;hb=14;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422296388;RECEBIDO;p1;termo=2;lider=n1;hb=9;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422296648;RECEBIDO;p0;termo=1;lider=n2;hb=15;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422296730;RECEBIDO;p2;termo=1;lider=n3;hb=15;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422298395;RECEBIDO;p1;termo=2;lider=n1;hb=10;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422298637;RECEBIDO;p0;termo=1;lider=n2;hb=16;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422298733;RECEBIDO;p2;termo=1;lider=n3;hb=16;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422300407;RECEBIDO;p1;termo=2;lider=n1;hb=11;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422300650;RECEBIDO;p0;termo=1;lider=n2;hb=17;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422300735;RECEBIDO;p2;termo=1;lider=n3;hb=17;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422302388;RECEBIDO;p1;termo=2;lider=n1;hb=12;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422302639;RECEBIDO;p0;termo=1;lider=n2;hb=18;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422302734;RECEBIDO;p2;termo=1;lider=n3;hb=18;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422304393;RECEBIDO;p1;termo=2;lider=n1;hb=13;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422304628;RECEBIDO;p0;termo=1;lider=n2;hb=19;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422304722;RECEBIDO;p2;termo=1;lider=n3;hb=19;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422306389;RECEBIDO;p1;termo=2;lider=n1;hb=14;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422306631;RECEBIDO;p0;termo=1;lider=n2;hb=20;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422306722;RECEBIDO;p2;termo=1;lider=n3;hb=20;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422308384;RECEBIDO;p1;termo=2;lider=n1;hb=15;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422308637;RECEBIDO;p0;termo=1;lider=n2;hb=21;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422308727;RECEBIDO;p2;termo=1;lider=n3;hb=21;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422310391;RECEBIDO;p1;termo=2;lider=n1;hb=16;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422310638;RECEBIDO;p0;termo=1;lider=n2;hb=22;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422310731;RECEBIDO;p2;termo=1;lider=n3;hb=22;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422312387;RECEBIDO;p1;termo=2;lider=n1;hb=17;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422312634;RECEBIDO;p0;termo=1;lider=n2;hb=23;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422312726;RECEBIDO;p2;termo=1;lider=n3;hb=23;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422314395;RECEBIDO;p1;termo=2;lider=n1;hb=18;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422314641;RECEBIDO;p0;termo=1;lider=n2;hb=24;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422314734;RECEBIDO;p2;termo=1;lider=n3;hb=24;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422316388;RECEBIDO;p1;termo=2;lider=n1;hb=19;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422316640;RECEBIDO;p0;termo=1;lider=n2;hb=25;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422316730;RECEBIDO;p2;termo=1;lider=n3;hb=25;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422318393;RECEBIDO;p1;termo=2;lider=n1;hb=20;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422318627;RECEBIDO;p0;termo=1;lider=n2;hb=26;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422318723;RECEBIDO;p2;termo=1;lider=n3;hb=26;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422320391;RECEBIDO;p1;termo=2;lider=n1;hb=21;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422320639;RECEBIDO;p0;termo=1;lider=n2;hb=27;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422320732;RECEBIDO;p2;termo=1;lider=n3;hb=27;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422322389;RECEBIDO;p1;termo=2;lider=n1;hb=22;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422322635;RECEBIDO;p0;termo=1;lider=n2;hb=28;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422322724;RECEBIDO;p2;termo=1;lider=n3;hb=28;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422324392;RECEBIDO;p1;termo=2;lider=n1;hb=23;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422324638;RECEBIDO;p0;termo=1;lider=n2;hb=29;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422324730;RECEBIDO;p2;termo=1;lider=n3;hb=29;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422326390;RECEBIDO;p1;termo=2;lider=n1;hb=24;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422326644;RECEBIDO;p0;termo=1;lider=n2;hb=30;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422326729;RECEBIDO;p2;termo=1;lider=n3;hb=30;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422328384;RECEBIDO;p1;termo=2;lider=n1;hb=25;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422328636;RECEBIDO;p0;termo=1;lider=n2;hb=31;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422328726;RECEBIDO;p2;termo=1;lider=n3;hb=31;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422330388;RECEBIDO;p1;termo=2;lider=n1;hb=26;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422330640;RECEBIDO;p0;termo=1;lider=n2;hb=32;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422330735;RECEBIDO;p2;termo=1;lider=n3;hb=32;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422332390;RECEBIDO;p1;termo=2;lider=n1;hb=27;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422332636;RECEBIDO;p0;termo=1;lider=n2;hb=33;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422332728;RECEBIDO;p2;termo=1;lider=n3;hb=33;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422334380;RECEBIDO;p1;termo=2;lider=n1;hb=28;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422334633;RECEBIDO;p0;termo=1;lider=n2;hb=34;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422334726;RECEBIDO;p2;termo=1;lider=n3;hb=34;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422336380;RECEBIDO;p1;termo=2;lider=n1;hb=29;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422336631;RECEBIDO;p0;termo=1;lider=n2;hb=35;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422336724;RECEBIDO;p2;termo=1;lider=n3;hb=35;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422338384;RECEBIDO;p1;termo=2;lider=n1;hb=30;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422338661;RECEBIDO;p0;termo=1;lider=n2;hb=36;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422338735;RECEBIDO;p2;termo=1;lider=n3;hb=36;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422340391;RECEBIDO;p1;termo=2;lider=n1;hb=31;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422340643;RECEBIDO;p0;termo=1;lider=n2;hb=37;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422340726;RECEBIDO;p2;termo=1;lider=n3;hb=37;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422342387;RECEBIDO;p1;termo=2;lider=n1;hb=32;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422342632;RECEBIDO;p0;termo=1;lider=n2;hb=38;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422342722;RECEBIDO;p2;termo=1;lider=n3;hb=38;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422344398;RECEBIDO;p1;termo=2;lider=n1;hb=33;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422344645;RECEBIDO;p0;termo=1;lider=n2;hb=39;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422344719;RECEBIDO;p2;termo=1;lider=n3;hb=39;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422346391;RECEBIDO;p1;termo=2;lider=n1;hb=34;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422346639;RECEBIDO;p0;termo=1;lider=n2;hb=40;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422346732;RECEBIDO;p2;termo=1;lider=n3;hb=40;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422348380;RECEBIDO;p1;termo=2;lider=n1;hb=35;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422348632;RECEBIDO;p0;termo=1;lider=n2;hb=41;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422348729;RECEBIDO;p2;termo=1;lider=n3;hb=41;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422350388;RECEBIDO;p1;termo=2;lider=n1;hb=36;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422350642;RECEBIDO;p0;termo=1;lider=n2;hb=42;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422350732;RECEBIDO;p2;termo=1;lider=n3;hb=42;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422352393;RECEBIDO;p1;termo=2;lider=n1;hb=37;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422352640;RECEBIDO;p0;termo=1;lider=n2;hb=43;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422352729;RECEBIDO;p2;termo=1;lider=n3;hb=43;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422354382;RECEBIDO;p1;termo=2;lider=n1;hb=38;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422354627;RECEBIDO;p0;termo=1;lider=n2;hb=44;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422354722;RECEBIDO;p2;termo=1;lider=n3;hb=44;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422356383;RECEBIDO;p1;termo=2;lider=n1;hb=39;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422356629;RECEBIDO;p0;termo=1;lider=n2;hb=45;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422356720;RECEBIDO;p2;termo=1;lider=n3;hb=45;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422358393;RECEBIDO;p1;termo=2;lider=n1;hb=40;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422358648;RECEBIDO;p0;termo=1;lider=n2;hb=46;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422358736;RECEBIDO;p2;termo=1;lider=n3;hb=46;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422360394;RECEBIDO;p1;termo=2;lider=n1;hb=41;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422360644;RECEBIDO;p0;termo=1;lider=n2;hb=47;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422360733;RECEBIDO;p2;termo=1;lider=n3;hb=47;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422362397;RECEBIDO;p1;termo=2;lider=n1;hb=42;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422362630;RECEBIDO;p0;termo=1;lider=n2;hb=48;ultimoSeq=148;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422362722;RECEBIDO;p2;termo=1;lider=n3;hb=48;ultimoSeq=90;ultimoTermo=1;n=0;seq=vazio;cabecalho=true
+1794422363058;NOVO_LIDER;p1;termo=8;lider=n2
+1794422363061;RECEBIDO;p1;termo=8;lider=n2;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+SUBSCRIÇÃO FALHOU: produtor p2 java.io.IOException: closed
