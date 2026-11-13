@@ -1,2 +1,11 @@
 .clawdea/REPO_STATE.md
 *.class
+
+# Maven
+**/target/
+
+# Credenciais
+**/.env
+**/.env.*
+**/master.key
+**/token.txt
