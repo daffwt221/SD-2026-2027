@@ -1,0 +1,25 @@
+ELEICOES:
+p0 termo=1 candidatos=[3] votos={3=[1, 2, 3]} lideres=[3] duracaoMs=42
+p0 primeiroLiderMs=2435 termosAtePrimeiro=1 termosSemLider=0 votosDivididosEfetivos=0
+p1 termo=1 candidatos=[3] votos={3=[1, 2, 3]} lideres=[3] duracaoMs=49
+p1 termo=2 candidatos=[1] votos={1=[1, 2]} lideres=[1] duracaoMs=41
+p1 primeiroLiderMs=2651 termosAtePrimeiro=1 termosSemLider=0 votosDivididosEfetivos=0
+p2 termo=1 candidatos=[3] votos={3=[1, 2, 3]} lideres=[3] duracaoMs=52
+p2 primeiroLiderMs=2516 termosAtePrimeiro=1 termosSemLider=0 votosDivididosEfetivos=0
+SEGURANCA: termosComMaisDeUmLider=0 termosDiminuiram=0 votosDuplos=0 lideresSemMaioriaAuditada=0 estadosAusentesAtrasados=0 lotesObsoletosAplicados=0
+COINCIDENCIA FINAL:
+p0 ficheiros=3/3 ultimos=n1:0,n2:0,n3:0 comparadosAte=0 seqDivergentes=[]
+p1 ficheiros=3/3 ultimos=n1:5,n2:5,n3:5 comparadosAte=5 seqDivergentes=[]
+p2 ficheiros=3/3 ultimos=n1:0,n2:0,n3:0 comparadosAte=0 seqDivergentes=[]
+LEITURAS PERDIDAS (presenca no registo final de qualquer no):
+PERDIDA linha=3 1794423383781;p1;S02;20.4
+PERDIDA linha=4 1794423383864;p1;S05;23.9
+leiturasPerdidasConfirmadas=2 leiturasAmbiguas=0
+TRUNCAGENS:
+1794423386748 p1 n3 de=3 descartados=1 termos=[1] encontradosComOutraSeq=0
+FALHAS E INDISPONIBILIDADE:
+falha=p1;n3;1794423383828 eraLider=true termoAnterior=1 primeiroLoteSuperior=1794423385681 indisponibilidadeMs=1853
+DURANTE_ELEICAO 1794423383864;p1;S05;23.9
+MONITORES: {NOVO_LIDER=8, OBSERVADO=5, RECEBIDO=50, RETOMA=2, SUSPEITA=2}
+ERROS DOS NOS: 0
+RESULTADO: SEM VIOLACOES AUDITADAS.

@@ -1,0 +1,11 @@
+1794422899293;TERMO;p1;arranque=true;termo=0;papel=SEGUIDOR;ultimoSeq=0;ultimoTermo=0
+1794422906055;CANDIDATO;p1;termo=1
+1794422906145;LIDER;p1;termo=1;votos=[2, 3]
+1794422908782;RECEBIDO;p1;origem=IN;termo=1;seq=1;registo64=MTsxO1MwMjsyMC4xOzIwMjYtMTEtMTFUMTg6NDg6Mjg7MTswLDEsMA==
+1794422908785;RECEBIDO;p1;origem=IN;termo=1;seq=2;registo64=MjsxO1MwNTsyMy43OzIwMjYtMTEtMTFUMTg6NDg6Mjg7MjswLDIsMA==
+1794422912215;RECEBIDO;p1;origem=IN;termo=1;seq=3;registo64=MzsxO1MwMjsyMC40OzIwMjYtMTEtMTFUMTg6NDg6MzI7MzswLDMsMA==
+1794422920265;TERMO;p1;arranque=true;termo=1;papel=SEGUIDOR;ultimoSeq=3;ultimoTermo=1
+1794422922045;TERMO;p1;1->2
+1794422922052;NOVO_LIDER;p1;termo=2;lider=n1
+1794422922056;RECEBIDO;p1;termo=2;lider=n1;hb=2;ultimoSeq=2;ultimoTermo=1;n=0;seq=vazio;origem=LOTE;atual=2
+1794422922068;TRUNCADO;p1;de=3;descartados=1;termos=[1];registos64=MzsxO1MwMjsyMC40OzIwMjYtMTEtMTFUMTg6NDg6MzI7MzswLDMsMA==

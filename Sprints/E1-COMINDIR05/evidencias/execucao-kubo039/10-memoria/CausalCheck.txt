@@ -1,0 +1,9 @@
+ERRO MESMO (seq,termo) COM CONTEUDOS DIFERENTES: 1:1:1
+ficheirosNos=9 N=3
+eventosLogicos=2
+errosLocais=1
+paresCausais=0
+paresConcorrentes=0
+paresVetoresIguais=0
+errosLamport=0
+RESULTADO: FALHOU.

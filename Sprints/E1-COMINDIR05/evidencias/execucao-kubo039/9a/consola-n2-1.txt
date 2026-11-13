@@ -1,0 +1,3 @@
+1794421835150;TERMO;p2;arranque=true;termo=0;papel=SEGUIDOR;ultimoSeq=0;ultimoTermo=0
+1794421843236;CANDIDATO;p2;termo=1
+1794421843369;LIDER;p2;termo=1;votos=[1, 2]

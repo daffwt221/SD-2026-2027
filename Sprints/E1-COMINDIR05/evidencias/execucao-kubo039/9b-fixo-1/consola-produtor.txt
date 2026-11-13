@@ -1,0 +1,31 @@
+Comandos: <sensor> <temperatura>, rajada <n> <s>, rajada-quente <n> <s>.
+1794421962709;SUSPEITA;p0;termo=-1;lider=n0;semHeartbeatMs=6018
+1794421962715;SUSPEITA;p1;termo=-1;lider=n0;semHeartbeatMs=6027
+1794421962716;SUSPEITA;p2;termo=-1;lider=n0;semHeartbeatMs=6028
+1794421974090;NOVO_LIDER;p2;termo=2;lider=n3
+1794421974092;RETOMA;p2;termo=2;lider=n3
+1794421974106;RECEBIDO;p2;termo=2;lider=n3;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421976088;RECEBIDO;p2;termo=2;lider=n3;hb=2;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421978082;RECEBIDO;p2;termo=2;lider=n3;hb=3;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421980085;RECEBIDO;p2;termo=2;lider=n3;hb=4;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421980264;NOVO_LIDER;p0;termo=3;lider=n2
+1794421980265;RETOMA;p0;termo=3;lider=n2
+1794421980267;RECEBIDO;p0;termo=3;lider=n2;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421982088;RECEBIDO;p2;termo=2;lider=n3;hb=5;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421982270;RECEBIDO;p0;termo=3;lider=n2;hb=2;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421984073;RECEBIDO;p2;termo=2;lider=n3;hb=6;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421984258;RECEBIDO;p0;termo=3;lider=n2;hb=3;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421986074;RECEBIDO;p2;termo=2;lider=n3;hb=7;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421986266;RECEBIDO;p0;termo=3;lider=n2;hb=4;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421988082;RECEBIDO;p2;termo=2;lider=n3;hb=8;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421988270;RECEBIDO;p0;termo=3;lider=n2;hb=5;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421990086;RECEBIDO;p2;termo=2;lider=n3;hb=9;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421990258;RECEBIDO;p0;termo=3;lider=n2;hb=6;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421992083;RECEBIDO;p2;termo=2;lider=n3;hb=10;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421992264;RECEBIDO;p0;termo=3;lider=n2;hb=7;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794421992465;NOVO_LIDER;p1;termo=5;lider=n3
+1794421992467;RETOMA;p1;termo=5;lider=n3
+1794421992473;RECEBIDO;p1;termo=5;lider=n3;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+SUBSCRIÇÃO FALHOU: produtor p2 java.io.IOException: closed
+SUBSCRIÇÃO FALHOU: produtor p0 java.io.IOException: closed
+SUBSCRIÇÃO FALHOU: produtor p1 java.io.IOException: closed

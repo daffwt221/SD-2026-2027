@@ -1,0 +1,22 @@
+1794422712351;NOVO_LIDER;p0;termo=1;lider=n1
+1794422712368;SUSPEITA;p1;termo=-1;lider=n0;semHeartbeatMs=6016
+1794422712370;SUSPEITA;p2;termo=-1;lider=n0;semHeartbeatMs=6024
+1794422712369;RECEBIDO;p0;termo=1;lider=n1;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422712534;NOVO_LIDER;p2;termo=1;lider=n3
+1794422712538;RETOMA;p2;termo=1;lider=n3
+1794422712542;RECEBIDO;p2;termo=1;lider=n3;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422712744;NOVO_LIDER;p1;termo=1;lider=n2
+1794422712747;RETOMA;p1;termo=1;lider=n2
+1794422712748;RECEBIDO;p1;termo=1;lider=n2;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422714327;RECEBIDO;p0;termo=1;lider=n1;hb=2;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422714529;RECEBIDO;p2;termo=1;lider=n3;hb=2;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422716335;RECEBIDO;p0;termo=1;lider=n1;hb=3;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422716521;RECEBIDO;p2;termo=1;lider=n3;hb=3;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422718335;RECEBIDO;p0;termo=1;lider=n1;hb=4;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422718523;RECEBIDO;p2;termo=1;lider=n3;hb=4;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422718763;SUSPEITA;p1;termo=1;lider=n2;semHeartbeatMs=6014
+1794422719374;ERRO;p1;dois lideres no termo=1
+1794422719402;AVISO;p1;AVISO: partição p1 sem líder conhecido; leitura S05 pode perder-se
+1794422720327;RECEBIDO;p0;termo=1;lider=n1;hb=5;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422720529;RECEBIDO;p2;termo=1;lider=n3;hb=5;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;cabecalho=true
+1794422721382;ERRO;p1;dois lideres no termo=1

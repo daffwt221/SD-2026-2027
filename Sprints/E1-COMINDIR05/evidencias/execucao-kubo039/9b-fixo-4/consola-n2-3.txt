@@ -1,0 +1,12 @@
+1794422061159;TERMO;p2;arranque=true;termo=0;papel=SEGUIDOR;ultimoSeq=0;ultimoTermo=0
+1794422067376;TERMO;p2;0->1
+1794422067575;VOTO;p2;termo=1;candidato=n1;concedido
+1794422067765;VOTO;p2;termo=1;candidato=n2;recusado
+1794422067808;NOVO_LIDER;p2;termo=1;lider=n1
+1794422067823;RECEBIDO;p2;termo=1;lider=n1;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=1
+1794422069783;RECEBIDO;p2;termo=1;lider=n1;hb=2;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=1
+1794422071790;RECEBIDO;p2;termo=1;lider=n1;hb=3;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=1
+1794422073782;RECEBIDO;p2;termo=1;lider=n1;hb=4;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=1
+1794422075781;RECEBIDO;p2;termo=1;lider=n1;hb=5;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=1
+1794422077788;RECEBIDO;p2;termo=1;lider=n1;hb=6;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=1
+1794422079792;RECEBIDO;p2;termo=1;lider=n1;hb=7;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=1

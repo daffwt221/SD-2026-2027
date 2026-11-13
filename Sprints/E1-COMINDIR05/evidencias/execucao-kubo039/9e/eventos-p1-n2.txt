@@ -1,0 +1,14 @@
+1794422363685;TERMO;p1;arranque=true;termo=0;papel=SEGUIDOR;ultimoSeq=0;ultimoTermo=0
+1794422372762;CANDIDATO;p1;termo=1
+1794422372819;VOTO;p1;termo=1;candidato=n3;recusado
+1794422372854;LIDER;p1;termo=1;votos=[1, 2]
+1794422375270;RECEBIDO;p1;origem=IN;termo=1;seq=1;registo64=MTsxO1MwMjsyMS4wOzIwMjYtMTEtMTFUMTg6Mzk6MzU7MTswLDEsMA==
+1794422407097;TERMO;p1;arranque=true;termo=1;papel=SEGUIDOR;ultimoSeq=1;ultimoTermo=1
+1794422414743;CANDIDATO;p1;termo=2
+1794422414792;TERMO;p1;2->4
+1794422415984;TERMO;p1;4->5
+1794422415998;VOTO;p1;termo=5;candidato=n3;concedido
+1794422416042;NOVO_LIDER;p1;termo=5;lider=n3
+1794422416065;RECEBIDO;p1;termo=5;lider=n3;hb=1;ultimoSeq=1;ultimoTermo=1;n=0;seq=vazio;origem=LOTE;atual=5
+1794422416081;IGNORADO;p1;origem=IN;sensor=S02;motivo=nao_lider
+1794422418043;RECEBIDO;p1;termo=5;lider=n3;hb=2;ultimoSeq=2;ultimoTermo=5;n=1;seq=2..2;origem=LOTE;atual=5

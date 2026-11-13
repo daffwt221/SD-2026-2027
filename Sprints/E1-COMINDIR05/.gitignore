@@ -1,0 +1,5 @@
+**/out/
+**/*.class
+resultados/
+**/__pycache__/
+**/*.pyc

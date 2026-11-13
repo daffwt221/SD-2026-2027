@@ -1,0 +1,21 @@
+1794423379451;TERMO;p1;arranque=true;termo=0;papel=SEGUIDOR;ultimoSeq=0;ultimoTermo=0
+1794423381702;TERMO;p1;0->1
+1794423381716;VOTO;p1;termo=1;candidato=n3;concedido
+1794423381757;NOVO_LIDER;p1;termo=1;lider=n3
+1794423381764;RECEBIDO;p1;termo=1;lider=n3;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=1
+1794423382261;RECEBIDO;p1;termo=1;lider=n3;hb=2;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio;origem=LOTE;atual=1
+1794423382666;IGNORADO;p1;origem=IN;sensor=S02;motivo=nao_lider
+1794423382701;IGNORADO;p1;origem=IN;sensor=S05;motivo=nao_lider
+1794423382769;RECEBIDO;p1;termo=1;lider=n3;hb=3;ultimoSeq=1;ultimoTermo=1;n=1;seq=1..1;origem=LOTE;atual=1
+1794423383256;RECEBIDO;p1;termo=1;lider=n3;hb=4;ultimoSeq=2;ultimoTermo=1;n=1;seq=2..2;origem=LOTE;atual=1
+1794423383762;RECEBIDO;p1;termo=1;lider=n3;hb=5;ultimoSeq=2;ultimoTermo=1;n=0;seq=vazio;origem=LOTE;atual=1
+1794423383785;IGNORADO;p1;origem=IN;sensor=S02;motivo=nao_lider
+1794423383867;IGNORADO;p1;origem=IN;sensor=S05;motivo=nao_lider
+1794423385633;CANDIDATO;p1;termo=2
+1794423385674;LIDER;p1;termo=2;votos=[1, 2]
+1794423385709;RECEBIDO;p1;origem=PEDIDO_TCP;de=2;ate=2;n=1
+1794423385804;RECEBIDO;p1;origem=IN;termo=2;seq=3;registo64=MzsyO1MwMjsyMC42OzIwMjYtMTEtMTFUMTg6NTY6MjU7MzswLDMsMA==
+1794423385807;RECEBIDO;p1;origem=IN;termo=2;seq=4;registo64=NDsyO1MwNTsyMC43OzIwMjYtMTEtMTFUMTg6NTY6MjU7NDswLDQsMA==
+1794423385837;RECEBIDO;p1;origem=IN;termo=2;seq=5;registo64=NTsyO1MwMjsyMC44OzIwMjYtMTEtMTFUMTg6NTY6MjU7NTswLDUsMA==
+1794423386727;RECEBIDO;p1;origem=PEDIDO_TCP;de=3;ate=3;n=1
+1794423386737;RECEBIDO;p1;origem=PEDIDO_TCP;de=1;ate=5;n=5

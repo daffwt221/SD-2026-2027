@@ -1,0 +1,31 @@
+ELEICOES:
+p0 termo=1 candidatos=[1, 2, 3] votos={1=[1], 2=[2], 3=[3]} lideres=[] duracaoMs=-1 sem lider (voto dividido/falta de quorum)
+p0 termo=2 candidatos=[1, 2, 3] votos={1=[1], 2=[2], 3=[3]} lideres=[] duracaoMs=-1 sem lider (voto dividido/falta de quorum)
+p0 termo=3 candidatos=[1, 2, 3] votos={1=[1], 2=[2], 3=[3]} lideres=[] duracaoMs=-1 sem lider (voto dividido/falta de quorum)
+p0 termo=4 candidatos=[1, 2, 3] votos={1=[1], 2=[2], 3=[3]} lideres=[] duracaoMs=-1 sem lider (voto dividido/falta de quorum)
+p0 termo=5 candidatos=[1] votos={1=[1, 2, 3]} lideres=[1] duracaoMs=38
+p0 primeiroLiderMs=30861 termosAtePrimeiro=5 termosSemLider=4 votosDivididosEfetivos=4
+p1 termo=1 candidatos=[1, 2, 3] votos={1=[1], 2=[2], 3=[3]} lideres=[] duracaoMs=-1 sem lider (voto dividido/falta de quorum)
+p1 termo=2 candidatos=[1, 2, 3] votos={1=[1], 2=[2], 3=[3]} lideres=[] duracaoMs=-1 sem lider (voto dividido/falta de quorum)
+p1 termo=3 candidatos=[2, 3] votos={2=[1, 2], 3=[3]} lideres=[2] duracaoMs=73
+p1 primeiroLiderMs=18650 termosAtePrimeiro=3 termosSemLider=2 votosDivididosEfetivos=2
+p2 termo=1 candidatos=[1, 2, 3] votos={1=[1], 2=[2], 3=[3]} lideres=[] duracaoMs=-1 sem lider (voto dividido/falta de quorum)
+p2 termo=2 candidatos=[1, 2, 3] votos={1=[1], 2=[2], 3=[3]} lideres=[] duracaoMs=-1 sem lider (voto dividido/falta de quorum)
+p2 termo=3 candidatos=[1, 2, 3] votos={1=[1], 2=[2], 3=[3]} lideres=[] duracaoMs=-1 sem lider (voto dividido/falta de quorum)
+p2 termo=4 candidatos=[1, 2, 3] votos={1=[1], 2=[2], 3=[3]} lideres=[] duracaoMs=-1 sem lider (voto dividido/falta de quorum)
+p2 termo=5 candidatos=[1, 2, 3] votos={1=[1], 2=[2], 3=[3]} lideres=[] duracaoMs=-1 sem lider (voto dividido/falta de quorum)
+p2 termo=6 candidatos=[1, 2, 3] votos={1=[1], 2=[2], 3=[3]} lideres=[] duracaoMs=-1 sem lider (voto dividido/falta de quorum)
+p2 termo=7 candidatos=[1, 3] votos={1=[1], 3=[2, 3]} lideres=[3] duracaoMs=65
+p2 primeiroLiderMs=43436 termosAtePrimeiro=7 termosSemLider=6 votosDivididosEfetivos=6
+SEGURANCA: termosComMaisDeUmLider=0 termosDiminuiram=0 votosDuplos=0 lideresSemMaioriaAuditada=0 estadosAusentesAtrasados=0 lotesObsoletosAplicados=0
+COINCIDENCIA FINAL:
+p0 ficheiros=3/3 ultimos=n1:0,n2:0,n3:0 comparadosAte=0 seqDivergentes=[]
+p1 ficheiros=3/3 ultimos=n1:0,n2:0,n3:0 comparadosAte=0 seqDivergentes=[]
+p2 ficheiros=3/3 ultimos=n1:0,n2:0,n3:0 comparadosAte=0 seqDivergentes=[]
+LEITURAS PERDIDAS (presenca no registo final de qualquer no):
+leiturasPerdidasConfirmadas=0 leiturasAmbiguas=0
+TRUNCAGENS:
+FALHAS E INDISPONIBILIDADE:
+MONITORES: {NOVO_LIDER=6, RECEBIDO=42, RETOMA=6, SUSPEITA=6}
+ERROS DOS NOS: 0
+RESULTADO: SEM VIOLACOES AUDITADAS.

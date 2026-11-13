@@ -1,0 +1,19 @@
+ELEICOES:
+p0 termo=1 candidatos=[2] votos={2=[1, 2, 3]} lideres=[2] duracaoMs=218
+p0 primeiroLiderMs=8627 termosAtePrimeiro=1 termosSemLider=0 votosDivididosEfetivos=0
+p1 termo=1 candidatos=[2] votos={2=[1, 2, 3]} lideres=[2] duracaoMs=198
+p1 primeiroLiderMs=8569 termosAtePrimeiro=1 termosSemLider=0 votosDivididosEfetivos=0
+p2 termo=1 candidatos=[2] votos={2=[1, 2, 3]} lideres=[2] duracaoMs=103
+p2 primeiroLiderMs=8241 termosAtePrimeiro=1 termosSemLider=0 votosDivididosEfetivos=0
+SEGURANCA: termosComMaisDeUmLider=0 termosDiminuiram=0 votosDuplos=0 lideresSemMaioriaAuditada=0 estadosAusentesAtrasados=0 lotesObsoletosAplicados=0
+COINCIDENCIA FINAL:
+p0 ficheiros=3/3 ultimos=n1:0,n2:0,n3:0 comparadosAte=0 seqDivergentes=[]
+p1 ficheiros=3/3 ultimos=n1:0,n2:0,n3:0 comparadosAte=0 seqDivergentes=[]
+p2 ficheiros=3/3 ultimos=n1:0,n2:0,n3:0 comparadosAte=0 seqDivergentes=[]
+LEITURAS PERDIDAS (presenca no registo final de qualquer no):
+leiturasPerdidasConfirmadas=0 leiturasAmbiguas=0
+TRUNCAGENS:
+FALHAS E INDISPONIBILIDADE:
+MONITORES: {NOVO_LIDER=6, RECEBIDO=6, RETOMA=6, SUSPEITA=6}
+ERROS DOS NOS: 0
+RESULTADO: SEM VIOLACOES AUDITADAS.

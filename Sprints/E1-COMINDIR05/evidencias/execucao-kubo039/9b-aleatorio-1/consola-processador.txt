@@ -1,0 +1,13 @@
+1794421865315;SUSPEITA;p0;termo=-1;lider=n0;semHeartbeatMs=6011
+1794421865324;SUSPEITA;p1;termo=-1;lider=n0;semHeartbeatMs=6026
+1794421865325;SUSPEITA;p2;termo=-1;lider=n0;semHeartbeatMs=6028
+1794421865654;NOVO_LIDER;p0;termo=1;lider=n2
+1794421865655;RETOMA;p0;termo=1;lider=n2
+1794421865667;RECEBIDO;p0;termo=1;lider=n2;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio
+1794421867051;NOVO_LIDER;p2;termo=1;lider=n3
+1794421867053;RETOMA;p2;termo=1;lider=n3
+1794421867056;RECEBIDO;p2;termo=1;lider=n3;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio
+1794421867622;RECEBIDO;p0;termo=1;lider=n2;hb=2;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio
+1794421868006;NOVO_LIDER;p1;termo=1;lider=n2
+1794421868007;RETOMA;p1;termo=1;lider=n2
+1794421868011;RECEBIDO;p1;termo=1;lider=n2;hb=1;ultimoSeq=0;ultimoTermo=0;n=0;seq=vazio
