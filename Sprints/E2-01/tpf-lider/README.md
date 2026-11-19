@@ -37,7 +37,7 @@ mvn compile exec:java
 - `/recuperar <de> <ate>`
 - `/replica-token`
 - `/replica-remover <id>`
-- `/rajada <n> <intervaloMs>`
+- `/rajada <n> <intervaloms>`
 
 Os comandos `/config`, `/replica-token`, `/replica-remover` e `/rajada` exigem o papel `admin-arquivo`.
 

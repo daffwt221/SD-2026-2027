@@ -1,5 +1,7 @@
 package tpf;
 
+import java.util.Collections;
+
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -112,7 +114,9 @@ public class LeaderBot extends ListenerAdapter {
             return;
         }
 
-        event.reply("/registar recebido: " + texto + "\nRegisto ainda não implementado.").queue();
+        event.reply("/registar recebido: " + texto + "\nRegisto ainda não implementado.")
+                .setAllowedMentions(Collections.emptyList())
+                .queue();
     }
 
     private void tratarConfig(SlashCommandInteractionEvent event) {
@@ -162,14 +166,16 @@ public class LeaderBot extends ListenerAdapter {
 
         OptionMapping opcao = event.getOption("id");
         String id = opcao == null ? "" : opcao.getAsString().trim();
-        if (id.isBlank()) {
-            event.reply("O identificador da réplica não pode estar vazio.")
+        if (id.isBlank() || id.length() > 100) {
+            event.reply("O identificador da réplica deve ter entre 1 e 100 caracteres.")
                     .setEphemeral(true).queue();
             return;
         }
 
         event.reply("/replica-remover recebido: id=" + id
-                + ". Remoção ainda não implementada.").queue();
+                + ". Remoção ainda não implementada.")
+                .setAllowedMentions(Collections.emptyList())
+                .queue();
     }
 
     private void tratarRajada(SlashCommandInteractionEvent event) {
