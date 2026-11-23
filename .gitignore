@@ -14,3 +14,9 @@
 master.key
 
 /Sprints/Epico2/tpf-lider/selados/
+ /Sprints/Epico2/tpf-lider/replicas.txt
+   /Sprints/Epico2/tpf-replica/dados-*/
+
+
+/Sprints/Epico2/tpf-lider/replicas.txt
+/Sprints/Epico2/tpf-replica/dados-*/
