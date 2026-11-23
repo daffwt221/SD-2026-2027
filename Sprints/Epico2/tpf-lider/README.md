@@ -1,46 +1,60 @@
-# TPF Líder — Sprint E2-01
+# TPF - Épico 2: Arquivo Distribuído Zero-Knowledge
 
-Aplicação Java que utiliza JDA para integrar o líder do sistema de arquivo distribuído com o Discord.
+Projeto de Sistemas Distribuídos desenvolvido continuamente ao longo do Épico 2.
+
+## Líder Discord
+
+Aplicação Java com JDA para integração com o Discord.
 
 ## Requisitos
 
 - Java 17 ou superior
 - Apache Maven
 - Bot Discord com Message Content Intent ativado
-- Servidor Discord com canal `#arquivo` e papel `admin-arquivo`
+- Canal #arquivo
+- Papel admin-arquivo
 
 ## Configuração
 
-Definir a variável de ambiente `DISCORD_TOKEN` com o token do bot.
+Definir a variável de ambiente DISCORD_TOKEN.
 
-No PowerShell:
+Nunca colocar o token no código ou no GitHub.
 
-```powershell
-$env:DISCORD_TOKEN = "TOKEN_DO_BOT"
-```
+## Registar comandos
 
-O token não deve ser colocado no código ou enviado para o GitHub.
+Na pasta tpf-lider:
 
-## Execução
+mvn compile exec:java "-Dexec.mainClass=tpf.CommandRegistrar"
 
-Na pasta `tpf-lider`:
+## Executar o líder
 
-```powershell
 mvn compile exec:java
-```
 
-## Comandos
+## Comandos Discord
 
-- `/registar <texto>`
-- `/estado`
-- `/config r <n>`
-- `/recuperar <de> <ate>`
-- `/replica-token`
-- `/replica-remover <id>`
-- `/rajada <n> <intervaloms>`
+- /registar
+- /estado
+- /config
+- /recuperar
+- /replica-token
+- /replica-remover
+- /rajada
 
-Os comandos `/config`, `/replica-token`, `/replica-remover` e `/rajada` exigem o papel `admin-arquivo`.
+## Estado atual
 
-Nesta sprint, os comandos apenas validam os argumentos e devolvem respostas provisórias. Não existem operações reais de armazenamento, encriptação ou gestão de réplicas.
+Implementado:
+- Ligação ao Discord.
+- Registo dos sete comandos.
+- Validação inicial dos comandos.
+- Deteção de mensagens no canal #arquivo.
 
-As mensagens normais enviadas em `#arquivo` são detetadas pelo bot.
+Por implementar:
+- Registo persistente com LSN e fsync.
+- Chunks cifrados.
+- Comunicação WebSocket.
+- Gestão das réplicas.
+- Catálogo e recuperação.
+
+## Organização
+
+O código permanece em Sprints/Epico2 ao longo dos sprints.
