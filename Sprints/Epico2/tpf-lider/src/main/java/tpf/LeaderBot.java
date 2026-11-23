@@ -1,7 +1,9 @@
-
 package tpf;
 
 import java.util.Collections;
+
+import java.io.IOException;
+import java.nio.file.Path;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -17,6 +19,11 @@ public class LeaderBot extends ListenerAdapter {
     private static final String GUILD_ID = "1570860151370547262";
     private static final String CANAL_ARQUIVO = "arquivo";
     private static final String PAPEL_ADMIN = "admin-arquivo";
+    private final RegistoLocal registoLocal;
+
+    public LeaderBot(RegistoLocal registoLocal) {
+        this.registoLocal = registoLocal;
+    }
 
     public static void main(String[] args) {
         String token = System.getenv("DISCORD_TOKEN");
@@ -27,9 +34,10 @@ public class LeaderBot extends ListenerAdapter {
         }
 
         try {
+            RegistoLocal registo = new RegistoLocal(Path.of("registos.log"));
             JDA jda = JDABuilder.createDefault(token)
                     .enableIntents(GatewayIntent.MESSAGE_CONTENT)
-                    .addEventListeners(new LeaderBot())
+                    .addEventListeners(new LeaderBot(registo))
                     .build();
 
             jda.awaitReady();
@@ -89,10 +97,19 @@ public class LeaderBot extends ListenerAdapter {
             return;
         }
 
-        event.reply("/registar recebido: " + texto
-                + "\nRegisto ainda não implementado.")
-                .setAllowedMentions(Collections.emptyList())
-                .queue();
+        // A operação pode bloquear durante fsync: adiamos a resposta ao Discord.
+        event.deferReply(true).queue(hook -> {
+            try {
+                long lsn = registoLocal.acrescentar(
+                        event.getUser().getId(),
+                        event.getChannel().getName(), texto);
+                hook.editOriginal("Registo guardado localmente. LSN=" + lsn
+                        + ". A replicação ainda não está implementada.").queue();
+            } catch (IOException e) {
+                System.err.println("Erro a persistir registo: " + e.getMessage());
+                hook.editOriginal("Erro ao guardar o registo localmente.").queue();
+            }
+        });
     }
 
     private void tratarConfig(SlashCommandInteractionEvent event) {
@@ -218,8 +235,17 @@ public class LeaderBot extends ListenerAdapter {
                 + ": "
                 + event.getMessage().getContentRaw());
 
-        event.getChannel()
-                .sendMessage("Mensagem recebida em #arquivo. Arquivo ainda não implementado.")
-                .queue();
+        try {
+            long lsn = registoLocal.acrescentar(
+                    event.getAuthor().getId(),
+                    event.getChannel().getName(),
+                    event.getMessage().getContentRaw());
+            event.getChannel().sendMessage(
+                    "Registo guardado localmente. LSN=" + lsn
+                    + ". A replicação ainda não está implementada.").queue();
+        } catch (IOException e) {
+            System.err.println("Erro a persistir mensagem: " + e.getMessage());
+            event.getChannel().sendMessage("Erro ao guardar a mensagem.").queue();
+        }
     }
 }
