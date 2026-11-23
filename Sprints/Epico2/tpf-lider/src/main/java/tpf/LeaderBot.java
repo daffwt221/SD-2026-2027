@@ -1,8 +1,7 @@
 package tpf;
 
-import java.util.Collections;
-
 import java.io.IOException;
+import java.util.Collections;
 import java.nio.file.Path;
 
 import net.dv8tion.jda.api.JDA;
@@ -20,9 +19,11 @@ public class LeaderBot extends ListenerAdapter {
     private static final String CANAL_ARQUIVO = "arquivo";
     private static final String PAPEL_ADMIN = "admin-arquivo";
     private final RegistoLocal registoLocal;
+    private final SeladorChunks selador;
 
-    public LeaderBot(RegistoLocal registoLocal) {
+    public LeaderBot(RegistoLocal registoLocal, SeladorChunks selador) {
         this.registoLocal = registoLocal;
+        this.selador = selador;
     }
 
     public static void main(String[] args) {
@@ -35,9 +36,13 @@ public class LeaderBot extends ListenerAdapter {
 
         try {
             RegistoLocal registo = new RegistoLocal(Path.of("registos.log"));
+            SeladorChunks selador = new SeladorChunks(Path.of("registos.log"),
+                    Path.of("selados"), Path.of("master.key"));
+            selador.iniciar();
+            Runtime.getRuntime().addShutdownHook(new Thread(selador::close));
             JDA jda = JDABuilder.createDefault(token)
                     .enableIntents(GatewayIntent.MESSAGE_CONTENT)
-                    .addEventListeners(new LeaderBot(registo))
+                    .addEventListeners(new LeaderBot(registo, selador))
                     .build();
 
             jda.awaitReady();
