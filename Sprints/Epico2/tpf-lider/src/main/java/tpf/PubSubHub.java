@@ -20,6 +20,7 @@ import java.time.Instant;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -33,6 +34,10 @@ public final class PubSubHub extends WebSocketServer {
     private final Map<WebSocket, Session> sessions = new ConcurrentHashMap<>();
     private final Map<String, Registered> registered = new HashMap<>();
     private final Map<String, Long> tokens = new HashMap<>();
+    private final Map<String, ReplicaStatus> live = new ConcurrentHashMap<>();
+
+    /** O estado do heartbeat é transitório; nunca constitui prova de posse. */
+    public record ReplicaStatus(String id, long quota, long used, long lastHeartbeat) {}
     private final BiConsumer<String, String> leaderReceiver;
 
     private static final class Registered {
@@ -77,7 +82,10 @@ public final class PubSubHub extends WebSocketServer {
     }
     @Override public void onClose(WebSocket conn, int code, String reason, boolean remote) {
         Session s = sessions.remove(conn);
-        if (s != null && s.authenticated) System.out.println("Desligada réplica " + s.id);
+        if (s != null && s.authenticated) {
+            live.remove(s.id);
+            System.out.println("Desligada réplica " + s.id);
+        }
     }
     @Override public void onError(WebSocket conn, Exception ex) {
         System.err.println("Erro WebSocket: " + ex.getMessage());
@@ -164,13 +172,23 @@ public final class PubSubHub extends WebSocketServer {
                 if (data.startsWith("HB;")) {
                     if (fields.length != 7) throw new IllegalArgumentException("HB inválido");
                     long quota = Long.parseLong(fields[3]);
-                    if (quota < 0) throw new IllegalArgumentException("Quota inválida");
+                    long used = Long.parseLong(fields[4]);
+                    if (quota < 0 || used < 0 || used > quota) throw new IllegalArgumentException("Quota/uso inválidos");
+                    live.put(s.id, new ReplicaStatus(s.id, quota, used, System.currentTimeMillis()));
                 }
             }
             leaderReceiver.accept(s.id, data);
             return;
         }
         throw new IllegalArgumentException("Mensagem desconhecida");
+    }
+
+    /** Só são elegíveis réplicas subscritas com HB recente (máx. 6 segundos). */
+    public List<ReplicaStatus> eligibleReplicas() {
+        long now = System.currentTimeMillis();
+        return live.values().stream()
+            .filter(r -> now - r.lastHeartbeat() <= 6000L && isSubscribed(r.id()))
+            .toList();
     }
 
     public boolean isSubscribed(String id) {
@@ -199,11 +217,13 @@ public final class PubSubHub extends WebSocketServer {
         });
         dispatcher[0] = new ChunkDispatcher(hub, Path.of("selados"));
         hub.start();
-        System.out.println("TOKEN DE TESTE (válido 10 minutos): " + hub.gerarToken());
-        System.out.println("O hub enviará automaticamente os chunks selados à réplica A.");
+        System.out.println("TOKEN PARA A (novo registo; 10 minutos): " + hub.gerarToken());
+        System.out.println("TOKEN PARA B (novo registo; 10 minutos): " + hub.gerarToken());
+        System.out.println("TOKEN PARA C (novo registo; 10 minutos): " + hub.gerarToken());
+        System.out.println("Placement ponderado: R=3, W=2; réplicas A/B/C.");
         var timer = java.util.concurrent.Executors.newSingleThreadScheduledExecutor();
         timer.scheduleWithFixedDelay(() -> {
-            try { dispatcher[0].dispatch("A"); }
+            try { dispatcher[0].dispatch(); }
             catch (Exception e) { System.err.println("Erro a distribuir: " + e); }
         }, 2, 3, java.util.concurrent.TimeUnit.SECONDS);
     }
