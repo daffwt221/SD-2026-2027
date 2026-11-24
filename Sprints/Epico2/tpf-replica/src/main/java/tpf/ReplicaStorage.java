@@ -64,6 +64,21 @@ public final class ReplicaStorage {
         }
     }
 
+    /** Devolve apenas o par cifrado. Nunca a chave privada nem o plaintext. */
+    public synchronized String get(String id) throws Exception {
+        if (!id.matches("[0-9a-f]{64}")) return null;
+        Path bin = root.resolve(id + ".bin");
+        Path hdr = root.resolve(id + ".hdr");
+        if (!Files.isRegularFile(bin) || !Files.isRegularFile(hdr)) return null;
+        byte[] cipher = Files.readAllBytes(bin);
+        byte[] header = Files.readAllBytes(hdr);
+        if (cipher.length > 70000 || header.length > 4096) return null;
+        String hash = HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(cipher));
+        if (!hash.equals(id)) return null;
+        return "DATA;" + id + ";" + Base64.getEncoder().encodeToString(header)
+            + ";" + Base64.getEncoder().encodeToString(cipher);
+    }
+
     private static void durableWrite(Path file, byte[] bytes) throws IOException {
         try (FileChannel fc = FileChannel.open(file, StandardOpenOption.WRITE)) {
             ByteBuffer buf = ByteBuffer.wrap(bytes);

@@ -124,6 +124,12 @@ public final class ReplicaService implements WebSocket.Listener {
             catch (Exception ex) { response = "NACK;" + f[3] + ";FALHA_ARMAZENAMENTO"; System.err.println(ex); }
             publish(response);
             System.out.println(response);
+        } else if (message.startsWith("PUB;tpf-r-" + id + ";GET;")) {
+            String chunkId = message.substring(("PUB;tpf-r-" + id + ";GET;").length());
+            if (chunkId.matches("[0-9a-f]{64}")) {
+                String dataResponse = storage.get(chunkId);
+                if (dataResponse != null) publish(dataResponse);
+            }
         } else if (message.startsWith("PUB;")) {
             System.out.println("Recebido do hub: " + message);
         } else {

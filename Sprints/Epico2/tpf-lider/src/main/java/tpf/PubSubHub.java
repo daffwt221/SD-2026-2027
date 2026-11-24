@@ -214,12 +214,15 @@ public final class PubSubHub extends WebSocketServer {
     public static void main(String[] args) throws Exception {
         int port = Integer.getInteger("tpf.porto", 8765);
         final ChunkDispatcher[] dispatcher = new ChunkDispatcher[1];
+        final Recovery[] recovery = new Recovery[1];
         PubSubHub hub = new PubSubHub(port, Path.of("replicas.txt"), (replica, msg) -> {
             if (msg.startsWith("ACK;") || msg.startsWith("NACK;")) dispatcher[0].onReply(replica, msg);
+            else if (msg.startsWith("DATA;")) recovery[0].onReply(replica, msg);
             else if (!msg.startsWith("HB;")) System.out.println("Recebido de " + replica + ": " + msg);
         });
         Catalog catalog = new Catalog(Path.of("catalogo.log"));
         dispatcher[0] = new ChunkDispatcher(hub, Path.of("selados"), catalog);
+        recovery[0] = new Recovery(hub, catalog, Path.of("selados"), Path.of("master.key"));
         System.out.println("Catálogo recuperado: " + catalog.snapshot().size() + " chunks históricos");
         hub.start();
         System.out.println("TOKEN PARA A (novo registo; 10 minutos): " + hub.gerarToken());
@@ -227,7 +230,16 @@ public final class PubSubHub extends WebSocketServer {
         System.out.println("TOKEN PARA C (novo registo; 10 minutos): " + hub.gerarToken());
         System.out.println("Placement ponderado: R=3, W=2; réplicas A/B/C.");
         Reconciler reconciler = new Reconciler(dispatcher[0], hub.registry());
+        var recoveryScheduler = java.util.concurrent.Executors.newSingleThreadScheduledExecutor(r -> {
+            Thread t = new Thread(r, "tpf-recovery"); t.setDaemon(true); return t;
+        });
+        recoveryScheduler.scheduleWithFixedDelay(() -> {
+            try { recovery[0].requestMissing(5); }
+            catch (Exception e) { System.err.println("RECOVERY: " + e.getMessage()); }
+        }, 3, 5, java.util.concurrent.TimeUnit.SECONDS);
         reconciler.start();
-        Runtime.getRuntime().addShutdownHook(new Thread(reconciler::close));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            reconciler.close(); recoveryScheduler.shutdownNow();
+        }));
     }
 }
