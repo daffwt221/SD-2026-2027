@@ -226,18 +226,8 @@ public final class PubSubHub extends WebSocketServer {
         System.out.println("TOKEN PARA B (novo registo; 10 minutos): " + hub.gerarToken());
         System.out.println("TOKEN PARA C (novo registo; 10 minutos): " + hub.gerarToken());
         System.out.println("Placement ponderado: R=3, W=2; réplicas A/B/C.");
-        var timer = java.util.concurrent.Executors.newSingleThreadScheduledExecutor();
-        final Map<String, ReplicaRegistry.State> previousStates = new HashMap<>();
-        timer.scheduleWithFixedDelay(() -> {
-            try {
-                dispatcher[0].dispatch();
-                for (var replica : hub.registry().snapshot(System.currentTimeMillis())) {
-                    var previous = previousStates.put(replica.id(), replica.state());
-                    if (previous != replica.state())
-                        System.out.println("REPLICA " + replica.id() + ": " + replica.state());
-                }
-            }
-            catch (Exception e) { System.err.println("Erro a distribuir: " + e); }
-        }, 2, 3, java.util.concurrent.TimeUnit.SECONDS);
+        Reconciler reconciler = new Reconciler(dispatcher[0], hub.registry());
+        reconciler.start();
+        Runtime.getRuntime().addShutdownHook(new Thread(reconciler::close));
     }
 }

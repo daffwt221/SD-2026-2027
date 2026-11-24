@@ -49,8 +49,14 @@ public final class ChunkDispatcher {
         }
     }
 
-    public synchronized void dispatch() throws IOException {
-        if (!Files.isDirectory(dir)) return;
+    /** Compatibilidade com testes anteriores. */
+    public synchronized void dispatch() throws IOException { dispatch(20); }
+
+    /** Reconcilia chunks existentes no líder, com máximo de novas tarefas STORE por ronda. */
+    public synchronized int dispatch(int maxTasks) throws IOException {
+        if (maxTasks < 0) throw new IllegalArgumentException("maxTasks negativo");
+        int sent = 0;
+        if (!Files.isDirectory(dir)) return 0;
         long now = System.currentTimeMillis();
         // Remove reservas de tentativas sem ACK para permitir o reenvio.
         awaiting.entrySet().removeIf(e -> {
@@ -102,14 +108,17 @@ public final class ChunkDispatcher {
                 String payload = "STORE;" + id + ";" + Base64.getEncoder().encodeToString(header)
                     + ";" + Base64.getEncoder().encodeToString(cipher);
                 for (String replica : selected) {
+                    if (sent >= maxTasks) break;
                     String key = replica + ":" + id;
                     awaiting.put(key, now);
                     reserved.put(key, bytes);
                     reservedByReplica.merge(replica, bytes, Long::sum);
                     hub.publish("tpf-r-" + replica, payload);
+                    sent++;
                     System.out.println("STORE para " + replica + ": " + id);
                 }
             }
         }
+        return sent;
     }
 }
