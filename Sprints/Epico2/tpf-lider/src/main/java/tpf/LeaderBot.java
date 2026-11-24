@@ -20,6 +20,7 @@ public class LeaderBot extends ListenerAdapter {
     private static final String PAPEL_ADMIN = "admin-arquivo";
     private final RegistoLocal registoLocal;
     private final SeladorChunks selador;
+    private final java.util.concurrent.ExecutorService rajadas = java.util.concurrent.Executors.newSingleThreadExecutor();
 
     public LeaderBot(RegistoLocal registoLocal, SeladorChunks selador) {
         this.registoLocal = registoLocal;
@@ -108,6 +109,7 @@ public class LeaderBot extends ListenerAdapter {
                 long lsn = registoLocal.acrescentar(
                         event.getUser().getId(),
                         event.getChannel().getName(), texto);
+                try { selador.verificarAposRegisto(); } catch (Exception x) { System.err.println("Selagem: " + x); }
                 hook.editOriginal("Registo guardado localmente. LSN=" + lsn
                         + ". A replicação ainda não está implementada.").queue();
             } catch (IOException e) {
@@ -189,24 +191,38 @@ public class LeaderBot extends ListenerAdapter {
 
     private void tratarRajada(SlashCommandInteractionEvent event) {
         if (!autorizarAdmin(event)) return;
-
         OptionMapping quantidade = event.getOption("n");
         OptionMapping intervalo = event.getOption("intervaloms");
-
-        if (quantidade == null
-                || intervalo == null
-                || quantidade.getAsLong() < 1
-                || intervalo.getAsLong() < 1) {
-
-            event.reply("Indica n e intervaloMs maiores que zero.")
+        if (quantidade == null || intervalo == null || quantidade.getAsLong() < 1
+                || quantidade.getAsLong() > 10_000 || intervalo.getAsLong() < 0
+                || intervalo.getAsLong() > 60_000) {
+            event.reply("Indica n entre 1 e 10000 e intervaloMs entre 0 e 60000.")
                     .setEphemeral(true).queue();
             return;
         }
-
-        event.reply("/rajada recebido: n=" + quantidade.getAsLong()
-                + ", intervaloMs=" + intervalo.getAsLong()
-                + ". Rajada ainda não implementada.")
-                .queue();
+        int n = (int) quantidade.getAsLong();
+        long pausa = intervalo.getAsLong();
+        String autor = event.getUser().getId();
+        String canal = event.getChannel().getName();
+        event.deferReply(true).queue(hook -> rajadas.execute(() -> {
+            long ultimo = -1;
+            int criados = 0;
+            try {
+                for (int i = 0; i < n; i++) {
+                    // Texto suficientemente grande para demonstrar selagem por tamanho em /rajada 500 0.
+                    String texto = "RAJADA " + (i + 1) + "/" + n + " " + "x".repeat(220);
+                    ultimo = registoLocal.acrescentar(autor, canal, texto);
+                    criados++;
+                    selador.verificarAposRegisto();
+                    if (pausa != 0 && i + 1 < n) Thread.sleep(pausa);
+                }
+                hook.editOriginal("Rajada concluída: " + criados + " registos duráveis; último LSN=" + ultimo).queue();
+            } catch (Exception e) {
+                if (e instanceof InterruptedException) Thread.currentThread().interrupt();
+                hook.editOriginal("Rajada interrompida após " + criados + " registos; último LSN=" + ultimo).queue();
+                System.err.println("Erro /rajada: " + e);
+            }
+        }));
     }
 
     private boolean autorizarAdmin(SlashCommandInteractionEvent event) {
@@ -245,6 +261,7 @@ public class LeaderBot extends ListenerAdapter {
                     event.getAuthor().getId(),
                     event.getChannel().getName(),
                     event.getMessage().getContentRaw());
+            try { selador.verificarAposRegisto(); } catch (Exception x) { System.err.println("Selagem: " + x); }
             event.getChannel().sendMessage(
                     "Registo guardado localmente. LSN=" + lsn
                     + ". A replicação ainda não está implementada.").queue();

@@ -18,8 +18,14 @@ import java.util.List;
 public final class RegistoLocal {
     private final Path ficheiro;
     private long ultimoLsn;
+    private final EventosLider eventos;
 
     public RegistoLocal(Path ficheiro) throws IOException {
+        this(ficheiro, ficheiro.toAbsolutePath().normalize().resolveSibling("eventos-lider.txt"));
+    }
+
+    public RegistoLocal(Path ficheiro, Path eventosPath) throws IOException {
+        this.eventos = new EventosLider(eventosPath);
         this.ficheiro = ficheiro.toAbsolutePath().normalize();
         Path pasta = this.ficheiro.getParent();
         if (pasta != null) Files.createDirectories(pasta);
@@ -67,6 +73,8 @@ public final class RegistoLocal {
             canalFicheiro.force(true);
         }
         ultimoLsn = proximo;
+        try { eventos.escrever("REGISTO", "lsn=" + proximo + ";autor=" + autor + ";canal=" + canal); }
+        catch (IOException e) { System.err.println("REGISTO persistido; falha ao escrever evento: " + e); }
         return proximo;
     }
 

@@ -17,7 +17,7 @@ import java.util.HexFormat;
 
 /** Criptografia dos chunks. Apenas o líder deve possuir master.key. */
 public final class ChunkCrypto {
-    public static final int PAD_BYTES = 4096;
+    public static final int PAD_BYTES = Wire.PAD_BYTES;
     public static final int KEY_VERSION = 1;
     private static final byte[] INFO = "tpf-chunk-v1".getBytes(StandardCharsets.UTF_8);
     private static final byte[] AAD_PREFIX = "tpf-v1".getBytes(StandardCharsets.UTF_8);
@@ -43,13 +43,33 @@ public final class ChunkCrypto {
 
     /** Gera a master key uma única vez. Nunca a regenera no reinício. */
     public static void generateMasterKeyIfAbsent(Path path) throws IOException {
-        if (Files.exists(path)) return;
+        if (Files.exists(path)) {
+            if (Files.size(path) != 32) throw new IOException("master.key existente com tamanho diferente de 32 bytes");
+            return;
+        }
         byte[] key = new byte[32];
         RNG.nextBytes(key);
         try {
             Files.write(path, key, java.nio.file.StandardOpenOption.CREATE_NEW);
+            restringirPermissoes(path);
         } finally {
             java.util.Arrays.fill(key, (byte) 0);
+        }
+    }
+
+    static void restringirPermissoes(Path path) throws IOException {
+        try {
+            Files.setPosixFilePermissions(path, java.nio.file.attribute.PosixFilePermissions.fromString("rw-------"));
+        } catch (UnsupportedOperationException e) {
+            java.nio.file.attribute.AclFileAttributeView acl = Files.getFileAttributeView(path,
+                    java.nio.file.attribute.AclFileAttributeView.class);
+            if (acl == null) throw new IOException("Sistema sem suporte para restringir permissões da chave", e);
+            var owner = Files.getOwner(path);
+            var builder = java.nio.file.attribute.AclEntry.newBuilder();
+            builder.setType(java.nio.file.attribute.AclEntryType.ALLOW);
+            builder.setPrincipal(owner);
+            builder.setPermissions(java.nio.file.attribute.AclEntryPermission.values());
+            acl.setAcl(java.util.List.of(builder.build()));
         }
     }
 
@@ -74,12 +94,12 @@ public final class ChunkCrypto {
     /** Verifica o hash e a autenticação GCM antes de devolver texto original. */
     public byte[] open(Sealed sealed) throws GeneralSecurityException {
         if (sealed == null) throw new IllegalArgumentException("Chunk nulo");
-        if (sealed.keyVersion() != keyVersion)
-            throw new GeneralSecurityException("Versão de chave desconhecida");
         byte[] ct = sealed.ciphertext();
         if (!MessageDigest.isEqual(sha256Hex(ct).getBytes(StandardCharsets.US_ASCII),
                 sealed.chunkId().getBytes(StandardCharsets.US_ASCII)))
             throw new GeneralSecurityException("Hash do chunk inválido");
+        if (sealed.keyVersion() != keyVersion)
+            throw new GeneralSecurityException("Versão de chave desconhecida");
         byte[] dek = hkdf(masterKey, sealed.salt(), INFO);
         try {
             Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");

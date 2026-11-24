@@ -16,10 +16,11 @@ import java.util.concurrent.*;
  * completos representam chunks confirmados como selados.
  */
 public final class SeladorChunks implements AutoCloseable {
-    public static final int LIMITE_BYTES = 65_536;
-    public static final Duration LIMITE_TEMPO = Duration.ofSeconds(5);
+    public static final int LIMITE_BYTES = Wire.CHUNK_MAX_BYTES;
+    public static final Duration LIMITE_TEMPO = Duration.ofMillis(Wire.SELAGEM_MS);
     private final Path log, pasta, chave;
     private final ChunkCrypto crypto;
+    private final EventosLider eventos;
     private final ScheduledExecutorService executor;
     private long ultimoSelado;
     private long pendenteDesdeNanos = -1;
@@ -28,6 +29,7 @@ public final class SeladorChunks implements AutoCloseable {
         this.log = log.toAbsolutePath().normalize();
         this.pasta = pasta.toAbsolutePath().normalize();
         this.chave = chave.toAbsolutePath().normalize();
+        this.eventos = new EventosLider(this.log.resolveSibling("eventos-lider.txt"));
         Files.createDirectories(this.pasta);
         boolean haChunks = false;
         try (DirectoryStream<Path> dir = Files.newDirectoryStream(this.pasta, "*.{hdr,bin}")) {
@@ -47,13 +49,17 @@ public final class SeladorChunks implements AutoCloseable {
 
     /** Cria a chave uma vez e sincroniza-a antes de a utilizar. */
     private void criarChaveSeFaltar() throws IOException {
-        if (Files.exists(chave)) return;
+        if (Files.exists(chave)) {
+            if (Files.size(chave) != 32) throw new IOException("master.key existente não tem 32 bytes");
+            return;
+        }
         if (chave.getParent() != null) Files.createDirectories(chave.getParent());
         byte[] bytes = new byte[32];
         new java.security.SecureRandom().nextBytes(bytes);
         try (FileChannel fc = FileChannel.open(chave, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)) {
             escreverTudo(fc, bytes);
             fc.force(true);
+            ChunkCrypto.restringirPermissoes(chave);
         } catch (FileAlreadyExistsException ignored) {
             // Outro processo criou a chave; não a substituir.
         } finally {
@@ -71,11 +77,14 @@ public final class SeladorChunks implements AutoCloseable {
                 long de = Long.parseLong(p.getProperty("lsnDe"));
                 long ate = Long.parseLong(p.getProperty("lsnAte"));
                 int versao = Integer.parseInt(p.getProperty("keyVersion"));
-                byte[] salt = HexFormat.of().parseHex(p.getProperty("salt"));
-                byte[] nonce = HexFormat.of().parseHex(p.getProperty("nonce"));
+                byte[] salt = Base64.getDecoder().decode(p.getProperty("salt"));
+                byte[] nonce = Base64.getDecoder().decode(p.getProperty("nonce"));
                 Path bin = pasta.resolve(id + ".bin");
                 byte[] plain = crypto.open(new Sealed(id, versao, salt, nonce, Files.readAllBytes(bin)));
-                if (plain.length != Integer.parseInt(p.getProperty("tamanhoPlaintext")) || ate < de)
+                List<Registo> registos = Chunk.ler(plain);
+                if (plain.length != Integer.parseInt(p.getProperty("tamanhoPlaintext")) || ate < de
+                        || registos.size() != ate - de + 1
+                        || registos.get(0).lsn() != de || registos.get(registos.size() - 1).lsn() != ate)
                     throw new IOException("Metadados inválidos: " + hdr);
                 if (intervalos.putIfAbsent(de, ate) != null)
                     throw new IOException("Intervalos duplicados de chunks selados");
@@ -101,6 +110,11 @@ public final class SeladorChunks implements AutoCloseable {
         return verificarESelar(true);
     }
 
+    /** Chamado após o registo durável para selar imediatamente se ultrapassar o limite. */
+    public synchronized void verificarAposRegisto() throws IOException, GeneralSecurityException {
+        verificarESelar(false);
+    }
+
     /** Devolve a quantidade de chunks criados nesta chamada. */
     private synchronized int verificarESelar(boolean forcar) throws IOException, GeneralSecurityException {
         if (!Files.exists(log)) return 0;
@@ -116,6 +130,7 @@ public final class SeladorChunks implements AutoCloseable {
             String[] campos = linha.split(";", 2);
             if (campos.length != 2 || Long.parseLong(campos[0]) != esperado)
                 throw new IOException("LSN fora de sequência no log");
+            Registo.ler(linha);
             if (esperado > ultimoSelado) pendentes.add(linha + "\n");
             esperado++;
         }
@@ -145,19 +160,23 @@ public final class SeladorChunks implements AutoCloseable {
                     && tamanho < LIMITE_BYTES && decorrido < LIMITE_TEMPO.toNanos()) break;
             StringBuilder sb = new StringBuilder(tamanho);
             for (int n = 0; n < quantidade; n++) sb.append(pendentes.get(indice + n));
-            byte[] original = sb.toString().getBytes(StandardCharsets.UTF_8);
+            List<Registo> lote = new ArrayList<>();
+            for (String linha : sb.toString().split("\n")) if (!linha.isEmpty()) lote.add(Registo.ler(linha));
+            byte[] original = Chunk.serializar(lote);
             long ate = de + quantidade - 1;
-            gravarChunk(de, ate, original);
+            String idSelado = gravarChunk(de, ate, original);
             ultimoSelado = ate;
             indice += quantidade;
             criados++;
+            try { eventos.escrever("SELADO", "chunkId=" + idSelado + ";lsnDe=" + de + ";lsnAte=" + ate + ";tamanho=" + original.length); }
+            catch (IOException e) { System.err.println("SELADO: falha ao registar evento: " + e); }
             System.out.printf("Chunk selado: LSN %d-%d (%d bytes originais)%n", de, ate, original.length);
         }
         pendenteDesdeNanos = indice == pendentes.size() ? -1 : System.nanoTime();
         return criados;
     }
 
-    private void gravarChunk(long de, long ate, byte[] original) throws IOException, GeneralSecurityException {
+    private String gravarChunk(long de, long ate, byte[] original) throws IOException, GeneralSecurityException {
         Sealed sealed = crypto.seal(original);
         String id = sealed.chunkId();
         Path bin = pasta.resolve(id + ".bin");
@@ -172,13 +191,14 @@ public final class SeladorChunks implements AutoCloseable {
             p.setProperty("lsnDe", Long.toString(de));
             p.setProperty("lsnAte", Long.toString(ate));
             p.setProperty("keyVersion", Integer.toString(sealed.keyVersion()));
-            p.setProperty("salt", HexFormat.of().formatHex(sealed.salt()));
-            p.setProperty("nonce", HexFormat.of().formatHex(sealed.nonce()));
+            p.setProperty("salt", Base64.getEncoder().encodeToString(sealed.salt()));
+            p.setProperty("nonce", Base64.getEncoder().encodeToString(sealed.nonce()));
             p.setProperty("tamanhoPlaintext", Integer.toString(original.length));
             try (var out = Files.newOutputStream(hdrTmp)) { p.store(out, "TPF chunk metadata"); }
             try (FileChannel fc = FileChannel.open(hdrTmp, StandardOpenOption.WRITE)) { fc.force(true); }
             Files.move(binTmp, bin, StandardCopyOption.ATOMIC_MOVE);
             Files.move(hdrTmp, hdr, StandardCopyOption.ATOMIC_MOVE);
+            return id;
         } finally {
             Files.deleteIfExists(binTmp); Files.deleteIfExists(hdrTmp);
         }
