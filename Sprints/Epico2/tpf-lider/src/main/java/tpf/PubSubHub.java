@@ -34,7 +34,7 @@ public final class PubSubHub extends WebSocketServer {
     private final Map<WebSocket, Session> sessions = new ConcurrentHashMap<>();
     private final Map<String, Registered> registered = new HashMap<>();
     private final Map<String, Long> tokens = new HashMap<>();
-    private final Map<String, ReplicaStatus> live = new ConcurrentHashMap<>();
+    private final ReplicaRegistry replicaRegistry = new ReplicaRegistry();
 
     /** O estado do heartbeat é transitório; nunca constitui prova de posse. */
     public record ReplicaStatus(String id, long quota, long used, long lastHeartbeat) {}
@@ -83,7 +83,7 @@ public final class PubSubHub extends WebSocketServer {
     @Override public void onClose(WebSocket conn, int code, String reason, boolean remote) {
         Session s = sessions.remove(conn);
         if (s != null && s.authenticated) {
-            live.remove(s.id);
+            replicaRegistry.disconnected(s.id);
             System.out.println("Desligada réplica " + s.id);
         }
     }
@@ -174,7 +174,7 @@ public final class PubSubHub extends WebSocketServer {
                     long quota = Long.parseLong(fields[3]);
                     long used = Long.parseLong(fields[4]);
                     if (quota < 0 || used < 0 || used > quota) throw new IllegalArgumentException("Quota/uso inválidos");
-                    live.put(s.id, new ReplicaStatus(s.id, quota, used, System.currentTimeMillis()));
+                    replicaRegistry.heartbeat(s.id, quota, used, System.currentTimeMillis());
                 }
             }
             leaderReceiver.accept(s.id, data);
@@ -186,10 +186,13 @@ public final class PubSubHub extends WebSocketServer {
     /** Só são elegíveis réplicas subscritas com HB recente (máx. 6 segundos). */
     public List<ReplicaStatus> eligibleReplicas() {
         long now = System.currentTimeMillis();
-        return live.values().stream()
-            .filter(r -> now - r.lastHeartbeat() <= 6000L && isSubscribed(r.id()))
+        return replicaRegistry.snapshot(now).stream()
+            .filter(r -> r.state() == ReplicaRegistry.State.ATIVA && isSubscribed(r.id()))
+            .map(r -> new ReplicaStatus(r.id(), r.quota(), r.used(), r.lastHeartbeat()))
             .toList();
     }
+
+    public ReplicaRegistry registry() { return replicaRegistry; }
 
     public boolean isSubscribed(String id) {
         return sessions.values().stream().anyMatch(s -> s.authenticated && id.equals(s.id)
@@ -215,15 +218,25 @@ public final class PubSubHub extends WebSocketServer {
             if (msg.startsWith("ACK;") || msg.startsWith("NACK;")) dispatcher[0].onReply(replica, msg);
             else if (!msg.startsWith("HB;")) System.out.println("Recebido de " + replica + ": " + msg);
         });
-        dispatcher[0] = new ChunkDispatcher(hub, Path.of("selados"));
+        Catalog catalog = new Catalog(Path.of("catalogo.log"));
+        dispatcher[0] = new ChunkDispatcher(hub, Path.of("selados"), catalog);
+        System.out.println("Catálogo recuperado: " + catalog.snapshot().size() + " chunks históricos");
         hub.start();
         System.out.println("TOKEN PARA A (novo registo; 10 minutos): " + hub.gerarToken());
         System.out.println("TOKEN PARA B (novo registo; 10 minutos): " + hub.gerarToken());
         System.out.println("TOKEN PARA C (novo registo; 10 minutos): " + hub.gerarToken());
         System.out.println("Placement ponderado: R=3, W=2; réplicas A/B/C.");
         var timer = java.util.concurrent.Executors.newSingleThreadScheduledExecutor();
+        final Map<String, ReplicaRegistry.State> previousStates = new HashMap<>();
         timer.scheduleWithFixedDelay(() -> {
-            try { dispatcher[0].dispatch(); }
+            try {
+                dispatcher[0].dispatch();
+                for (var replica : hub.registry().snapshot(System.currentTimeMillis())) {
+                    var previous = previousStates.put(replica.id(), replica.state());
+                    if (previous != replica.state())
+                        System.out.println("REPLICA " + replica.id() + ": " + replica.state());
+                }
+            }
             catch (Exception e) { System.err.println("Erro a distribuir: " + e); }
         }, 2, 3, java.util.concurrent.TimeUnit.SECONDS);
     }

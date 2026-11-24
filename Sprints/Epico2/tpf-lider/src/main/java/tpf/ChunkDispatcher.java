@@ -16,13 +16,14 @@ public final class ChunkDispatcher {
     private static final long TIMEOUT_MS = 10_000, MARGIN_BYTES = 4096;
     private final PubSubHub hub;
     private final Path dir;
+    private final Catalog catalog;
     private final Map<String, Long> awaiting = new HashMap<>(); // replica:id -> instante STORE
     private final Map<String, Long> reserved = new HashMap<>(); // replica:id -> bytes reservados
     private final Map<String, Set<String>> acked = new HashMap<>(); // chunk -> replicas com ACK
     private final Map<String, String> printed = new HashMap<>();
 
-    public ChunkDispatcher(PubSubHub hub, Path directory) {
-        this.hub = hub; this.dir = directory;
+    public ChunkDispatcher(PubSubHub hub, Path directory, Catalog catalog) {
+        this.hub = hub; this.dir = directory; this.catalog = catalog;
     }
 
     public synchronized void onReply(String replica, String reply) {
@@ -33,6 +34,12 @@ public final class ChunkDispatcher {
         if (!awaiting.containsKey(key)) return;
         awaiting.remove(key); reserved.remove(key);
         if ("ACK".equals(f[0]) && ("GUARDADO".equals(f[2]) || "JA_EXISTIA".equals(f[2]))) {
+            try {
+                catalog.recordAck(f[1], replica, dir.resolve(f[1] + ".hdr"));
+            } catch (IOException e) {
+                System.err.println("ERRO AO PERSISTIR ACK: " + e.getMessage());
+                return;
+            }
             acked.computeIfAbsent(f[1], unused -> new HashSet<>()).add(replica);
             int n = acked.get(f[1]).size();
             System.out.println("ACK " + replica + " chunk " + f[1] + " (" + n + "/" + R + ")");
@@ -51,6 +58,11 @@ public final class ChunkDispatcher {
             reserved.remove(e.getKey()); return true;
         });
         List<PubSubHub.ReplicaStatus> active = hub.eligibleReplicas();
+        // Um ACK histórico não prova disponibilidade.
+        // Após falha, exige-se novo ACK (incluindo JA_EXISTIA) para voltar a contar.
+        Set<String> activeIds = new HashSet<>();
+        for (var replica : active) activeIds.add(replica.id());
+        for (Set<String> confirmations : acked.values()) confirmations.retainAll(activeIds);
         Map<String, Long> reservedByReplica = new HashMap<>();
         for (var e : reserved.entrySet()) {
             String replica = e.getKey().substring(0, e.getKey().indexOf(':'));
@@ -66,6 +78,8 @@ public final class ChunkDispatcher {
                 byte[] header = Files.readAllBytes(hdr);
                 byte[] cipher = Files.readAllBytes(bin);
                 long bytes = header.length + cipher.length;
+                // ACKs históricos do catálogo não contam como cópias ativas após reinício.
+                // A réplica terá de confirmar novamente com ACK/JA_EXISTIA.
                 Set<String> already = acked.getOrDefault(id, Set.of());
                 Set<String> pending = new HashSet<>();
                 for (String key : awaiting.keySet()) if (key.endsWith(":" + id))
