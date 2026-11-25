@@ -9,3 +9,10 @@
 **/.env.*
 **/master.key
 **/token.txt
+/Sprints/Epico2/tpf-lider/registos.log
+
+master.key
+
+/Sprints/Epico2/tpf-lider/selados/
+/Sprints/Epico2/tpf-lider/master.key
+/Sprints/Epico2/tpf-lider/eventos-lider.txt

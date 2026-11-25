@@ -1,7 +1,8 @@
-
 package tpf;
 
+import java.io.IOException;
 import java.util.Collections;
+import java.nio.file.Path;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -17,6 +18,14 @@ public class LeaderBot extends ListenerAdapter {
     private static final String GUILD_ID = "1570860151370547262";
     private static final String CANAL_ARQUIVO = "arquivo";
     private static final String PAPEL_ADMIN = "admin-arquivo";
+    private final RegistoLocal registoLocal;
+    private final SeladorChunks selador;
+    private final java.util.concurrent.ExecutorService rajadas = java.util.concurrent.Executors.newSingleThreadExecutor();
+
+    public LeaderBot(RegistoLocal registoLocal, SeladorChunks selador) {
+        this.registoLocal = registoLocal;
+        this.selador = selador;
+    }
 
     public static void main(String[] args) {
         String token = System.getenv("DISCORD_TOKEN");
@@ -27,9 +36,14 @@ public class LeaderBot extends ListenerAdapter {
         }
 
         try {
+            RegistoLocal registo = new RegistoLocal(Path.of("registos.log"));
+            SeladorChunks selador = new SeladorChunks(Path.of("registos.log"),
+                    Path.of("selados"), Path.of("master.key"));
+            selador.iniciar();
+            Runtime.getRuntime().addShutdownHook(new Thread(selador::close));
             JDA jda = JDABuilder.createDefault(token)
                     .enableIntents(GatewayIntent.MESSAGE_CONTENT)
-                    .addEventListeners(new LeaderBot())
+                    .addEventListeners(new LeaderBot(registo, selador))
                     .build();
 
             jda.awaitReady();
@@ -89,10 +103,20 @@ public class LeaderBot extends ListenerAdapter {
             return;
         }
 
-        event.reply("/registar recebido: " + texto
-                + "\nRegisto ainda não implementado.")
-                .setAllowedMentions(Collections.emptyList())
-                .queue();
+        // A operação pode bloquear durante fsync: adiamos a resposta ao Discord.
+        event.deferReply(true).queue(hook -> {
+            try {
+                long lsn = registoLocal.acrescentar(
+                        event.getUser().getId(),
+                        event.getChannel().getName(), texto);
+                try { selador.verificarAposRegisto(); } catch (Exception x) { System.err.println("Selagem: " + x); }
+                hook.editOriginal("Registo guardado localmente. LSN=" + lsn
+                        + ". A replicação ainda não está implementada.").queue();
+            } catch (IOException e) {
+                System.err.println("Erro a persistir registo: " + e.getMessage());
+                hook.editOriginal("Erro ao guardar o registo localmente.").queue();
+            }
+        });
     }
 
     private void tratarConfig(SlashCommandInteractionEvent event) {
@@ -167,24 +191,38 @@ public class LeaderBot extends ListenerAdapter {
 
     private void tratarRajada(SlashCommandInteractionEvent event) {
         if (!autorizarAdmin(event)) return;
-
         OptionMapping quantidade = event.getOption("n");
         OptionMapping intervalo = event.getOption("intervaloms");
-
-        if (quantidade == null
-                || intervalo == null
-                || quantidade.getAsLong() < 1
-                || intervalo.getAsLong() < 1) {
-
-            event.reply("Indica n e intervaloMs maiores que zero.")
+        if (quantidade == null || intervalo == null || quantidade.getAsLong() < 1
+                || quantidade.getAsLong() > 10_000 || intervalo.getAsLong() < 0
+                || intervalo.getAsLong() > 60_000) {
+            event.reply("Indica n entre 1 e 10000 e intervaloMs entre 0 e 60000.")
                     .setEphemeral(true).queue();
             return;
         }
-
-        event.reply("/rajada recebido: n=" + quantidade.getAsLong()
-                + ", intervaloMs=" + intervalo.getAsLong()
-                + ". Rajada ainda não implementada.")
-                .queue();
+        int n = (int) quantidade.getAsLong();
+        long pausa = intervalo.getAsLong();
+        String autor = event.getUser().getId();
+        String canal = event.getChannel().getName();
+        event.deferReply(true).queue(hook -> rajadas.execute(() -> {
+            long ultimo = -1;
+            int criados = 0;
+            try {
+                for (int i = 0; i < n; i++) {
+                    // Texto suficientemente grande para demonstrar selagem por tamanho em /rajada 500 0.
+                    String texto = "RAJADA " + (i + 1) + "/" + n + " " + "x".repeat(220);
+                    ultimo = registoLocal.acrescentar(autor, canal, texto);
+                    criados++;
+                    selador.verificarAposRegisto();
+                    if (pausa != 0 && i + 1 < n) Thread.sleep(pausa);
+                }
+                hook.editOriginal("Rajada concluída: " + criados + " registos duráveis; último LSN=" + ultimo).queue();
+            } catch (Exception e) {
+                if (e instanceof InterruptedException) Thread.currentThread().interrupt();
+                hook.editOriginal("Rajada interrompida após " + criados + " registos; último LSN=" + ultimo).queue();
+                System.err.println("Erro /rajada: " + e);
+            }
+        }));
     }
 
     private boolean autorizarAdmin(SlashCommandInteractionEvent event) {
@@ -218,8 +256,18 @@ public class LeaderBot extends ListenerAdapter {
                 + ": "
                 + event.getMessage().getContentRaw());
 
-        event.getChannel()
-                .sendMessage("Mensagem recebida em #arquivo. Arquivo ainda não implementado.")
-                .queue();
+        try {
+            long lsn = registoLocal.acrescentar(
+                    event.getAuthor().getId(),
+                    event.getChannel().getName(),
+                    event.getMessage().getContentRaw());
+            try { selador.verificarAposRegisto(); } catch (Exception x) { System.err.println("Selagem: " + x); }
+            event.getChannel().sendMessage(
+                    "Registo guardado localmente. LSN=" + lsn
+                    + ". A replicação ainda não está implementada.").queue();
+        } catch (IOException e) {
+            System.err.println("Erro a persistir mensagem: " + e.getMessage());
+            event.getChannel().sendMessage("Erro ao guardar a mensagem.").queue();
+        }
     }
 }
